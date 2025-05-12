@@ -4,7 +4,7 @@
     <div class="ht-theme-main-dark-auto" style="height:100vh; width: 800px; overflow: auto;">
       <div class="header">
         Input CSV
-        <button @click="convert"> Convert</button>
+        <button @click="convertToJson"> Convert</button>
       </div>
       <hot-table :data="data" :rowHeaders="true" :colHeaders="true"></hot-table>
     </div>
@@ -35,7 +35,7 @@ registerAllModules();
 
 const data = ref(sampleData);
 const jsonObject=ref({})
-watch(data, (newValue) => {
+watch(data, () => {
   convertToJson()
 }, { deep: true });
 const convertToJson = () => {
@@ -77,10 +77,7 @@ const combineNestedObjects = (obj1: any, obj2: any) => {
   mergeObjects(result, obj2);
   return result;
 };
-const convert = () => {
-  const Json = convertToJson()
 
-}
 
 const download =(Json:any)=>{
   const blob = new Blob([JSON.stringify(Json, null, 2)], { type: 'application/json' });
