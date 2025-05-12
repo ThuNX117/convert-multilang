@@ -14,7 +14,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed,  } from 'vue';
 
 import "@andypf/json-viewer"
 
@@ -25,9 +24,7 @@ const props = defineProps({
         required: true,
     },
 });
-const formattedJson = computed(() => {
-    return JSON.stringify(props.object, null, 2);
-});
+
 </script>
 
 <style scoped>
