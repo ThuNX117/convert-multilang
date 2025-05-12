@@ -1,5 +1,8 @@
 
-export const translateObjectName = (name: string,value: string) => {
+export const translateObjectName = (name?: string,value?: string) => {
+    if (!name) {
+        throw new Error('name is required');
+    }
 const parts = name.split('.');
 return parts.reduceRight((acc: any, key: any) => ({ [key]: acc }), value);
 };

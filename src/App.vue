@@ -4,44 +4,52 @@
     <div class="ht-theme-main-dark-auto" style="height:100vh; width: 800px; overflow: auto;">
       <div class="header">
         Input CSV
-        <div @click="convert"> download</div>
+        <button @click="convert"> Convert</button>
       </div>
       <hot-table :data="data" :rowHeaders="true" :colHeaders="true"></hot-table>
     </div>
-    <div class="preview" style="height:100vh; width: 800px;">
+    <div class="preview" style="height:100vh; width: 800px; overflow: auto;">
       <div class="header">
-        Preview Json
-        <button> download</button>
+       Preview JSON
+        <button @click="download"> download</button>
       </div>
+      <PreviewJson :object="jsonObject" />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref, watch } from 'vue';
+// @ts-ignore
+import PreviewJson from './PreviewJson.vue';
 import { HotTable } from '@handsontable/vue3';
+// @ts-ignore
 import { registerAllModules } from 'handsontable/registry';
 import 'handsontable/styles/handsontable.min.css';
 import 'handsontable/styles/ht-theme-main.min.css';
 import { translateObjectName } from './plugins/convert';
+import { sampleData } from './data';
 
 
 registerAllModules();
 
-const data = ref(Array.from({ length: 10 }, () => Array(10).fill('')));
-
+const data = ref(sampleData);
+const jsonObject=ref({})
 watch(data, (newValue) => {
-  console.log('Data changed:', newValue);
+  convertToJson()
 }, { deep: true });
 const convertToJson = () => {
   const dataRaw = data.value
   console.log('dataRaw', dataRaw)
   let result = {}
   dataRaw.forEach((row) => {
-    const res = translateObjectName(row[0], row[1])
+    const [name, data]=row
+    const res = translateObjectName(name, data)
     // result = { ...result, ...res }
     result=  combineNestedObjects(result, res)
   });
+  jsonObject.value = result
+  console.log('result', jsonObject)
   return result
 
 }
@@ -71,6 +79,10 @@ const combineNestedObjects = (obj1: any, obj2: any) => {
 };
 const convert = () => {
   const Json = convertToJson()
+
+}
+
+const download =(Json:any)=>{
   const blob = new Blob([JSON.stringify(Json, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
@@ -83,7 +95,6 @@ const convert = () => {
   URL.revokeObjectURL(url);
   console.log('Json', Json)
 }
-
 </script>
 <style scoped>
 .table-data {
