@@ -79,7 +79,8 @@ const combineNestedObjects = (obj1: any, obj2: any) => {
 };
 
 
-const download =(Json:any)=>{
+const download =()=>{
+  const Json=jsonObject.value
   const blob = new Blob([JSON.stringify(Json, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
