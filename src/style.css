@@ -59,7 +59,9 @@ button:focus-visible {
 }
 
 #app {
-  padding: 2rem;
+  padding: 10px;
+  width: 100vw;;
+  min-width: 1800px;
   text-align: center;
 }
 
@@ -74,4 +76,34 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.badge-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  height: 30px;
+  width: 30px;
+  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;;
+  margin:0 12px;
+
+}
+.badge-btn {
+  
+}
+
+.badge-btn.error {
+
+  border: 1px solid rgb(208, 58, 82);
+}
+
+
+.badge-btn.warning {
+
+  border: 1px solid rgb(240, 138, 0);
 }

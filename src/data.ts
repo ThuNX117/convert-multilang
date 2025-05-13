@@ -1,2006 +1,2006 @@
-export const   sampleData:Array<Array<string|undefined>>=[
+export const   sampleData:Array<Array<string>>=[
     [
         "access-control.required",
         "จำเป็น",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.name",
         "โค้ด",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.name-description",
         "โค้ดที่มีอยู่แล้วไม่สามารถใช้ได้",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.performer",
         "วิธีกำหนดผู้ปฏิบัติ",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.tag-name",
         "ชื่อโค้ด",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.submit",
         "บันทึก",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.cancel",
         "ยกเลิก",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.title",
         "สิทธิ์ตำแหน่ง",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.sub-title",
         "สามารถกำหนดสิทธิ์การเข้าถึง การแก้ไขข้อมูลพนักงานและออกประกาศตามตำแหน่ง หน้าที่และแผนก  กรุณาตั้งค่า ใคร(ผู้ปฏิบัติ)  เป็นผู้สามารถดู แก้ไขข้อมูลพนักงานคนไหนได้ ",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.add-btn",
         "เพิ่มใหม่",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.policy-setting.large-branch",
         "ระดับผู้จัดการสาขา สาขาขนาดใหญ่",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.description-title",
         "คำถามที่พบบ่อย",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.first-faq",
         "ตั้งค่าระบบ>กรณีตั้งค่ากำหนดสิทธิ์จะเรียงตามลำดับสถานะสิทธิ์ตำแหน่ง",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.second-faq",
         "กรณีที่ผู้ดูมีหลายโค้ดที่เข้าข่าย จะเรียงลำดับจากสถานะตั้งค่าที่ไม่ได้กำหนดสิทธิ์",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.third-faq",
         "กรณีที่ผู้ดูควบหลายแผนก ตำแหน่ง โค้ดของแต่ละอันจะถูกใช้งาน",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.permission-btn",
         "ควบคุมสิทธิ์ที่นี่",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.add-target",
         "ตั้งค่ามาสเตอร์แรงค์ที่นี่",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.family-name",
         "ชื่อ",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.messages.error-regex-half-width",
-        "",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.character",
         "ตัวอักษร",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.confirm-checkbox",
         "เห็นด้วยกับเนื้อหาข้างต้น",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.search-placeholder",
         "ค้นหาด้วยหมายเลข ชื่อ",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.code",
         "โค้ด",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.items",
         "10 รายการ",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.items",
         "20 รายการ",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.items",
         "50 รายการ",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.table.code-number",
         "เบอร์โค้ด",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.table.code-name",
         "ชื่อโค้ด",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.table.code-status",
         "สถานะ",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.table.no-data",
         "ไม่มีข้อมูล",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.status.invalid",
         "ปิดใช้งาน",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.status.applied",
         "เปิดใช้งาน",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.status.applying",
         "กำลังประมวลผล",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.status.not-applied",
         "การเปลี่ยนแปลงไม่ได้รับการแก้ไข",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.include-sub-department",
         "รวมถึงแผนกใต้บังคับบัญชา",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.remove-restriction",
         "ลบการตั้งค่า",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.menu-setting",
         "ตั้งค่าเมนู",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.employee-restriction",
         "จำกัดการเข้าถึงข้อมูลพนักงาน",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.delete2",
         "ลบ",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.delete-warning",
         "หากทำการลบข้อมูลแล้วจะไม่สามารถคืนค่าได้",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.toast-msg.deleted-success",
         "ทำการลบเรียบร้อย",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.toast-msg.has-error",
         "เกิดข้อผิดพลาด",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.start-date",
         "วัน เวลาที่เริ่ม",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.end-date",
         "วัน เวลาที่แล้วเสร็จ",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.input-placeholder",
         "กรุณากรอก",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.select-placeholder",
         "กรุณาเลือก",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.published-info",
         "ปฏิบัติตามข้อมูลที่ออกประกาศ",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.by-name",
         "by name",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.will-enroll",
         "กำหนดทำงาน",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.rejoin",
         "กำหนด",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.enrollment",
         "ทำงาน",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.job-assignment",
         "ประจำการที่อื่น",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.leave",
         "พักงาน",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.retire",
         "ลาออก",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.paginate",
         "แสดงผลรายการ {จาก}~{ถึง} ของรายการ {ทั้งหมด}",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.config-output",
         "ส่งออกข้อมูล",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.enable",
         "เปิดการใช้งาน",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.disable",
         "ปิดการใช้งาน",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.update-auth-setting",
         "ขณะนี้กำลังอัพเดทการตั้งค่าสิทธิ์ตำแหน่ง",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.not-any-changes",
         "การเปลี่ยนแปลงไม่สำเร็จ กรุณา\"เปิดการใช้งาน\"จาก 3 Point leader ด้านขวาบนจอ",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.executor",
         "ผู้ปฏิบัติ",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.group-setting-desc",
         "การตั้งค่ากลุ่มที่เป็นกลุ่มเป้าหมาย หากกำหนดค่าผู้ปฏิบัติเป็น \"ปฏิบัติตามข้อมูลที่ออกประกาศ\"  เป้าหมายจะมีการเปลี่ยนแปลงตามการออกประกาศโดยอัตโนมัติ",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.target-setting-desc",
         "ผู้ปฏิบัติตั้งค่าพนักงานคนไหนสามารถดู แก้ไขได้หรือไม่ได้ ออกประกาศได้หรือไม่ได้  การสามารถเข้าถึงข้อมูลพนักงานคนไหน(:บุคคลเป้าหมาย) ให้กำหนดโดยข้อมูลออกประกาศเช่น แผนก ตำแหน่งเป็นต้น หรือกำหนดด้วย by name",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.activate-code",
         "เปิดใช้งานโค้ด",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.activate-status-desc",
         "เปิดการใช้งาน หากเปิดการใช้งานแล้วการตั้งค่ากำหนดสิทธิ์ดูข้อมูลพนักงานจะถูกใช้ที่ผู้ปฏิบัติ",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.disable-code",
         "ปิดการใช้งานโค้ด",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.disable-status-desc",
         "ปิดการใช้งาน หากปิดการใช้งานแล้วการตั้งค่าจะไม่ถูกใช้งาน",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.toast-msg.changed-success",
         "เปลี่ยนแปลงแล้ว",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.remove-code",
         "ลบโค้ด",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.remove-status-desc",
         "ลบ โค้ดที่ลบแล้วจะไม่สามารถคืนค่าได้",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.self",
         "ตนเอง",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.edit",
         "แก้ไข",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.editable-desc",
         "ผู้ปฏิบัติตั้งค่าให้ตนเองสามารถดู แก้ไขข้อมูลพนักงานคนอื่นได้ ออกประกาศได้",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.others",
         "ผู้อื่น",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.refer-instruction",
         "ผู้ปฏิบัติตั้งค่าให้ผู้อื่นสามารถดู แก้ไขข้อมูลพนักงานคนอื่นได้ ออกประกาศได้",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.setting-by-announcement",
         "รายการการตั้งค่า(ตามข้อมูลประกาศ)",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.setting-by-individual",
         "รายการการตั้งค่า(รายบุคคล)",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.conflict-condition",
         "กรณีตั้งค่า \"ตามข้อมูลประกาศ\" ซ้ำซ้อนกันจะเรียงตาม \"รายบุคคล\" ก่อน",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.retired-people",
         "ผู้ลาออก",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.access-instruction",
         "ผู้ปฏิบัติกรุณาตั้งค่าว่าสามารถเข้าถึงข้อมูลพนักงานที่ลาออกได้หรือไม่",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.enroll-classification",
         "ประเภทการทำงาน",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.employee-info",
         "ข้อมูลพนักงาน",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.configured",
         "ตั้งค่าแล้วเสร็จ",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.not-set",
         "ยังไม่ได้ตั้งค่า",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.allow",
         "อนุมัติ",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.restriction",
         "จำกัด",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.remove-restriction-desc",
         "ลบการตั้งค่าของ  การตั้งค่าที่ลบไปแล้วไม่สามารคืนค่าได้",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.target-spec",
         "กำหนดเป้าหมาย",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.list-people-desc",
         "ข้อมูลด้านล่างครอบคลุมถึงคนที่กำหนด",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.project",
         "หัวข้อ",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.value",
         "ค่า",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.delete",
         "ลบ",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.add-item",
         "เพิ่มหัวข้อ",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.exclude-spec",
         "กำหนดไม่ใช่เป้าหมาย",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.exclude-desc",
         "ข้อมูลด้านล่างไม่ครอบคลุมถึงคนที่กำหนด",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.include-subordinates",
         "รวมผู้ใต้บังคับบัญชา",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.not-include-sub",
         "ไม่รวมผู้ใต้บังคับบัญชา",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.enter-department",
         "กรุณากรอกแผนก",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.no-setting",
         "ไม่มีการกำหนดค่า",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.by-affiliate-department",
         "แผนกสังกัดของตนเอง",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.by-manager-department",
         "แผนกสังกัดของหัวหน้า",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.include-sub",
         "รวมผู้ใต้บังคับบัญชา",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.not-include-sub",
         "ไม่รวมผู้ใต้บังคับบัญชา",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.list-executor",
         "รายการผู้ปฏิบัติ",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.re-check",
         "ตรวจสอบผู้ปฏิบัติ",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.output",
         "ส่งออก",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.export-data",
         "ส่งออกข้อมูล",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.deploy",
         "แผนก",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.post",
         "ตำแหน่ง",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.profile",
         "โปรไฟล์",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.access-employee-instruction",
         "กรุณาตั้งค่าการเข้าถึงข้อมูลพนักงานของบุคคลเป้าหมาย หากไม่ได้ตั้งค่าผู้ปฏิบัติจะไม่สามารถดูข้อมูลที่เกี่ยวข้องได้",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.saved",
         "บันทึกข้อมูลแล้ว",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.spec-base-person",
         "กำหนดตนเองเป็นมาตราฐาน",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.spec-lower",
         "กำหนดโดยมาสเตอร์",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.similar",
         "เทียบเท่าตนเอง",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.below",
         "น้อยกว่าตนเอง",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.lower",
         "ใต้ตนเอง",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.by-department",
         "เลือกจากผังองค์กร",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.by-affiliate-department",
         "แผนกสังกัดของตนเอง",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.by-manager-department",
         "แผนกสังกัดของหัวหน้า",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.target-destination",
         "กำหนดบุคคลเป้าหมาย",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.target-desc",
         "กรุณากำหนดข้อมูลพนักงานคนไหนสามารถเข้าถึงได้",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.relevant-instruction",
         "เทียบเท่ากับตนเอง : ให้การเข้าถึงข้อมูลเหมือนกันกับตำแหน่งตนเอง เช่น ชั้นA ชั้นB เป็นต้น",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.below-instruction",
         "ตนเองและตำ่กว่า : ให้การเข้าถึงข้อมูลเหมือนกันหรือต่ำกว่ากับตำแหน่งตนเอง เช่น ชั้นA ชั้นB เป็นต้น",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.lower-instruction",
         "ตำ่กว่าตนเอง : ให้การเข้าถึงข้อมูลในระดับที่ต่ำกว่ากับตำแหน่งตนเอง เช่น ชั้นA ชั้นB เป็นต้น",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.example-instruction",
         "ตัวอย่างเช่น กรณีเลือก แผนกบุคคล แผนกขาย หัวข้อตนเองและตำ่กว่าจะครอบคลุมพนักงานเป้าหมายตามด้านล่างนี้",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.hr-executor",
         "พนักงานที่ตำแหน่งตำ่กว่าตนเอง(ผู้ปฏิบัติ)แผนกบุคคล ",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.sale-executor",
         "พนักงานที่ตำแหน่งตำ่กว่าตนเอง(ผู้ปฏิบัติ)แผนกขาย",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.master-rank-settings-btn",
         "ตั้งค่ามาสเตอร์แรงค์ที่นี่",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.target_policies.input_name",
         "วิธีกำหนดบุคคลเป้าหมาย",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.issue-process",
         "ดำเนินการออกประกาศ",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.issuance-instruction",
         "กรุณาตั้งค่าให้สามารถดำเนินการออกประกาศ(แก้ไข) บุคคลเป้าหมายได้หรือไม่ได้ ในตั้งค่าระบบ >ควบคุมสิทธิ์ >เมนูผู้ควบคุม จะมีผู้ปฏิบัติที่มีหน้าที่ \"ออกประกาศ\"  \"ให้แสดงผล\" เท่านั้น",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.access-goal-management",
         "กรุณาตั้งค่าการควบคุมเป้าหมาย ส่งออกให้กับบุคคลเป้าหมาย  ในตั้งค่าระบบ >ควบคุมสิทธิ์ >เมนูผู้ควบคุม จะมีผู้ปฏิบัติที่มีหน้าที่ \"ตั้งค่าการควบคุมเป้าหมาย\" \"ให้แสดงผล\" เท่านั้น",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.target-setting-title",
         "ส่ิงที่สามารถทำได้",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.goal-setting-admin",
         "สามารถตั้งค่าตามด้านล่างของบุคคลเป้าหมายได้ที่ เมนูผู้ควบคุม >ตั้งค่าควบคุมเป้าหมาย",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.list.announcement1",
         "สามารถดำเนินการประกาศการเข้าทำงาน คู่สมรส โยกย้าย พักงาน เข้าทำงานใหม่ ลาออกได้ที่ เมนูผู้ควบคุม >ดำเนินการประกาศ",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.list.announcement2",
         "สามารถแก้ไขข้อมูลออกประกาศได้ที่ แฟ้มส่วนบุคคล > แก้ไขประวัติ  ของบุคคลเป้าหมาย",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.list.announcement3",
         "สามารถส่งออกข้อมูล อัพเดทข้อมูลออกประกาศได้ที่ ลงทะเบียนทั้งหมด >ดำเนินการออกประกาศ >เข้าทำงาน คู่สมรส โยกย้าย พักงาน เข้าทำงานใหม่ ลาออก",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.list-mbo1",
         "ตั้งค่าเส้นทางการประเมินองค์กร",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.list-mbo2",
         "ตั้งค่าเส้นทางการประเมินบุคคล",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.list-mbo3",
         "การใช้งานเส้นทางการประเมิน",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.list-mbo4",
         "ข้อมูลเป้าหมาย",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.list-mbo5",
         "ปรับคะแนนประเมินขั้นสุดท้าย",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.list-mbo6",
         "ปรับค่าสัมประสิทธิ์โบนัส",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.list-mbo7",
         "ดำเนินการ/ไม่ดำเนินการ เป้าหมาย",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.list-mbo8",
         "เทมเพลตเป้าหมาย(บุคคล)",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.list-mbo9",
         "เทมเพลตเป้าหมาย(มาตรฐาน)",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.list-mbo10",
         "ข้ามขั้นตอนการทำงาน",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.all",
         "ทั้งหมด",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.permission-target-setting",
         "เป้าหมายตั้งค่าสิทธิ์",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.editable",
         "แก้ไขได้",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.refer-advice",
         "ดูได้",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.not-able-refer",
         "ดูไม่ได้",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.category-list",
         "ตารางหมวดหมู่",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.available",
         "ใช้งานได้",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.unavailable",
         "ใช้งานไม่ได้",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.submit",
         "บันทึก",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.profile-refer",
         "กรุณาตั้งค่าการเข้าถึงข้อมูลพนักงานของบุคคลเป้าหมาย หากไม่ได้ตั้งค่าผู้ปฏิบัติจะไม่สามารถดูข้อมูลที่เกี่ยวข้องได้",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.how-target",
         "วิธีกำหนดบุคคลเป้าหมาย",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.employment-classification",
         "ประเภทการจ้างงาน",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.gradeA",
         "ชั้นA",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.gradeB",
         "ชั้นB",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.gradeC",
         "ชั้นC",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.occupation",
         "อาชีพ",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.position",
         "ตำแหน่ง",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.role",
         "หน้าที่",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
-    ],
+        
+        
+        
+        
+        
+        
+        
+        
+    "","","","",],
     [
         "access-control.responsible-area",
         "พื้นที่รับผิดชอบ",
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined
+        
+        
+        
+        
+        
+        
+        
+        
     ]
 ]

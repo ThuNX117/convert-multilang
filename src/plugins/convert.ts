@@ -1,5 +1,5 @@
 
-export const translateObjectName = (name?: string,value?: string) => {
+export const translateObjectName = (name?: string|null,value?: string|null) => {
     if (!name) {
         throw new Error('name is required');
     }
