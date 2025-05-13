@@ -2,7 +2,7 @@
     <n-collapse style="width: 100%;" :trigger-areas="['extra']">
         <n-collapse-item name="vie" v-for="(item, index) in configHeader" :key="index">
             <template #header>
-                <div class="header" @click="currentOpen = item">
+                <div class="header-json" @click="currentOpen = item">
                     {{ item.toUpperCase() }} JSON Preview
                     <div class="actions">
 
@@ -19,8 +19,7 @@
                             </div>
                         </n-popover>
 
-
-                        <button @click="emitDownload(item)"> download</button>
+<n-button @click="emitDownload(item)" type="info"> Download</n-button>
 
                     </div>
                 </div>
@@ -50,9 +49,9 @@ import { Warning, ExpandAll, CollapseAll } from '@vicons/carbon'
 import "@andypf/json-viewer"
 import { ref } from "vue";
 
-type KeyLang = 'vie' | 'thai' | 'eng' | 'jap' | 'cn'
-const currentOpen = ref<KeyLang>('vie')
-const configHeader: Array<KeyLang> = ['vie', 'thai', 'eng', 'jap', 'cn']
+type LanguageKeyType = 'vie' | 'thai' | 'eng' | 'jap' | 'cn'
+const currentOpen = ref<LanguageKeyType>('vie')
+const configHeader: Array<LanguageKeyType> = ['vie', 'thai', 'eng', 'jap', 'cn']
 
 const props = defineProps({
     object: {
@@ -81,15 +80,6 @@ const emitDownload = (type: 'thai' | 'cn' | 'vie' | 'jap' | 'eng') => {
     overflow: auto;
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-    width: 100%;
-}
-
 .actions {
     display: flex;
     justify-content: space-between;
@@ -106,6 +96,13 @@ const emitDownload = (type: 'thai' | 'cn' | 'vie' | 'jap' | 'eng') => {
     overflow: auto;
     gap: 4px;
 
+}
+.header-json{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 12px;;
 }
 
 .error-log>div {
