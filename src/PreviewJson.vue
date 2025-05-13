@@ -9,7 +9,7 @@
                         <n-popover trigger="click">
                             <template #trigger>
                                 <n-badge :value="logger[item].length">
-                                    <n-icon class="badge-btn warning warning-c">
+                                    <n-icon class="badge-btn ">
                                         <Warning style="height: 24px; width: 24px;;;" />
                                     </n-icon>
                                 </n-badge>

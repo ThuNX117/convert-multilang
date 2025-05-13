@@ -2,14 +2,13 @@
   <n-config-provider>
     <n-global-style />
     <div class="menu"> Input CSV
-
-      <n-button @click="convertToJson"> <n-icon>
-          <Upload />
-        </n-icon> Upload Vietnamese reference</n-button>
-      <n-button @click="convertToJson">
-        EN: Upload English reference</n-button>
-      <n-button @click="convertToJson"> Upload Japanese reference</n-button>
-      <n-button @click="convertToJson" type="primary">> Convert</n-button>
+      <n-space vertical>
+        <n-select v-model:value="value" :options="options" :on-update:value="handleUpdateValue" />
+      </n-space>
+   
+      <n-button @click="convertToJson" type="info" >Convert</n-button>
+      <n-button @click="handleSaveData" type="primary"> Save </n-button>
+      <n-button @click="clearData" type="default"> Clear database</n-button>
       <div class="construct-feedback">
         <n-badge :value="errorLog.length">
           <n-icon class="badge-btn error error-c">
@@ -31,7 +30,8 @@
         <div class="header">
 
         </div>
-        <hot-table :data="data" :rowHeaders="true" :setting="settings" licenseKey="non-commercial-and-evaluation"
+        <hot-table :data="data" :search="true" :rowHeaders="true" :setting="settings"
+          licenseKey="non-commercial-and-evaluation"
           :colHeaders="['Key', 'Vietnameses', 'Japanese', 'English', 'Thailend', 'Chinese',]" :renderer="renderderFunc">
         </hot-table>
       </div>
@@ -47,7 +47,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 // @ts-ignore
 import PreviewJson from './PreviewJson.vue';
 import { HotTable } from '@handsontable/vue3';
@@ -58,7 +58,8 @@ import 'handsontable/styles/handsontable.min.css';
 import 'handsontable/styles/ht-theme-main.min.css';
 import { translateObjectName } from './plugins/convert';
 import { sampleData } from './data';
-import { Upload, Error, Warning } from '@vicons/carbon'
+import { Error, Warning } from '@vicons/carbon'
+import { useDb } from './plugins/useDB';
 
 registerAllModules();
 // @ts-ignore
@@ -68,11 +69,49 @@ function renderderFunc(instance, td, row, col, prop, value, cellProperties) {
   td.innerHTML = `<div class="truncated">${value}</div>`
 
 }
+const options = ref([{
+  label: 'Everybody\'s Got Something to Hide Except Me and My Monkey',
+  value: 'song0',
+},])
+
+const handleUpdateValue = async (v: string) => {
+  console.log('value', v)
+  const selectedOption = options.value.find(option => option.value === v);
+  if (selectedOption) {
+    console.log('Selected option:', selectedOption);
+    value.value = selectedOption.value;
+  await  getDetail(selectedOption.value)
+  } else {
+    console.log('No option found with the given value.');
+  }
+}
+const value = ref('')
 const data = ref(sampleData);
 const jsonObject = ref({})
 watch(data, () => {
   convertToJson()
 }, { deep: true });
+const clearData = () => {
+  data.value = [[], [], [], [], []]
+  jsonObject.value = {}
+  errorLog.value = []
+  warnLog.value = {
+    vie: [],
+    thai: [],
+    eng: [],
+    jap: [],
+    cn: [],
+  }
+}
+
+const handleSaveData = async () => {
+  const id = await saveTranslateDb()
+  if (id) {
+    options.value = await getDataList()
+    value.value = id
+  }
+}
+const { getDataList, saveTranslateDb ,getDetail} = useDb()
 type KeyLang = 'vie' | 'thai' | 'eng' | 'jap' | 'cn'
 const configHeader: Array<KeyLang> = ['vie', 'thai', 'eng', 'jap', 'cn']
 const errorLog = ref<string[]>([])
@@ -85,12 +124,18 @@ const warnLog = ref<Record<KeyLang, string[]>>({
 
 
 })
+onMounted(async () => {
+  console.log("onMount app ")
+  // await saveTranslateDb()
+  options.value = await getDataList()
+  value.value = options.value[0].value || ''
+})
 const errorHandler = () => {
   const log = (error: string) => {
     errorLog.value.push(error)
   }
-  const warn = (key: KeyLang, name: string, msg: string) => {
-    warnLog.value[key].push(`${name}  ${msg}`)
+  const warn = (key: KeyLang, name: string,line:number, msg: string) => {
+    warnLog.value[key].push(`Line ${line}: ${name} has error: ${msg}`)
   }
   const clear = () => {
     errorLog.value = []
@@ -121,13 +166,13 @@ const convertToJson = () => {
     eng: {},
     cn: {},
   }
-  dataRaw.forEach((row) => {
+  dataRaw.forEach((row, index) => {
     const [name, vie, thai, eng, jap, cn] = row
     const config = { vie, thai, eng, jap, cn }
     configHeader.forEach((key) => {
       if (config[key]) { result[key] = combineNestedObjects(result[key], translateObjectName(name, config[key])) } else {
         _errorHandler.log(`${key} is missing value`)
-        _errorHandler.warn(key, name, 'missing value')
+        _errorHandler.warn(key, name,index+1, 'missing value')
       }
 
     })
