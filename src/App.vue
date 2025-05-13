@@ -124,7 +124,7 @@ const handleUpdateValue = async (v: string) => {
   }
 }
 const value = ref('')
-const data = ref(sampleData);
+const data = ref(import.meta.env.DEV?sampleData:[]);
 const jsonObject = ref<Partial<Record<LanguageKeyType, any>>>({})
 watch(data, () => {
   convertToJson()
