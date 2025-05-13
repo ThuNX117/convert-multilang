@@ -1,10 +1,7 @@
 import { db } from "./db";
 
 export const useDb = () => {
-  const checkDBExist = async (id: string) => {
-    const res = await db.translate.where("module").equals(id);
-    return res ? true : false;
-  };
+  
 
   const updateTranslateDb = async (value: string, name?: string) => {
     try {
