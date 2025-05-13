@@ -9,23 +9,27 @@
           <div class="actions">
             Input CSV
             <n-space vertical>
-              <n-select v-model:value="value" :options="options" :on-update:value="handleUpdateValue" />
+              <n-select style="min-width: 400px;" v-model:value="selectOption" :options="options"
+                :on-update:value="handleUpdateValue" />
             </n-space>
+
+            <n-button @click="loadOldData" type="info">Load data</n-button>
+            <n-button @click="clearData" type="info">Clear data</n-button>
+            <n-input v-model:value="backupname" type="text" placeholder="Basic Input" />
           </div>
           <div class="actions">
             <n-button @click="convertToJson" type="info">Convert</n-button>
             <n-button @click="handleSaveData" type="primary"> Save </n-button>
-            <n-button @click="clearData" type="default"> Clear database</n-button>
             <n-button @click="checkingUi" type="default"> CheckUi</n-button>
           </div>
 
         </div>
 
         <div class="ht-theme-main-dark-auto ">
-          <hot-table :data="data" :search="true" :rowHeaders="true" :setting="settings"
+          <hot-table ref="hottable" :data="data" :search="true" :rowHeaders="true" :setting="settings" :key="renderKey"
             licenseKey="non-commercial-and-evaluation"
             :colHeaders="['Key', 'Vietnameses', 'Japanese', 'English', 'Thailend', 'Chinese',]"
-            :renderer="renderderFunc">
+            :renderer="renderderFunc" >
           </hot-table>
 
         </div>
@@ -69,219 +73,208 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref, watch } from 'vue';
-// @ts-ignore
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import PreviewJson from './PreviewJson.vue';
 import { HotTable } from '@handsontable/vue3';
-// @ts-ignore
 import { registerAllModules } from 'handsontable/registry';
 import Handsontable from 'handsontable';
 import 'handsontable/styles/handsontable.min.css';
 import 'handsontable/styles/ht-theme-main.min.css';
 import { translateObjectName } from './plugins/convert';
 import { sampleData } from './data';
-import { Error, Warning } from '@vicons/carbon'
+import { Error, Warning } from '@vicons/carbon';
 import { useDb } from './plugins/useDB';
 import { layoutChecking } from './plugins/layoutChecking';
 
 registerAllModules();
-// @ts-ignore
-function renderderFunc(instance, td, row, col, prop, value, cellProperties) {
-  // @ts-ignore
-  Handsontable.renderers.TextRenderer.apply(this, arguments);
-  td.innerHTML = `<div class="truncated">${value}</div>`
 
-}
-
-const handleDownload = (type: LanguageKeyType) => {
-  const Json = jsonObject.value[type]
-  const blob = new Blob([JSON.stringify(Json, null, 2)], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-
-  a.href = url;
-  a.download = `${type}.json`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-  console.log('Json', Json)
-}
-const options = ref([{
-  label: 'Everybody\'s Got Something to Hide Except Me and My Monkey',
-  value: 'song0',
-},])
-
-const handleUpdateValue = async (v: string) => {
-  console.log('value', v)
-  const selectedOption = options.value.find(option => option.value === v);
-  if (selectedOption) {
-    console.log('Selected option:', selectedOption);
-    value.value = selectedOption.value;
-    await getDetail(selectedOption.value)
-  } else {
-    console.log('No option found with the given value.');
-  }
-}
-const value = ref('')
-const data = ref(import.meta.env.DEV?sampleData:[]);
-const jsonObject = ref<Partial<Record<LanguageKeyType, any>>>({})
-watch(data, () => {
-  convertToJson()
-}, { deep: true });
-const clearData = () => {
-  data.value = [[], [], [], [], []]
-  jsonObject.value = {}
-  errorLog.value = []
-  warnLog.value = {
-    vie: [],
-    thai: [],
-    eng: [],
-    jap: [],
-    cn: [],
-  }
-}
-
-const handleSaveData = async () => {
-  const id = await saveTranslateDb()
-  if (id) {
-    options.value = await getDataList()
-    value.value = id
-  }
-}
-const { getDataList, saveTranslateDb, getDetail } = useDb()
-type LanguageKeyType = 'vie' | 'thai' | 'eng' | 'jap' | 'cn'
-const configHeader: Array<LanguageKeyType> = ['vie', 'thai', 'eng', 'jap', 'cn']
-const errorLog = ref<string[]>([])
-const UILog = ref<string[]>([])
+const renderKey = ref(0);
+const hottable = ref<Handsontable | null>(null);
+const selectOption = ref('');
+const backupname = ref('');
+const value = ref('');
+const data = ref(import.meta.env.DEV ? sampleData : []);
+const jsonObject = ref<Partial<Record<LanguageKeyType, any>>>({});
+const errorLog = ref<string[]>([]);
+const UILog = ref<string[]>([]);
+const progressValue = ref(0);
 
 const warnLog = ref<Record<LanguageKeyType, string[]>>({
   vie: [],
   thai: [],
   eng: [],
   jap: [],
-  cn: []
+  cn: [],
+});
 
+const configHeader: Array<LanguageKeyType> = ['vie', 'thai', 'eng', 'jap', 'cn'];
 
-})
-onMounted(async () => {
-  console.log("onMount app ")
-  // await saveTranslateDb()
-  options.value = await getDataList()
-  value.value = options.value[0].value || ''
-})
-const errorHandler = () => {
-  const log = (error: string) => {
-    errorLog.value.push(error)
-  }
-  const warn = (key: LanguageKeyType, name: string, line: number, msg: string) => {
-    warnLog.value[key].push(`Line ${line}: ${name} has error: ${msg}`)
-  }
-  const clear = () => {
-    errorLog.value = []
-    warnLog.value = {
-      vie: [],
-      thai: [],
-      eng: [],
-      jap: [],
-      cn: []
-    }
+const options = ref([{ label: 'Sample Option', value: 'sample' }]);
 
-  }
-  return {
-    log,
-    warn, clear
-  }
+const settings = {
+  licenseKey: 'non-commercial-and-evaluation',
+};
+
+type LanguageKeyType = 'vie' | 'thai' | 'eng' | 'jap' | 'cn';
+
+const { getDataList, saveTranslateDb, getDetail } = useDb();
+//@ts-ignore
+function renderderFunc(instance, td, row, col, prop, value) {
+  //@ts-ignore
+  Handsontable.renderers.TextRenderer.apply(this, arguments);
+  td.innerHTML = `<div class="truncated">${value}</div>`;
 }
-const convertToJson = () => {
-  const _errorHandler = errorHandler()
-  _errorHandler.clear()
-  const dataRaw = data.value
-  console.log('dataRaw', dataRaw)
 
-  let result: Record<LanguageKeyType, any> = {
+const handleDownload = (type: LanguageKeyType) => {
+  const Json = jsonObject.value[type];
+  const blob = new Blob([JSON.stringify(Json, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${type}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+};
+
+const handleUpdateValue = async (v: string) => {
+  if (v) {
+    selectOption.value = v;
+    const data = await getDetail(v);
+    updateTable(JSON.parse(data?.data || '[]'));
+    value.value = JSON.parse(data?.data || '[]');
+  }
+  renderKey.value++;
+};
+
+const handleSaveData = async () => {
+  const dataString = JSON.stringify(data.value);
+  const id = await saveTranslateDb(dataString, backupname.value);
+  options.value = await getDataList();
+  if (id) {
+    value.value = id;
+  }
+};
+
+const loadNewestBackUp = async () => {
+  const res = await getDetail(value.value);
+  if (res) {
+    value.value = JSON.parse(res.data);
+  }
+};
+
+const loadOldData = async () => {
+  const res = await getDetail(selectOption.value);
+  updateTable(JSON.parse(res?.data || '[]'));
+};
+
+const updateTable = (...data: any) => {
+  //@ts-ignore
+  hottable.value?.hotInstance.updateData(...data);
+};
+
+const clearData = () => {
+  data.value = [[], [], [], [], []];
+  jsonObject.value = {};
+  errorLog.value = [];
+  warnLog.value = { vie: [], thai: [], eng: [], jap: [], cn: [] };
+  updateTable(data.value, 'forceUpdate');
+  renderKey.value++;
+};
+
+const convertToJson = () => {
+  const _errorHandler = errorHandler();
+  _errorHandler.clear();
+  const dataRaw = data.value;
+
+  const result: Record<LanguageKeyType, any> = {
     vie: {},
     thai: {},
     jap: {},
     eng: {},
     cn: {},
-  }
+  };
+
   dataRaw.forEach((row, index) => {
-    const [name, vie, thai, eng, jap, cn] = row
-    const config = { vie, thai, eng, jap, cn }
+    const [name, vie, thai, eng, jap, cn] = row;
+    const config = { vie, thai, eng, jap, cn };
     configHeader.forEach((key) => {
-      if (!name) { return }
-      if (config[key]) { result[key] = combineNestedObjects(result[key], translateObjectName(name, config[key])) } else {
-        _errorHandler.log(`${key} is missing value`)
-        _errorHandler.warn(key, name, index + 1, 'missing value')
+      if (!name) return;
+      if (config[key]) {
+        result[key] = combineNestedObjects(result[key], translateObjectName(name, config[key]));
+      } else {
+        _errorHandler.log(`${key} is missing value`);
+        _errorHandler.warn(key, name, index + 1, 'missing value');
       }
-
-    })
-
-
-
+    });
   });
-  jsonObject.value = result
-  console.log('result', jsonObject)
-  return result
 
-}
-const settings = {
-  licenseKey: 'non-commercial-and-evaluation',
-  //... other options
-}
+  jsonObject.value = result;
+  return result;
+};
 
+const checkingUi = () => {
+  progressValue.value = 0;
+  UILog.value = [];
+  data.value.forEach((row, index) => {
+    const [_, vie, thai, eng, jap, cn] = row;
+    const res = layoutChecking({ vie, thai, eng, jap, cn });
+    const { thai: isBreakingThai, cn: isBreakingCN } = res.result;
 
+    if (isBreakingThai === 2) {
+      UILog.value.push(
+        `Line ${index + 1}: Potential UI issue in Thai mode. Min: ${res.min.toFixed(1)}, Max: ${res.max.toFixed(1)}, Length: ${res.measure.thai.toFixed(1)}`
+      );
+    }
+    if (isBreakingCN === 2) {
+      UILog.value.push(
+        `Line ${index + 1}: Potential UI issue in Chinese mode. Min: ${res.min.toFixed(1)}, Max: ${res.max.toFixed(1)}, Length: ${res.measure.cn.toFixed(1)}`
+      );
+    }
+    progressValue.value = Number(((index + 1) / data.value.length * 100).toFixed(2));
+  });
+};
+
+const errorHandler = () => {
+  const log = (error: string) => errorLog.value.push(error);
+  const warn = (key: LanguageKeyType, name: string, line: number, msg: string) => {
+    warnLog.value[key].push(`Line ${line}: ${name} has error: ${msg}`);
+  };
+  const clear = () => {
+    errorLog.value = [];
+    warnLog.value = { vie: [], thai: [], eng: [], jap: [], cn: [] };
+  };
+  return { log, warn, clear };
+};
 
 const combineNestedObjects = (obj1: any, obj2: any) => {
   const result = { ...obj1 };
-
-  const mergeObjects = (target: { [x: string]: any; }, source: { [x: string]: any; }) => {
+  const mergeObjects = (target: any, source: any) => {
     for (const key in source) {
-      if (
-        typeof source[key] === 'object' &&
-        source[key] !== null &&
-        !Array.isArray(source[key])
-      ) {
-        if (!target[key]) {
-          target[key] = {};
-        }
+      if (typeof source[key] === 'object' && source[key] !== null && !Array.isArray(source[key])) {
+        if (!target[key]) target[key] = {};
         mergeObjects(target[key], source[key]);
       } else {
         target[key] = source[key];
       }
     }
   };
-
   mergeObjects(result, obj2);
   return result;
 };
 
+onMounted(async () => {
+  options.value = await getDataList();
+  value.value = options.value[0]?.value || '';
+  await loadNewestBackUp();
+});
 
-
-const progressValue = ref(0)
-const checkingUi = () => {
-  progressValue.value = 0
-  UILog.value = []
-  data.value.forEach((row, index) => {
-    const [_, vie, thai, eng, jap, cn,] = row
-    const res = layoutChecking({ vie, thai, eng, jap, cn })
-    // const { thai: isBreakingThai, cn: isBreakingCN } = res
-    const isBreakingThai = res.result.thai
-    const isBreakingCN = res.result.cn
-    console.warn(res)
-    if (isBreakingThai === 2) {
-      UILog.value.push(`Line ${index + 1}: Potential UI issue in Thai mode. Min: ${res.min.toFixed(1)}, Max: ${res.max.toFixed(1)}, Length: ${res.measure.thai.toFixed(1)}`);
-    }
-    if (isBreakingCN === 2) {
-      UILog.value.push(`Line ${index + 1}: Potential UI issue in Chinese mode. Min: ${res.min.toFixed(1)}, Max: ${res.max.toFixed(1)}, Length: ${res.measure.cn.toFixed(1)}`);
-    
-
-    }
-    progressValue.value = Number(((index + 1) / Number(data.value.length) * 100).toFixed(2));
-
-  })
-}
+onBeforeUnmount(async () => {
+  const dataString = JSON.stringify(data.value);
+  const id = await saveTranslateDb(dataString);
+  alert(`Data has been saved: ${id}`);
+});
 </script>
 <style>
 .table-data {

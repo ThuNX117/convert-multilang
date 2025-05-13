@@ -7,6 +7,7 @@ interface TranslateTable {
   thai: string;
   eng: string;
   cn: string;
+  data:string,
   create_at: string;
 }
 
@@ -19,7 +20,7 @@ const db = new Dexie("FriendsDatabase") as Dexie & {
 
 // Schema declaration:
 db.version(1).stores({
-  translate: "++module, vie, jap, thai, eng, cn, create_at", // primary key "id" (for the runtime!)
+  translate: "++module, vie, jap, thai, eng, cn, data, create_at", // primary key "id" (for the runtime!)
 });
 
 export type { TranslateTable };
