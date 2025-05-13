@@ -1,9 +1,7 @@
 import { db } from "./db";
 
 export const useDb = () => {
-    const checkValueExist=async()=>{
-
-    }
+    
   const saveTranslateDb = async () => {
     try {
         console.log("saveTranslateDb")

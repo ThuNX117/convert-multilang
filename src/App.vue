@@ -258,36 +258,24 @@ const combineNestedObjects = (obj1: any, obj2: any) => {
 };
 
 
-const download = () => {
-  const Json = jsonObject.value
-  const blob = new Blob([JSON.stringify(Json, null, 2)], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
 
-  a.href = url;
-  a.download = 'data.json';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-  console.log('Json', Json)
-}
 const progressValue = ref(0)
 const checkingUi = () => {
   progressValue.value = 0
   UILog.value = []
   data.value.forEach((row, index) => {
-    const [name, vie, thai, eng, jap, cn,] = row
+    const [_, vie, thai, eng, jap, cn,] = row
     const res = layoutChecking({ vie, thai, eng, jap, cn })
     // const { thai: isBreakingThai, cn: isBreakingCN } = res
     const isBreakingThai = res.result.thai
     const isBreakingCN = res.result.cn
     console.warn(res)
-    if (isBreakingThai == 2) {
-      UILog.value.push(`Line ${index + 1} may break UI on Thailend mode, min is ${res.min}, max is ${res.max}, length is: ${res.measure.thai}`,)
+    if (isBreakingThai === 2) {
+      UILog.value.push(`Line ${index + 1}: Potential UI issue in Thai mode. Min: ${res.min.toFixed(1)}, Max: ${res.max.toFixed(1)}, Length: ${res.measure.thai.toFixed(1)}`);
     }
-    if (isBreakingCN == 2) {
-      UILog.value.push(`Line ${index + 1} may break UI on Thailend mode, min is ${res.min}, max is ${res.max}, length is: ${res.measure.cn}`,)
+    if (isBreakingCN === 2) {
+      UILog.value.push(`Line ${index + 1}: Potential UI issue in Chinese mode. Min: ${res.min.toFixed(1)}, Max: ${res.max.toFixed(1)}, Length: ${res.measure.cn.toFixed(1)}`);
+    
 
     }
     progressValue.value = Number(((index + 1) / Number(data.value.length) * 100).toFixed(2));
