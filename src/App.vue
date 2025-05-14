@@ -16,15 +16,17 @@
                   :on-update:value="handleUpdateValue" />
               </n-space>
               <n-button @click="loadOldData" type="info">Mở</n-button>
-              <n-button @click="clearData" type="info">Xóa</n-button>
+              <n-button @click="clearData" type="info">Xóa Bảng</n-button>
               <n-input v-model:value="backupname" type="text" placeholder="Basic Input" />
-                <n-button @click="handleSaveData" type="primary"> Lưu (offline) </n-button>
+              <n-button @click="handleSaveData" type="primary"> Lưu (offline) </n-button>
             </div>
             <div class="actions">
               <n-checkbox v-model:checked="ignoreSmallerText">Bỏ qua text ngắn hơn</n-checkbox>
-              <n-button @click="checkingUi" type="default">Kiểm tra vỡ layout</n-button>
-              <n-button @click="convertToJson" type="info">Chuyển sang dạng JSON</n-button>
-            
+              <n-badge dot :show="needUpdate"> <n-button @click="checkingUi" type="default">Kiểm tra vỡ
+                  layout</n-button>
+              </n-badge> <n-badge dot :show="needUpdate"> <n-button @click="convertToJson" type="info">Chuyển sang dạng
+                  JSON</n-button>
+              </n-badge>
             </div>
           </div>
 
@@ -37,13 +39,13 @@
                 'English',
                 'Thailend',
                 'Chinese',
-              ]" :renderer="renderderFunc" :afterChange="syncData" </hot-table>
+              ]" :renderer="renderderFunc" :afterChange="syncData" />
           </div>
         </div>
         <div class="preview">
           <div class="header">
             <div class="construct-feedback">
-              
+
 
               <n-popover trigger="click">
                 <template #trigger>
@@ -55,7 +57,7 @@
                 </template>
                 <div class="scroller">
                   <n-list hoverable clickable>
-                    <n-list-item v-for="value in UILog" @click="logError(value)">
+                    <n-list-item v-for="(value,index) in UILog" @click="logError(value, index)">
                       <div class="text" v-html="value.msg.replace(/\n/g, '<br>')">
                       </div>
 
@@ -70,7 +72,7 @@
           <PreviewJson :object="jsonObject" :logger="warnLog" @download="handleDownload" />
         </div>
       </div>
-      <ModalTest :show-modal="modal.show" :data="modal.data" :onClose="() => (modal.show = false)" />
+      <ModalTest :show-modal="modal.show" :data="modal.data" :onClose="() => (modal.show = false)" @previous="previousIssue"  @next="nextIssue"/>
     </n-config-provider>
   </n-message-provider>
 </template>
@@ -86,13 +88,14 @@ import "handsontable/styles/handsontable.min.css";
 import "handsontable/styles/ht-theme-main.min.css";
 import { translateObjectName } from "./plugins/convert";
 import { sampleData } from "./data";
-import {Warning } from "@vicons/carbon";
+import { Warning } from "@vicons/carbon";
 import { useDb } from "./plugins/useDB";
 import { layoutChecking } from "./plugins/layoutChecking";
 
 registerAllModules();
+const needUpdate = ref(false);
 const ignoreSmallerText = ref(true);
-const modal = reactive({ show: false, data: undefined, message: "" });
+const modal = reactive({ show: false, data: undefined, message: "", index: 0 });
 const renderKey = ref(0);
 const hottable = ref<Handsontable | null>(null);
 const selectedOption = ref("");
@@ -109,8 +112,8 @@ watch(
 const translateData = ref(sampleData);
 watch(
   translateData,
-  (newValue) => {
-    console.log("translateData", newValue);
+  () => {
+    needUpdate.value = true
   },
   { immediate: true }
 );
@@ -151,10 +154,22 @@ function renderderFunc(instance, td, row, col, prop, value) {
 }
 //@ts-ignore
 const syncData = (changes, source) => { if (source !== 'loadData') translateData.value = hottable.value?.hotInstance.getData(); }
-const logError = (value: any) => {
+const logError = (value: any, index:number) => {
+  if (value){
   modal.data = value;
   modal.show = true;
+  modal.index=index}else {
+    modal.show=false
+  }
 };
+const nextIssue=()=>{
+  const index= modal.index+1
+  logError(UILog.value[index],index)
+}
+const previousIssue=()=>{
+  const index= modal.index-1
+  logError(UILog.value[index],index)
+}
 const handleDownload = (type: LanguageKeyType) => {
   const Json = jsonObject.value[type];
   const blob = new Blob([JSON.stringify(Json, null, 2)], { type: "application/json" });
@@ -224,6 +239,7 @@ const convertToJson = () => {
   _errorHandler.clear();
   const dataRaw = translateData.value;
 
+  needUpdate.value = false
   const result: Record<LanguageKeyType, any> = {
     vie: {},
     thai: {},
@@ -332,6 +348,9 @@ onMounted(async () => {
   grid-template-columns: var(--left-width) var(--right-width);
 }
 
+.preview{
+  min-height: calc(100vh );
+}
 .header {
   display: flex;
   justify-content: space-between;
@@ -379,7 +398,6 @@ onMounted(async () => {
 
 .header {
   height: 50px;
-  margin-bottom: 10px;
 }
 
 .preview {

@@ -45,9 +45,16 @@
 
             </n-flex>
             <template #footer>
-                <n-button @click="showModal = false">
+                <div class="modal-footer">
+                <n-button @click="showModal = false" type="error">
                     Close
                 </n-button>
+                 <n-button @click="emits('previous')">
+                    < Previous Issue
+                </n-button>
+                 <n-button @click="emits('next')" type="info">
+                    Next Issue >
+                </n-button></div>
             </template>
         </n-card>
     </n-modal>
@@ -90,6 +97,7 @@ type Props = {
         }
     }
 }
+const emits=defineEmits(['next','previous'])
 const props = defineProps<Props>()
 const showModal = ref(false)
 
@@ -211,5 +219,13 @@ tbody{overflow: hidden
 .highted td {
     /* border-width: 2px; */
     background: #c7c7c7 !important;
+}
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #e0e0e0;
 }
 </style>
