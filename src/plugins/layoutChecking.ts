@@ -1,5 +1,8 @@
 type LanguageKeyType = "vie" | "thai" | "eng" | "jap" | "cn";
 function measureTextWidth(text: string, font: string = "14px 'Noto Sans JP', Meiryo, sans-serif"): number {
+  if (text.length==0){
+    return 0
+  }
   const canvas = document.createElement("canvas");
   const context = canvas.getContext("2d");
   if (!context) {
@@ -15,7 +18,7 @@ export const layoutChecking = (config: Record<LanguageKeyType, string>) => {
   }, {} as Record<LanguageKeyType, number>);
 
   const { vie, jap, eng, thai, cn } = measuredTextWidths;
-
+console.log(measuredTextWidths)
   const referenceWidths = [vie, jap, eng].filter((width) => width > 0);
   const min = Math.min(...referenceWidths);
   const max = Math.max(...referenceWidths);

@@ -10,21 +10,20 @@
         <div class="table-container">
           <div class="header" style="position: relative">
             <div class="actions">
-              Input CSV
+
               <n-space vertical>
                 <n-select style="min-width: 300px" v-model:value="selectedOption" :options="options"
                   :on-update:value="handleUpdateValue" />
               </n-space>
-              <n-button @click="loadOldData" type="info">Load data</n-button>
-              <n-button @click="clearData" type="info">Clear data</n-button>
+              <n-button @click="loadOldData" type="info">Mở</n-button>
+              <n-button @click="clearData" type="info">Xóa</n-button>
               <n-input v-model:value="backupname" type="text" placeholder="Basic Input" />
             </div>
             <div class="actions">
-              {{ ignoreSmallerText }}
-              <n-checkbox v-model:checked="ignoreSmallerText">ignore smaller text</n-checkbox>
-              <n-button @click="checkingUi" type="default">Checking UI</n-button>
-              <n-button @click="convertToJson" type="info">Convert to JSON</n-button>
-              <n-button @click="handleSaveData" type="primary"> Save </n-button>
+              <n-checkbox v-model:checked="ignoreSmallerText">Bỏ qua text ngắn hơn</n-checkbox>
+              <n-button @click="checkingUi" type="default">Kiểm tra vỡ layout</n-button>
+              <n-button @click="convertToJson" type="info">Chuyển sang dạng JSON</n-button>
+              <n-button @click="handleSaveData" type="primary"> Lưu (offline) </n-button>
             </div>
           </div>
 
@@ -73,11 +72,9 @@
                     <div class="text" v-html="value.msg.replace(/\n/g, '<br>')">
                     </div>
 
-                    <n-button size="small" type="default" @click="logError(value)">
-                      <n-icon>
-                        <Warning style="height: 12px; width: 12px ;" />
-                      </n-icon>
-                    </n-button>
+                    <n-icon @click="logError(value)">
+                      <Language style="height: 32px; width: 32px ;" />
+                    </n-icon>
                   </div>
                 </div>
               </n-popover>
@@ -102,12 +99,12 @@ import "handsontable/styles/handsontable.min.css";
 import "handsontable/styles/ht-theme-main.min.css";
 import { translateObjectName } from "./plugins/convert";
 import { sampleData } from "./data";
-import { Error, Warning } from "@vicons/carbon";
+import { Error, Warning, Language } from "@vicons/carbon";
 import { useDb } from "./plugins/useDB";
 import { layoutChecking } from "./plugins/layoutChecking";
 
 registerAllModules();
-const ignoreSmallerText = ref(false);
+const ignoreSmallerText = ref(true);
 const modal = reactive({ show: false, data: undefined, message: "" });
 const renderKey = ref(0);
 const hottable = ref<Handsontable | null>(null);
@@ -271,12 +268,8 @@ const checkingUi = () => {
     const createLog = (res: any, lang: 'thai' | 'cn', type: string) => {
       return {
         msg: `${lang.toLocaleUpperCase()}: Line ${index + 1
-          }:  UI issue detected. text is ${type.toLocaleUpperCase()} \n Measured/min/max=${res.measure[lang].toFixed(1)}/${res.min.toFixed(
-            1
-          )} /${res.max.toFixed(
-            1
-          )} `,
-        data: res,
+          }:  UI issue detected. text is ${type.toLocaleUpperCase()} \n Measured/min/max=${res.measure[lang]}/${res.min} /${res.max} `,
+        data: { ...res, lang },
       }
     }
     if (isBreakingThai == 2) {
@@ -413,9 +406,11 @@ onMounted(async () => {
   flex-direction: row;
   justify-content: space-between;
   gap: 10px;
-  padding: 10px;
+  padding: 4px 30px 0 10px;
+  width: 400px;
   color: #721c24;
   border-bottom: 1px solid #f5c6cb;
+
 }
 
 .error-log>.text {
@@ -425,5 +420,6 @@ onMounted(async () => {
 .scroller {
   max-height: 80vh;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 </style>

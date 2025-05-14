@@ -12,7 +12,7 @@
                     <thead>
                         <tr>
                             <th>p</th>
-                           
+
                             <th>Measured</th>
                             <th>...</th>
                         </tr>
@@ -20,25 +20,16 @@
 
                     <tbody v-if="props.data && props.data.data.config">
 
-                        <tr v-for="(item, index) in langConfig" :key="index">
+                        <tr v-for="(item, index) in langConfig" :key="index" :class="{highted:props.data.data.lang === item}">
                             <td>
                                 {{ item }}
                             </td>
                             <td>
-                                <div class="wrapper">
+                                <div class="wrapper" :class="[item]">
                                     <p>{{ props.data.data.config[item] }}</p>
                                 </div>
                             </td>
-                            <!-- <td>
-                                <div class="wrapper">
-                                    <h2>{{ props.data.data.config[item] }}</h2>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="wrapper">
-                                    <h4>{{ props.data.data.config[item] }}</h4>
-                                </div>
-                            </td> -->
+                         
                             <td v-if=props.data.data.measure>{{ props.data.data.measure[item]?.toFixed(2) }}px</td>
 
                         </tr>
@@ -75,6 +66,7 @@ type Props = {
     data?: {
         msg: string,
         data: {
+            lang:LanguageKeyType
             result: {
                 cn: number;
                 thai: number;
@@ -139,11 +131,38 @@ onMounted(() => {
 </script>
 <style>
 .wrapper {
-
-    background: #dcdcdcdc;
+    position: relative;
+    
+    /* background: var(--language-color, #dcdcdcdc); */
 
     width: max-content;
 }
+
+.wrapper.jap {
+    --language-color: #FFD700;
+    /* Gold */
+}
+
+.wrapper.cn {
+    --language-color: #FF4500;
+    /* Orange Red */
+}
+
+.wrapper.thai {
+    --language-color: #32CD32;
+    /* Lime Green */
+}
+
+.wrapper.vie {
+    --language-color: #1E90FF;
+    /* Dodger Blue */
+}
+
+.wrapper.eng {
+    --language-color: #8A2BE2;
+    /* Blue Violet */
+}
+
 
 p {
     font-family: 'Noto Sans JP', Meiryo, sans-serif;
@@ -151,7 +170,6 @@ p {
     color: #666;
     margin: 0;
     padding: 0;
-    background: #F4F7FB;
     box-sizing: border-box;
 
 }
@@ -166,5 +184,32 @@ h4 {
 
 .n-modal .n-table td {
     padding: 0
+}
+
+.wrapper::before {
+    content: '';
+    height: 300px;
+    border-right: 2px solid ;
+    width: 0;
+    position: absolute;
+    right: 0;
+    z-index: 999;
+    top: 0;
+    border-color: var(--language-color);
+}
+.wrapper::after {
+    content: '';
+    height: 100%;
+    width:  100%;
+    position: absolute;
+    background: var(--language-color);
+    opacity: 0.2;
+    top: 0;
+}
+tbody{overflow: hidden
+;}
+.highted td {
+    /* border-width: 2px; */
+    background: #c7c7c7 !important;
 }
 </style>
