@@ -18,7 +18,6 @@ export const layoutChecking = (config: Record<LanguageKeyType, string>) => {
   }, {} as Record<LanguageKeyType, number>);
 
   const { vie, jap, eng, thai, cn } = measuredTextWidths;
-console.log(measuredTextWidths)
   const referenceWidths = [vie, jap, eng].filter((width) => width > 0);
   const min = Math.min(...referenceWidths);
   const max = Math.max(...referenceWidths);

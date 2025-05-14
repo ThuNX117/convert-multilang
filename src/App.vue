@@ -28,15 +28,17 @@
           </div>
 
           <div class="ht-theme-main-dark-auto">
-            <hot-table ref="hottable" :data="translateData" :search="true" :rowHeaders="true" :setting="settings"
-              :key="renderKey" licenseKey="non-commercial-and-evaluation" :colHeaders="[
+            <hot-table ref="hottable" :data="translateData" :rowHeaders="true" :setting="settings"
+              licenseKey="non-commercial-and-evaluation" :colHeaders="[
                 'Key',
                 'Vietnameses',
                 'Japanese',
                 'English',
                 'Thailend',
                 'Chinese',
-              ]" :renderer="renderderFunc">
+              ]" :renderer="renderderFunc"
+              
+                 :afterChange="syncData"
             </hot-table>
           </div>
         </div>
@@ -120,6 +122,13 @@ watch(
   { immediate: true }
 );
 const translateData = ref(sampleData);
+watch(
+  translateData,
+  (newValue) => {
+    console.log("translateData", newValue);
+  },
+  { immediate: true }
+);
 const jsonObject = ref<Partial<Record<LanguageKeyType, any>>>({});
 const errorLog = ref<string[]>([]);
 type UILogType = {
@@ -155,8 +164,9 @@ function renderderFunc(instance, td, row, col, prop, value) {
   Handsontable.renderers.TextRenderer.apply(this, arguments);
   td.innerHTML = `<div class="truncated">${value}</div>`;
 }
+//@ts-ignore
+const syncData=(changes, source) => { if (source !== 'loadData') translateData.value = hottable.value?.hotInstance.getData();} 
 const logError = (value: any) => {
-  console.log(value);
   modal.data = value;
   modal.show = true;
 };
@@ -259,9 +269,11 @@ const convertToJson = () => {
 };
 
 const checkingUi = () => {
+  const testData :Array<any>= JSON.parse(JSON.stringify(translateData.value))
+    console.log("checkingUi",testData)
   progressValue.value = 0;
   UILog.value = [];
-  translateData.value.forEach((row, index) => {
+  testData.forEach((row, index) => {
     const [_, vie, jap, eng, thai, cn] = row;
     const res = layoutChecking({ vie, thai, eng, jap, cn });
     const { thai: isBreakingThai, cn: isBreakingCN } = res.result;
