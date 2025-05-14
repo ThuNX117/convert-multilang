@@ -58,7 +58,7 @@
   import { Warning, ExpandAll, CollapseAll } from "@vicons/carbon";
 
   import "@andypf/json-viewer";
-  import { computed, ref, watch } from "vue";
+  import {  ref, watch } from "vue";
 
   type LanguageKeyType = "vie" | "thai" | "eng" | "jap" | "cn";
   const currentOpen = ref<LanguageKeyType>("vie");
