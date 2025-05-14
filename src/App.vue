@@ -18,12 +18,13 @@
               <n-button @click="loadOldData" type="info">Mở</n-button>
               <n-button @click="clearData" type="info">Xóa</n-button>
               <n-input v-model:value="backupname" type="text" placeholder="Basic Input" />
+                <n-button @click="handleSaveData" type="primary"> Lưu (offline) </n-button>
             </div>
             <div class="actions">
               <n-checkbox v-model:checked="ignoreSmallerText">Bỏ qua text ngắn hơn</n-checkbox>
               <n-button @click="checkingUi" type="default">Kiểm tra vỡ layout</n-button>
               <n-button @click="convertToJson" type="info">Chuyển sang dạng JSON</n-button>
-              <n-button @click="handleSaveData" type="primary"> Lưu (offline) </n-button>
+            
             </div>
           </div>
 
@@ -36,30 +37,13 @@
                 'English',
                 'Thailend',
                 'Chinese',
-              ]" :renderer="renderderFunc"
-              
-                 :afterChange="syncData"
-            </hot-table>
+              ]" :renderer="renderderFunc" :afterChange="syncData" </hot-table>
           </div>
         </div>
         <div class="preview">
           <div class="header">
             <div class="construct-feedback">
-              <n-badge :value="errorLog.length">
-                <n-icon class="badge-btn error error-c">
-                  <Error color="red" style="height: 24px; width: 24px ;" />
-                </n-icon>
-              </n-badge>
-              <n-badge :value="warnLog.vie.length +
-                warnLog.thai.length +
-                warnLog.eng.length +
-                warnLog.jap.length +
-                warnLog.cn.length
-                ">
-                <n-icon class="badge-btn warning warning-c">
-                  <Warning style="height: 24px; width: 24px ;" />
-                </n-icon>
-              </n-badge>
+              
 
               <n-popover trigger="click">
                 <template #trigger>
@@ -70,14 +54,15 @@
                   </n-badge>
                 </template>
                 <div class="scroller">
-                  <div class="error-log" v-for="value in UILog">
-                    <div class="text" v-html="value.msg.replace(/\n/g, '<br>')">
-                    </div>
+                  <n-list hoverable clickable>
+                    <n-list-item v-for="value in UILog" @click="logError(value)">
+                      <div class="text" v-html="value.msg.replace(/\n/g, '<br>')">
+                      </div>
 
-                    <n-icon @click="logError(value)">
-                      <Language style="height: 32px; width: 32px ;" />
-                    </n-icon>
-                  </div>
+
+                    </n-list-item>
+                  </n-list>
+
                 </div>
               </n-popover>
             </div>
@@ -165,7 +150,7 @@ function renderderFunc(instance, td, row, col, prop, value) {
   td.innerHTML = `<div class="truncated">${value}</div>`;
 }
 //@ts-ignore
-const syncData=(changes, source) => { if (source !== 'loadData') translateData.value = hottable.value?.hotInstance.getData();} 
+const syncData = (changes, source) => { if (source !== 'loadData') translateData.value = hottable.value?.hotInstance.getData(); }
 const logError = (value: any) => {
   modal.data = value;
   modal.show = true;
@@ -269,8 +254,8 @@ const convertToJson = () => {
 };
 
 const checkingUi = () => {
-  const testData :Array<any>= JSON.parse(JSON.stringify(translateData.value))
-    console.log("checkingUi",testData)
+  const testData: Array<any> = JSON.parse(JSON.stringify(translateData.value))
+  console.log("checkingUi", testData)
   progressValue.value = 0;
   UILog.value = [];
   testData.forEach((row, index) => {
@@ -423,6 +408,15 @@ onMounted(async () => {
   color: #721c24;
   border-bottom: 1px solid #f5c6cb;
 
+}
+
+.error-log:hover {
+  background-color: #f8d7da;
+  cursor: pointer;
+}
+
+.error-log:active {
+  background-color: #f5c6cb;
 }
 
 .error-log>.text {
