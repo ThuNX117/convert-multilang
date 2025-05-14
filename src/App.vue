@@ -86,7 +86,7 @@ import "handsontable/styles/handsontable.min.css";
 import "handsontable/styles/ht-theme-main.min.css";
 import { translateObjectName } from "./plugins/convert";
 import { sampleData } from "./data";
-import { Error, Warning, Language } from "@vicons/carbon";
+import {Warning } from "@vicons/carbon";
 import { useDb } from "./plugins/useDB";
 import { layoutChecking } from "./plugins/layoutChecking";
 

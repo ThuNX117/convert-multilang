@@ -7,7 +7,7 @@ export const useDb = () => {
     try {
       // Add the new friend!
       const id = name ?? "backup" + Date.now();
-      const response = await db.translate.update(id, {
+       await db.translate.update(id, {
         vie: "",
         jap: "",
         eng: "",
@@ -25,7 +25,7 @@ export const useDb = () => {
     try {
       // Add the new friend!
       const id = name ?? "backup" + Date.now();
-      const response = await db.translate.add({
+       await db.translate.add({
         module: id,
         vie: "",
         jap: "",

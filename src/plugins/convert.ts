@@ -6,5 +6,4 @@ export const translateObjectName = (name?: string|null,value?: string|null) => {
 const parts = name.split('.');
 return parts.reduceRight((acc: any, key: any) => ({ [key]: acc }), value);
 };
-const nameStr = "a.b.c.d";
 
