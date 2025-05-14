@@ -1,449 +1,507 @@
 <template>
-  <n-message-provider>
-    <n-config-provider>
-      <n-global-style />
-      <div class="table-data" style="--left-width: 1400px; --right-width: calc(100% - var(--left-width) - 20px)">
-        <n-progress style="position: absolute; top: 0; margin: 0; padding: 0; left: 0" v-if="progressValue > 0"
-          type="line" :percentage="progressValue" indicator-placement="inside" processing :height="10"
-          :border-radius="2" :fill-border-radius="0" />
+  <n-loading-bar-provider>
+    <n-message-provider>
+      <n-config-provider>
+        <n-global-style />
+        <div class="app-container">
+          <AppHeader
+            @logError="logError"
+            @loadOldData="loadOldData"
+            @clearData="clearData"
+            @handleSaveData="handleSaveData"
+            @checkingUi="checkingUi"
+            @convertToJson="convertToJson"
+            @updateValue="handleUpdateValue"
+          />
+          <div class="main-container">
+            <div class="data-table">
+              <div class="ht-theme-main-dark-auto">
+                <hot-table
+                  ref="hottable"
+                  :data="translateData"
+                  :colHeaders="[
+                    'Key',
+                    'Vietnameses',
+                    'Japanese',
+                    'English',
+                    'Thailend',
+                    'Chinese',
+                  ]"
+                  :renderer="renderderFunc"
+                  :afterChange="syncData"
+                  :setting="settings"
+                  v-bind="{
+                    width: '100%',
+                    height: 'auto',
+                    colWidths: 200,
+                    licenseKey: 'non-commercial-and-evaluation',
+                    manualColumnFreeze: true,
 
-        <div class="table-container">
-          <div class="header" style="position: relative">
-            <div class="actions">
-
-              <n-space vertical>
-                <n-select style="min-width: 300px" v-model:value="selectedOption" :options="options"
-                  :on-update:value="handleUpdateValue" />
-              </n-space>
-              <n-button @click="loadOldData" type="info">Mở</n-button>
-              <n-button @click="clearData" type="info">Xóa Bảng</n-button>
-              <n-input v-model:value="backupname" type="text" placeholder="Basic Input" />
-              <n-button @click="handleSaveData" type="primary"> Lưu (offline) </n-button>
+                    contextMenu: true,
+                    navigableHeaders: true,
+                    tabNavigation: true,
+                    autoWrapRow: true,
+                    autoWrapCol: true,
+                    multiColumnSorting: true,
+                    filters: true,
+                    rowHeaders: true,
+                    manualRowMove: true,
+                    headerClassName: 'htLeft',
+                    autoRowSize: true,
+                  }"
+                />
+              </div>
             </div>
-            <div class="actions">
-              <n-checkbox v-model:checked="ignoreSmallerText">Bỏ qua text ngắn hơn</n-checkbox>
-              <n-badge dot :show="needUpdate"> <n-button @click="checkingUi" type="default">Kiểm tra vỡ
-                  layout</n-button>
-              </n-badge> <n-badge dot :show="needUpdate"> <n-button @click="convertToJson" type="info">Chuyển sang dạng
-                  JSON</n-button>
-              </n-badge>
+            <div class="preview-json">
+              <PreviewJson
+                @focus-on="handleFocusOn"
+                :object="jsonObject"
+                :logger="warnLog"
+                @download="handleDownload"
+              />
             </div>
-          </div>
-
-          <div class="ht-theme-main-dark-auto">
-            <hot-table ref="hottable" :data="translateData" :rowHeaders="true" :setting="settings"
-              licenseKey="non-commercial-and-evaluation" :colHeaders="[
-                'Key',
-                'Vietnameses',
-                'Japanese',
-                'English',
-                'Thailend',
-                'Chinese',
-              ]" :renderer="renderderFunc" :afterChange="syncData" />
           </div>
         </div>
-        <div class="preview">
-          <div class="header">
-            <div class="construct-feedback">
-
-
-              <n-popover trigger="click">
-                <template #trigger>
-                  <n-badge :value="UILog.length">
-                    <n-icon class="badge-btn">
-                      <Warning style="height: 24px; width: 24px ;" />
-                    </n-icon>
-                  </n-badge>
-                </template>
-                <div class="scroller">
-                  <n-list hoverable clickable>
-                    <n-list-item v-for="(value,index) in UILog" @click="logError(value, index)">
-                      <div class="text" v-html="value.msg.replace(/\n/g, '<br>')">
-                      </div>
-
-
-                    </n-list-item>
-                  </n-list>
-
-                </div>
-              </n-popover>
-            </div>
-          </div>
-          <PreviewJson :object="jsonObject" :logger="warnLog" @download="handleDownload" />
-        </div>
-      </div>
-      <ModalTest :show-modal="modal.show" :data="modal.data" :onClose="() => (modal.show = false)" @previous="previousIssue"  @next="nextIssue"/>
-    </n-config-provider>
-  </n-message-provider>
+        <ModalTest
+          :show-modal="modal.show"
+          :data="modal.data"
+          :onClose="() => (modal.show = false)"
+          @previous="previousIssue"
+          @next="nextIssue"
+        />
+      </n-config-provider> </n-message-provider
+  ></n-loading-bar-provider>
 </template>
 
 <script lang="ts" setup>
-import ModalTest from "./ModalTest.vue";
-import { onMounted, reactive, ref, watch } from "vue";
-import PreviewJson from "./PreviewJson.vue";
-import { HotTable } from "@handsontable/vue3";
-import { registerAllModules } from "handsontable/registry";
-import Handsontable from "handsontable";
-import "handsontable/styles/handsontable.min.css";
-import "handsontable/styles/ht-theme-main.min.css";
-import { translateObjectName } from "./plugins/convert";
-import { sampleData } from "./data";
-import { Warning } from "@vicons/carbon";
-import { useDb } from "./plugins/useDB";
-import { layoutChecking } from "./plugins/layoutChecking";
+  import ModalTest from "./ModalTest.vue";
+  import { computed, onMounted, reactive, ref, watch } from "vue";
+  import PreviewJson from "./PreviewJson.vue";
+  import { HotTable } from "@handsontable/vue3";
+  import { registerAllModules } from "handsontable/registry";
+  import Handsontable from "handsontable";
+  import "handsontable/styles/handsontable.min.css";
+  import "handsontable/styles/ht-theme-main.min.css";
+  import { translateObjectName } from "./plugins/convert";
+  import { useDb } from "./plugins/useDB";
+  import { layoutChecking } from "./plugins/layoutChecking";
+  import AppHeader from "./components/AppHeader.vue";
+  import { storeToRefs } from "pinia";
+  import useMainStore from "./stores/index";
 
-registerAllModules();
-const needUpdate = ref(false);
-const ignoreSmallerText = ref(true);
-const modal = reactive({ show: false, data: undefined, message: "", index: 0 });
-const renderKey = ref(0);
-const hottable = ref<Handsontable | null>(null);
-const selectedOption = ref("");
-const backupname = ref("");
-watch(
-  selectedOption,
-  (newValue) => {
-    if (newValue) {
-      backupname.value = newValue;
-    }
-  },
-  { immediate: true }
-);
-const translateData = ref(sampleData);
-watch(
-  translateData,
-  () => {
-    needUpdate.value = true
-  },
-  { immediate: true }
-);
-const jsonObject = ref<Partial<Record<LanguageKeyType, any>>>({});
-const errorLog = ref<string[]>([]);
-type UILogType = {
-  msg: string;
-  data: any;
-};
-
-const UILog = ref<UILogType[]>([]);
-const progressValue = ref(0);
-
-const warnLog = ref<Record<LanguageKeyType, string[]>>({
-  vie: [],
-  thai: [],
-  eng: [],
-  jap: [],
-  cn: [],
-});
-
-const configHeader: Array<LanguageKeyType> = ["vie", "thai", "eng", "jap", "cn"];
-
-const options = ref([{ label: "Sample Option", value: "sample" }]);
-
-const settings = {
-  licenseKey: "non-commercial-and-evaluation",
-};
-
-type LanguageKeyType = "vie" | "thai" | "eng" | "jap" | "cn";
-
-const { getDataList, saveTranslateDb, getDetail } = useDb();
-//@ts-ignore
-function renderderFunc(instance, td, row, col, prop, value) {
-  //@ts-ignore
-  Handsontable.renderers.TextRenderer.apply(this, arguments);
-  td.innerHTML = `<div class="truncated">${value}</div>`;
-}
-//@ts-ignore
-const syncData = (changes, source) => { if (source !== 'loadData') translateData.value = hottable.value?.hotInstance.getData(); }
-const logError = (value: any, index:number) => {
-  if (value){
-  modal.data = value;
-  modal.show = true;
-  modal.index=index}else {
-    modal.show=false
-  }
-};
-const nextIssue=()=>{
-  const index= modal.index+1
-  logError(UILog.value[index],index)
-}
-const previousIssue=()=>{
-  const index= modal.index-1
-  logError(UILog.value[index],index)
-}
-const handleDownload = (type: LanguageKeyType) => {
-  const Json = jsonObject.value[type];
-  const blob = new Blob([JSON.stringify(Json, null, 2)], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `${type}.json`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-};
-
-const handleUpdateValue = async (v: string) => {
-  if (v) {
-    selectedOption.value = v;
-    const data = await getDetail(v);
-    updateTable(
-      JSON.parse(
-        data?.data ||
-        '[["","","","","",""],["","","","","",""],["","","","","",""],["","","","","",""],]'
-      )
-    );
-    translateData.value = JSON.parse(data?.data || "[]");
-  }
-  renderKey.value++;
-};
-
-const handleSaveData = async () => {
-  const dataString = JSON.stringify(translateData.value);
-  const id = await saveTranslateDb(dataString, backupname.value);
-  options.value = await getDataList();
-  if (id) {
-    selectedOption.value = id;
-  }
-};
-
-const loadNewestBackUp = async () => {
-  const res = await getDetail(selectedOption.value);
-  if (res) {
-    translateData.value = JSON.parse(res.data);
-  }
-};
-
-const loadOldData = async () => {
-  const res = await getDetail(selectedOption.value);
-  updateTable(JSON.parse(res?.data || "[]"));
-};
-
-const updateTable = (...data: any) => {
-  //@ts-ignore
-  hottable.value?.hotInstance.updateData(...data);
-};
-
-const emptyData = Array.from({ length: 20 }).map(() => ["", "", "", "", "", ""]);
-const clearData = () => {
-  translateData.value = emptyData;
-  jsonObject.value = {};
-  errorLog.value = [];
-  warnLog.value = { vie: [], thai: [], eng: [], jap: [], cn: [] };
-  updateTable(translateData.value, "forceUpdate");
-  renderKey.value++;
-};
-
-const convertToJson = () => {
-  const _errorHandler = errorHandler();
-  _errorHandler.clear();
-  const dataRaw = translateData.value;
-
-  needUpdate.value = false
-  const result: Record<LanguageKeyType, any> = {
-    vie: {},
-    thai: {},
-    jap: {},
-    eng: {},
-    cn: {},
-  };
-
-  dataRaw.forEach((row, index) => {
-    const [name, vie, thai, eng, jap, cn] = row;
-    const config = { vie, thai, eng, jap, cn };
-    configHeader.forEach((key) => {
-      if (!name) return;
-      if (config[key]) {
-        result[key] = combineNestedObjects(
-          result[key],
-          translateObjectName(name, config[key])
-        );
-      } else {
-        _errorHandler.log(`${key} is missing value`);
-        _errorHandler.warn(key, name, index + 1, "missing value");
+  registerAllModules();
+  const modal = reactive({ show: false, data: undefined, message: "", index: 0 });
+  const renderKey = ref(0);
+  const hottable = ref<Handsontable | null>(null);
+  const mainStore = useMainStore();
+  const {
+    ignoreSmallerText,
+    selectedOption,
+    backupname,
+    needUpdate,
+    UILog,
+    translateData,
+  } = storeToRefs(mainStore);
+  watch(
+    selectedOption,
+    (newValue) => {
+      if (newValue) {
+        backupname.value = newValue;
       }
-    });
+    },
+    { immediate: true }
+  );
+  watch(
+    translateData,
+    () => {
+      needUpdate.value = true;
+    },
+    { immediate: true }
+  );
+  const jsonObject = ref<Partial<Record<LanguageKeyType, any>>>({});
+  const errorLog = ref<string[]>([]);
+
+  const progressValue = ref(0);
+
+  const warnLog = ref<
+    Record<LanguageKeyType, { msg: string; line: number; column: number }[]>
+  >({
+    vie: [],
+    thai: [],
+    eng: [],
+    jap: [],
+    cn: [],
   });
 
-  jsonObject.value = result;
-  return result;
-};
+  const configHeader: Array<LanguageKeyType> = ["vie", "thai", "eng", "jap", "cn"];
 
-const checkingUi = () => {
-  const testData: Array<any> = JSON.parse(JSON.stringify(translateData.value))
-  console.log("checkingUi", testData)
-  progressValue.value = 0;
-  UILog.value = [];
-  testData.forEach((row, index) => {
-    const [_, vie, jap, eng, thai, cn] = row;
-    const res = layoutChecking({ vie, thai, eng, jap, cn });
-    const { thai: isBreakingThai, cn: isBreakingCN } = res.result;
-    const createLog = (res: any, lang: 'thai' | 'cn', type: string) => {
-      return {
-        msg: `${lang.toLocaleUpperCase()}: Line ${index + 1
-          }:  UI issue detected. text is ${type.toLocaleUpperCase()} \n Measured/min/max=${res.measure[lang]}/${res.min} /${res.max} `,
-        data: { ...res, lang },
-      }
-    }
-    if (isBreakingThai == 2) {
-      UILog.value.push(createLog(res, 'thai', 'bigger'));
-    } else if (isBreakingThai == 0 && !ignoreSmallerText.value) {
-      UILog.value.push(createLog(res, 'thai', 'smaller'));
-    }
-    if (isBreakingCN == 2) {
-      UILog.value.push(createLog(res, 'cn', 'bigger'));
-    } else if (isBreakingCN == 0 && !ignoreSmallerText.value) {
-      UILog.value.push(createLog(res, 'cn', 'smaller'));
-    }
-    progressValue.value = Number(
-      (((index + 1) / translateData.value.length) * 100).toFixed(2)
-    );
-  });
-  setTimeout(() => {
-    progressValue.value = 0;
-  }, 3000);
-};
+  const options = ref([{ label: "Sample Option", value: "sample" }]);
 
-const errorHandler = () => {
-  const log = (error: string) => errorLog.value.push(error);
-  const warn = (key: LanguageKeyType, name: string, line: number, msg: string) => {
-    warnLog.value[key].push(`Line ${line}: ${name} has error: ${msg}`);
+  const settings = computed(() => ({
+    width: "100%",
+    height: "auto",
+    colWidths: 200,
+    licenseKey: "non-commercial-and-evaluation",
+    manualColumnFreeze: true,
+
+    contextMenu: true,
+    navigableHeaders: true,
+    tabNavigation: true,
+    autoWrapRow: true,
+    autoWrapCol: true,
+    multiColumnSorting: true,
+    filters: true,
+    rowHeaders: true,
+    manualRowMove: true,
+    headerClassName: "htLeft",
+    autoRowSize: true,
+  }));
+
+  type LanguageKeyType = "vie" | "thai" | "eng" | "jap" | "cn";
+
+  const { getDataList, saveTranslateDb, getDetail } = useDb();
+  //@ts-ignore
+  function renderderFunc(instance, td, row, col, prop, value) {
+    //@ts-ignore
+    Handsontable.renderers.TextRenderer.apply(this, arguments);
+    td.innerHTML = `<div class="truncated">${value}</div>`;
+  }
+  //@ts-ignore
+  const syncData = (changes, source) => {
+    if (source !== "loadData")
+      // @ts-ignore
+      translateData.value = hottable.value?.hotInstance.getData();
   };
-  const clear = () => {
+  const logError = (value: any, index: number) => {
+    if (value) {
+      modal.data = value;
+      modal.show = true;
+      modal.index = index;
+    } else {
+      modal.show = false;
+    }
+  };
+  const nextIssue = () => {
+    const index = modal.index + 1;
+    logError(UILog.value[index], index);
+  };
+  const previousIssue = () => {
+    const index = modal.index - 1;
+    logError(UILog.value[index], index);
+  };
+  const handleFocusOn = (value: any) => {
+    if (value) {
+      const row = value.line - 1;
+      const col = value.column + 1;
+      // @ts-ignore
+      hottable.value?.hotInstance.selectCell(row, col);
+      // @ts-ignore
+      hottable.value?.hotInstance.getActiveEditor().beginEditing();
+    }
+  };
+  const handleDownload = (type: LanguageKeyType) => {
+    const Json = jsonObject.value[type];
+    const blob = new Blob([JSON.stringify(Json, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${type}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const handleUpdateValue = async (v: string) => {
+    if (v) {
+      selectedOption.value = v;
+      const data = await getDetail(v);
+      updateTable(
+        JSON.parse(
+          data?.data ||
+            '[["","","","","",""],["","","","","",""],["","","","","",""],["","","","","",""],]'
+        )
+      );
+      translateData.value = JSON.parse(data?.data || "[]");
+    }
+    renderKey.value++;
+  };
+
+  const handleSaveData = async () => {
+    const dataString = JSON.stringify(translateData.value);
+    const id = await saveTranslateDb(dataString, backupname.value);
+    console.log("handleSaveData", id, dataString);
+    options.value = await getDataList();
+    if (id) {
+      selectedOption.value = id;
+    }
+  };
+
+  const loadOldData = async () => {
+    const res = await getDetail(selectedOption.value);
+    console.log(res);
+    updateTable(JSON.parse(res?.data || "[]"));
+  };
+
+  const updateTable = (...data: any) => {
+    //@ts-ignore
+    hottable.value?.hotInstance.updateData(...data);
+  };
+
+  const emptyData = Array.from({ length: 20 }).map(() => ["", "", "", "", "", ""]);
+  const clearData = () => {
+    translateData.value = emptyData;
+    jsonObject.value = {};
     errorLog.value = [];
     warnLog.value = { vie: [], thai: [], eng: [], jap: [], cn: [] };
+    updateTable(translateData.value, "forceUpdate");
+    renderKey.value++;
   };
-  return { log, warn, clear };
-};
 
-const combineNestedObjects = (obj1: any, obj2: any) => {
-  const result = { ...obj1 };
-  const mergeObjects = (target: any, source: any) => {
-    for (const key in source) {
-      if (
-        typeof source[key] === "object" &&
-        source[key] !== null &&
-        !Array.isArray(source[key])
-      ) {
-        if (!target[key]) target[key] = {};
-        mergeObjects(target[key], source[key]);
-      } else {
-        target[key] = source[key];
+  const convertToJson = () => {
+    const _errorHandler = errorHandler();
+    _errorHandler.clear();
+    const dataRaw = translateData.value;
+
+    needUpdate.value = false;
+    const result: Record<LanguageKeyType, any> = {
+      vie: {},
+      thai: {},
+      jap: {},
+      eng: {},
+      cn: {},
+    };
+
+    dataRaw.forEach((row, index) => {
+      const [name, vie, thai, eng, jap, cn] = row;
+      const config = { vie, thai, eng, jap, cn };
+      configHeader.forEach((key) => {
+        if (!name) return;
+        if (config[key]) {
+          result[key] = combineNestedObjects(
+            result[key],
+            translateObjectName(name, config[key])
+          );
+        } else {
+          _errorHandler.log(`${key} is missing value`);
+          _errorHandler.warn(key, name, index + 1, "missing value");
+        }
+      });
+    });
+
+    jsonObject.value = result;
+    return result;
+  };
+
+  const checkingUi = () => {
+    const testData: Array<any> = JSON.parse(JSON.stringify(translateData.value));
+    progressValue.value = 0;
+    UILog.value = [];
+    testData.forEach((row, index) => {
+      const [key, vie, jap, eng, thai, cn] = row;
+      if (!key) {
+        return;
+      }
+      const res = layoutChecking({ vie, thai, eng, jap, cn });
+      const { thai: isBreakingThai, cn: isBreakingCN } = res.result;
+      console.log(res);
+      const createLog = (res: any, lang: "thai" | "cn", type: string) => {
+        return {
+          type: lang,
+          msg: `${lang.toLocaleUpperCase()}: Line ${
+            index + 1
+          }:  UI issue detected. text is ${type.toLocaleUpperCase()} \n Measured/min/max=${
+            res.measure[lang]
+          }/${res.min} /${res.max} `,
+          data: { ...res, lang },
+        };
+      };
+      if (isBreakingThai == 2) {
+        UILog.value.push(createLog(res, "thai", "bigger"));
+      } else if (isBreakingThai == 0 && !ignoreSmallerText.value) {
+        UILog.value.push(createLog(res, "thai", "smaller"));
+      }
+      if (isBreakingCN == 2) {
+        UILog.value.push(createLog(res, "cn", "bigger"));
+      } else if (isBreakingCN == 0 && !ignoreSmallerText.value) {
+        UILog.value.push(createLog(res, "cn", "smaller"));
+      }
+      progressValue.value = Number(
+        (((index + 1) / translateData.value.length) * 100).toFixed(2)
+      );
+    });
+    setTimeout(() => {
+      progressValue.value = 0;
+    }, 3000);
+  };
+
+  const errorHandler = () => {
+    const log = (error: string) => errorLog.value.push(error);
+    const warn = (key: LanguageKeyType, name: string, line: number, msg: string) => {
+      warnLog.value[key].push({
+        msg: `Line ${line}: ${name} has error: ${msg}`,
+        line,
+        column: configHeader.indexOf(key),
+      });
+    };
+    const clear = () => {
+      errorLog.value = [];
+      warnLog.value = { vie: [], thai: [], eng: [], jap: [], cn: [] };
+    };
+    return { log, warn, clear };
+  };
+
+  const combineNestedObjects = (obj1: any, obj2: any) => {
+    const result = { ...obj1 };
+    const mergeObjects = (target: any, source: any) => {
+      for (const key in source) {
+        if (
+          typeof source[key] === "object" &&
+          source[key] !== null &&
+          !Array.isArray(source[key])
+        ) {
+          if (!target[key]) target[key] = {};
+          mergeObjects(target[key], source[key]);
+        } else {
+          target[key] = source[key];
+        }
+      }
+    };
+    mergeObjects(result, obj2);
+    return result;
+  };
+
+  onMounted(async () => {
+    options.value = await getDataList();
+    selectedOption.value = options.value[0]?.value || "";
+    // await loadNewestBackUp();
+  });
+</script>
+<style lang="scss" scoped>
+  .app-container {
+    display: grid;
+    grid-template-rows: 70px calc(100vh - 70px);
+    .main-container {
+      display: grid;
+      --left-width: 1250px;
+      --right-width: calc(100% - var(--left-width));
+      grid-template-columns: var(--left-width) var(--right-width);
+      height: 100%;
+      .data-table {
+        height: 100%;
+        overflow: auto;
+        position: relative;
+      }
+      .preview-json {
+        max-height: 100%;
+        overflow: auto;
+        padding: 0 10px;
       }
     }
-  };
-  mergeObjects(result, obj2);
-  return result;
-};
-
-onMounted(async () => {
-  options.value = await getDataList();
-  selectedOption.value = options.value[0]?.value || "";
-  await loadNewestBackUp();
-});
-</script>
+  }
+</style>
 <style>
-.table-data {
-  display: grid;
-  grid-template-columns: var(--left-width) var(--right-width);
-}
+  .table-data {
+    display: grid;
+    grid-template-columns: var(--left-width) var(--right-width);
+  }
 
-.preview{
-  min-height: calc(100vh );
-}
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-}
+  .preview {
+    min-height: calc(100vh);
+  }
 
-.handsontable .truncated {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 200px;
-}
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
 
-.menu {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-  gap: 20px;
-}
+  .handsontable .truncated {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+  }
 
-.construct-feedback {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 10px;
-  flex: 1;
-}
+  .menu {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    gap: 20px;
+  }
 
-.warning-c {
-  color: rgb(240, 138, 0);
-}
+  .construct-feedback {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+  }
 
-.error-c {
-  color: rgb(208, 58, 82);
-}
+  .warning-c {
+    color: rgb(240, 138, 0);
+  }
 
-.progress-status.n-progress.n-progress--circle {
-  width: 80px;
-  height: 80px;
-}
+  .error-c {
+    color: rgb(208, 58, 82);
+  }
 
-.header {
-  height: 50px;
-}
+  .progress-status.n-progress.n-progress--circle {
+    width: 80px;
+    height: 80px;
+  }
 
-.preview {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  overflow-x: auto;
-  overflow: auto;
-  border-left: 1px solid #ccc;
-}
+  .header {
+    height: 50px;
+  }
 
-.actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-}
+  .preview {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-x: auto;
+    overflow: auto;
+    border-left: 1px solid #ccc;
+  }
 
-.error-log {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 4px 30px 0 10px;
-  width: 400px;
-  color: #721c24;
-  border-bottom: 1px solid #f5c6cb;
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
 
-}
+  .error-log {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 4px 30px 0 10px;
+    width: 400px;
+    color: #721c24;
+    border-bottom: 1px solid #f5c6cb;
+  }
 
-.error-log:hover {
-  background-color: #f8d7da;
-  cursor: pointer;
-}
+  .error-log:hover {
+    background-color: #f8d7da;
+    cursor: pointer;
+  }
 
-.error-log:active {
-  background-color: #f5c6cb;
-}
+  .error-log:active {
+    background-color: #f5c6cb;
+  }
 
-.error-log>.text {
-  word-break: break-all;
-}
+  .error-log > .text {
+    word-break: break-all;
+  }
 
-.scroller {
-  max-height: 80vh;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
+  .scroller {
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
 </style>

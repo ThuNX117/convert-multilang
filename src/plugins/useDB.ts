@@ -1,13 +1,11 @@
 import { db } from "./db";
 
 export const useDb = () => {
-  
-
   const updateTranslateDb = async (value: string, name?: string) => {
     try {
       // Add the new friend!
       const id = name ?? "backup" + Date.now();
-       await db.translate.update(id, {
+      await db.translate.update(id, {
         vie: "",
         jap: "",
         eng: "",
@@ -25,7 +23,7 @@ export const useDb = () => {
     try {
       // Add the new friend!
       const id = name ?? "backup" + Date.now();
-       await db.translate.add({
+      await db.translate.add({
         module: id,
         vie: "",
         jap: "",
@@ -52,5 +50,15 @@ export const useDb = () => {
       value: item.module,
     }));
   };
-  return { saveTranslateDb, getDataList, getDetail };
+  const clearDB=()=>{
+    db.translate.clear().then(() => {
+
+      console.log("Database cleared successfully");
+      window.location.href = window.location.href;
+    }).catch((error) => {
+      console.error("Error clearing the database", error);
+    });
+    
+  }
+  return { saveTranslateDb, getDataList, getDetail,clearDB };
 };

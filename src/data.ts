@@ -1,4 +1,7 @@
-export const sampleData: Array<Array<any>> =
+
+export const emptyData: Array<Array<string>> = 
+   Array.from({length:50}).map(()=>(['', '','', '','', '']))
+export const sampleData: Array<Array<string>> =
     [
     [
         "access-control.required",

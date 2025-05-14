@@ -45,16 +45,14 @@
 
             </n-flex>
             <template #footer>
-                <div class="modal-footer">
-                <n-button @click="showModal = false" type="error">
-                    Close
-                </n-button>
+                <n-button-group round>
                  <n-button @click="emits('previous')">
                     < Previous Issue
                 </n-button>
                  <n-button @click="emits('next')" type="info">
                     Next Issue >
-                </n-button></div>
+                </n-button>
+                </n-button-group>
             </template>
         </n-card>
     </n-modal>
@@ -185,7 +183,6 @@ p {
 p,
 h2,
 h4 {
-    margin: 2px 0;
 
     pointer-events: none;
 }

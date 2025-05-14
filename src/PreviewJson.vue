@@ -1,43 +1,38 @@
 <template>
-  
-  <n-collapse style="width: 100%" :trigger-areas="['extra']">
-    <n-collapse-item name="vie" v-for="(item, index) in configHeader" :key="index">
+  <n-collapse
+    style="width: 100%"
+    :trigger-areas="['arrow']"
+    default-expanded-names="vie"
+    accordion
+  >
+    <n-collapse-item :name="item" v-for="(item, index) in configHeader" :key="index">
       <template #header>
         <div class="header-json" @click="currentOpen = item">
           {{ item.toUpperCase() }} JSON Preview
           <div class="actions">
-            <n-popover trigger="click">
-              <template #trigger>
-                <n-badge :value="logger[item].length">
-                  <n-icon class="badge-btn">
-                    <Warning style="height: 24px; width: 24px" />
-                  </n-icon>
-                </n-badge>
-              </template>
-              <div class="error-log">
-                <div v-for="value in logger[item]">{{ value }}</div>
-              </div>
-            </n-popover>
+            <PopupButton :UILog="logger[item]" @logError="focusOn">
+              <n-icon size="20">
+                <Warning
+                  v-if="!isDownloadAble[item]"
+                  :color="isDownloadAble[item] ? 'green' : 'red'"
+                />
+                <WarningAltFilled v-else-if="logger[item].length" :color="'orange'" />
+                <CheckmarkFilled v-else color="green" />
+              </n-icon>
+            </PopupButton>
 
             <n-button
               @click="emitDownload(item)"
               type="info"
-              :disabled="isDownloadAble&&!isDownloadAble[item]"
+              :disabled="isDownloadAble && !isDownloadAble[item]"
             >
               Download</n-button
             >
           </div>
         </div>
       </template>
-      <template #header-extra="{ collapsed }">
-        <n-button>
-          <n-icon>
-            <ExpandAll v-if="collapsed" />
-            <CollapseAll v-else />
-          </n-icon>
-        </n-button>
-      </template>
-      <div class="json-viewer">
+
+      <div class="json-viewer" v-if="isDownloadAble[item]">
         <andypf-json-viewer
           indent="2"
           expanded="true"
@@ -50,21 +45,34 @@
           :data="props.object[item]"
         ></andypf-json-viewer>
       </div>
+      <n-alert
+        v-else
+        :title="` JSON Preview`"
+        :type="'warning'"
+        :closable="false"
+        :show-icon="true"
+      >
+        {{
+          logger[item].length ? "Có lỗi trong file json" : "Chưa thực hiện Chuyển Json"
+        }}
+      </n-alert>
     </n-collapse-item>
   </n-collapse>
 </template>
 
 <script setup lang="ts">
-  import { Warning, ExpandAll, CollapseAll } from "@vicons/carbon";
-
+  import { Warning, CheckmarkFilled, WarningAltFilled } from "@vicons/carbon";
+  import PopupButton from "./components/PopupLogButton.vue";
   import "@andypf/json-viewer";
-  import {  ref, watch } from "vue";
+  import { ref, watch } from "vue";
 
   type LanguageKeyType = "vie" | "thai" | "eng" | "jap" | "cn";
   const currentOpen = ref<LanguageKeyType>("vie");
   const configHeader: Array<LanguageKeyType> = ["vie", "thai", "eng", "jap", "cn"];
-
-  
+  const focusOn = (value: any, index: number) => {
+    console.log(value, index);
+    emits("focusOn", value, index);
+  };
   const props = defineProps({
     object: {
       type: Object,
@@ -75,14 +83,14 @@
       required: true,
     },
   });
-  const emits = defineEmits(["download"]);
+  const emits = defineEmits(["download", "focusOn"]);
   const emitDownload = (type: "thai" | "cn" | "vie" | "jap" | "eng") => {
     emits("download", type);
   };
   const check = (object: any) => {
-if (object === null || object === undefined || Object.keys(object).length === 0) {
-    return false;
-}
+    if (object === null || object === undefined || Object.keys(object).length === 0) {
+      return false;
+    }
     return true;
   };
   const isDownloadAble = ref<Record<LanguageKeyType, boolean>>({
@@ -105,10 +113,10 @@ if (object === null || object === undefined || Object.keys(object).length === 0)
   watch(
     () => props.object,
     () => {
-     isDownloadAble.value= checking();
-     console.log(isDownloadAble.value)
+      isDownloadAble.value = checking();
+      console.log(isDownloadAble.value);
     },
-    { deep: true, immediate:true }
+    { deep: true, immediate: true }
   );
 </script>
 
@@ -119,7 +127,7 @@ if (object === null || object === undefined || Object.keys(object).length === 0)
     overflow-x: auto;
     display: flex;
     flex-direction: column;
-    max-height: 300px;
+    max-height: 50vh;
     overflow: auto;
   }
 
