@@ -1,6 +1,6 @@
 <script setup lang="ts">
     import { Warning } from "@vicons/carbon";
-    import { ref, watch } from "vue";
+    import { ref } from "vue";
     const showModal = ref(false);
     const emit = defineEmits(["verifiedLog"]);
     const props = defineProps<{ data: Array<Array<string>> }>();

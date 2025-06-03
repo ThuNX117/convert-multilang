@@ -122,9 +122,7 @@
     const convertToJson = () => {
         emit("convertToJson");
     };
-    const importLog = () => {
-        // Simulate importing a file and emitting its content
-    };
+    
     const logError = (value: any, index: number) => {
         emit("logError", value, index);
     };
