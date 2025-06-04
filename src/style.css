@@ -1,5 +1,6 @@
 :root {font-family: "Noto Sans JP", Meiryo, sans-serif;
 color-scheme: light dark;
+
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
@@ -8,4 +9,28 @@ color-scheme: light dark;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;  font-size: 14px;
   color: #666;
+}
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+td{
+  border: 1px solid #ddd;
+  >span{
+            min-width: 50px;
+        max-width: 200px;
+        display: inline-block;
+        padding: 5px;
+        box-sizing: border-box;
+        /* overflow: hidden; */
+        /* text-overflow: ellipsis; */
+        /* white-space: nowrap; */
+        word-break: break-all;
+        white-space: break-spaces;
+  }
 }

@@ -49,5 +49,14 @@ export const generateTestcase =({lang, context, scope, url,data}:ParameterType&{
         console.warn('Clipboard API is not available. Context:',row);
     }
 
-    return row;
+    return  [
+        conf.no,
+        conf.title,
+        conf.jaTitle,
+        conf.url,
+        conf.scope,
+        conf.description,
+        conf.jaDescription,
+        conf.steps,
+    ];
 }
