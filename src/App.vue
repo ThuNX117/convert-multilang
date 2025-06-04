@@ -7,10 +7,10 @@
                 <div class="app-container">
                     <AppHeader @logError="logError" @loadOldData="loadOldData" @clearData="clearData"
                         @handleSaveData="handleSaveData" @checkingUi="checkingUi" @convertToJson="convertToJson"
-                        @updateValue="handleUpdateValue" @generate-test-case="generateTestCase" 
-                        @onShowSearch="onShowSearch"/>
+                        @updateValue="handleUpdateValue" @generate-test-case="generateTestCase"
+                        @onShowSearch="onShowSearch" />
                     <GenerateLogModal ref="testcaseRef" :data="selectedData"></GenerateLogModal>
-                    <SearchModal ref="searchModal" :show="states.showSearch" />
+                    <SearchModal ref="searchModalRef"  />
                     <div class="main-container">
                         <div class="data-table">
                             <div class="ht-theme-main-dark-auto">
@@ -89,6 +89,7 @@ registerAllModules();
 const modal = reactive({ show: false, data: undefined, message: '', index: 0 });
 const testcaseRef = ref<InstanceType<typeof GenerateLogModal> | null>(null);
 const searchModalRef = ref<InstanceType<typeof SearchModal> | null>(null);
+
 const renderKey = ref(0);
 const hottable = ref<Handsontable | null>(null);
 const mainStore = useMainStore();
@@ -188,7 +189,7 @@ const getCheckedRows = () => {
         .map(({ row, idx }) => ({ row, idx }));
 };
 const states = reactive({
-    showSearch: false,
+    showSearch: 0,
 });
 const selectedData = ref()
 const generateTestCase = () => {
@@ -216,10 +217,7 @@ const generateTestCase = () => {
     console.log(result)
 }
 const onShowSearch = () => {
-    if (searchModalRef.value) {
-        console.log('show search modal');
-        states.showSearch = true;
-    }
+    searchModalRef.value?.show();
 };
 // function buttonRenderer(instance: any, td: HTMLElement, row: any, _col: any, _prop: any, _value: any, _cellProperties: any) {
 //     // Clear the cell
