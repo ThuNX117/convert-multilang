@@ -188,9 +188,7 @@ const getCheckedRows = () => {
         .filter(({ row }) => row[6] === true)
         .map(({ row, idx }) => ({ row, idx }));
 };
-const states = reactive({
-    showSearch: 0,
-});
+
 const selectedData = ref()
 const generateTestCase = () => {
     const data = getCheckedRows()

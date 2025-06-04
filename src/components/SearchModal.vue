@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, watch } from "vue";
+import {  ref, watch } from "vue";
 import useMainStore from "../stores";
 import { storeToRefs } from "pinia";
 
