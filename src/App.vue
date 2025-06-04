@@ -7,8 +7,10 @@
                 <div class="app-container">
                     <AppHeader @logError="logError" @loadOldData="loadOldData" @clearData="clearData"
                         @handleSaveData="handleSaveData" @checkingUi="checkingUi" @convertToJson="convertToJson"
-                        @updateValue="handleUpdateValue" @generate-test-case="generateTestCase" />
+                        @updateValue="handleUpdateValue" @generate-test-case="generateTestCase" 
+                        @onShowSearch="onShowSearch"/>
                     <GenerateLogModal ref="testcaseRef" :data="selectedData"></GenerateLogModal>
+                    <SearchModal ref="searchModal" :show="states.showSearch" />
                     <div class="main-container">
                         <div class="data-table">
                             <div class="ht-theme-main-dark-auto">
@@ -81,10 +83,12 @@ import AppHeader from './components/AppHeader.vue';
 import { storeToRefs } from 'pinia';
 import useMainStore from './stores/index';
 import GenerateLogModal from './components/GenerateLogModal.vue';
+import SearchModal from './components/SearchModal.vue';
 
 registerAllModules();
 const modal = reactive({ show: false, data: undefined, message: '', index: 0 });
 const testcaseRef = ref<InstanceType<typeof GenerateLogModal> | null>(null);
+const searchModalRef = ref<InstanceType<typeof SearchModal> | null>(null);
 const renderKey = ref(0);
 const hottable = ref<Handsontable | null>(null);
 const mainStore = useMainStore();
@@ -183,6 +187,9 @@ const getCheckedRows = () => {
         .filter(({ row }) => row[6] === true)
         .map(({ row, idx }) => ({ row, idx }));
 };
+const states = reactive({
+    showSearch: false,
+});
 const selectedData = ref()
 const generateTestCase = () => {
     const data = getCheckedRows()
@@ -208,6 +215,12 @@ const generateTestCase = () => {
     })
     console.log(result)
 }
+const onShowSearch = () => {
+    if (searchModalRef.value) {
+        console.log('show search modal');
+        states.showSearch = true;
+    }
+};
 // function buttonRenderer(instance: any, td: HTMLElement, row: any, _col: any, _prop: any, _value: any, _cellProperties: any) {
 //     // Clear the cell
 //     Handsontable.dom.empty(td);
@@ -445,7 +458,7 @@ onMounted(async () => {
     .main-container {
         display: grid;
         --left-width: 1250px;
-        --right-width: calc(100% - var(--left-width));
+        --right-width: calc(100vw - var(--left-width));
         grid-template-columns: var(--left-width) var(--right-width);
         height: 100%;
 

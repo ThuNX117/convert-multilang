@@ -1,6 +1,7 @@
 <script setup lang="ts">
     import { Warning } from "@vicons/carbon";
     import { ref } from "vue";
+import TooltipWrapper from "./TooltipWrapper.vue";
     const showModal = ref(false);
     const emit = defineEmits(["verifiedLog"]);
     const props = defineProps<{ data: Array<Array<string|null|boolean>> }>();
@@ -58,16 +59,24 @@
         };
         reader.readAsText(file);
     }
+    const verifiedLogTooltip =`   FOR FRONTEND DEVELOPERS:
+    Verify the log data.
+    1. Click on the "Verify log" button to check the log data for any issues.
+    2. Imported log data will be checked for any issues and a report will be generated.
+    3. You can view the report in the log viewer.`
 </script>
 <template>
+
+    <TooltipWrapper :content="verifiedLogTooltip" >
     <n-button size="small" tertiary @click="showModal = true">
         <template #icon>
             <n-icon>
                 <Warning />
             </n-icon>
         </template>
-        verify Log
+        Verify Log
     </n-button>
+    </TooltipWrapper>
 
     <n-modal v-model:show="showModal" width="1000">
         <n-card
