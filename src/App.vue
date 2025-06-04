@@ -344,7 +344,7 @@ const convertToJson = () => {
     };
 
     dataRaw.forEach((row, index) => {
-        const [name, vie, jap, eng, thai, cn] = row;
+        const [name, jap, vie, eng,  cn,thai,] = row;
         const config = { vie, thai, eng, jap, cn };
         configHeader.forEach((key) => {
             if (!name) return;

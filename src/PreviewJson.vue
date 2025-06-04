@@ -65,10 +65,10 @@
   import PopupButton from "./components/PopupLogButton.vue";
   import "@andypf/json-viewer";
   import { ref, watch } from "vue";
-
+  
   type LanguageKeyType = "vie" | "thai" | "eng" | "jap" | "cn";
+  const configHeader: Array<LanguageKeyType> = ['jap', 'vie', 'eng', 'cn', 'thai',];
   const currentOpen = ref<LanguageKeyType>("vie");
-  const configHeader: Array<LanguageKeyType> = ["vie", "thai", "eng", "jap", "cn"];
   const focusOn = (value: any, index: number) => {
     console.log(value, index);
     emits("focusOn", value, index);
@@ -114,7 +114,6 @@
     () => props.object,
     () => {
       isDownloadAble.value = checking();
-      console.log(isDownloadAble.value);
     },
     { deep: true, immediate: true }
   );
