@@ -3,7 +3,7 @@
     import { ref } from "vue";
     const showModal = ref(false);
     const emit = defineEmits(["verifiedLog"]);
-    const props = defineProps<{ data: Array<Array<string>> }>();
+    const props = defineProps<{ data: Array<Array<string|null|boolean>> }>();
     // Regex to match everything between [$t('...')]
     const keywordRegex = /\$t\('([^'\s]+)'\)/g;
     const keyword = ref(keywordRegex);
@@ -23,7 +23,7 @@
     const dataLog = ref("");
     const compareData = (keysExtracted: (string | null)[]) => {
         console.log("compareData", props.data);
-        const keys: [string, true][] = props.data.map((item) => [item[0], true]);
+        const keys: [string|null|boolean, true][] = props.data.map((item) => [item[0], true]);
         const mapChec = new Map(keys);
 
         return keysExtracted

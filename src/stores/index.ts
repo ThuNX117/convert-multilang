@@ -12,7 +12,7 @@ import { emptyData,  } from "../data";
   const UILog = ref<Array<UILogType>>([]);
   const needUpdate = ref(false);
   const { getDataList,clearDB } = useDb();
-  const translateData = ref<Array<Array<string>>>(emptyData);
+  const translateData = ref<Array<Array<string|null|boolean>>>(emptyData);
   const getListDB = async () => {
     options.value = await getDataList();
   };

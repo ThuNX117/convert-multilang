@@ -64,7 +64,7 @@ import { ref, watch } from 'vue';
 import { onMounted } from 'vue';
 import { useMessage } from 'naive-ui'
 type LanguageKeyType = 'vie' | 'thai' | 'eng' | 'jap' | 'cn';
-const langConfig: LanguageKeyType[] = ['jap', 'eng', 'vie', 'thai', 'cn']
+const langConfig:  Array<LanguageKeyType> = ['jap','vie',  'eng',  'cn','thai',];
 type Props = {
     onClose: any
     showModal: boolean

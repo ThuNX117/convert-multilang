@@ -1,6 +1,6 @@
 
-export const translateObjectName = (name?: string|null,value?: string|null) => {
-    if (!name) {
+export const translateObjectName = (name?: string|null|boolean,value?: string|null|boolean) => {
+    if (!name || typeof name !== 'string') {
         throw new Error('name is required');
     }
 const parts = name.split('.');

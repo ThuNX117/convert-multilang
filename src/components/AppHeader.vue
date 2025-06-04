@@ -13,6 +13,7 @@
         "handleSaveData",
         "checkingUi",
         "convertToJson",
+        "generateTestCase"
     ]);
     const mainStore = useMainStore();
     const {
@@ -122,6 +123,10 @@
     const convertToJson = () => {
         emit("convertToJson");
     };
+    const generateTestCase = () => {
+        emit("generateTestCase");
+        
+    };
     
     const logError = (value: any, index: number) => {
         emit("logError", value, index);
@@ -177,6 +182,9 @@
                         >Chuyển sang dạng JSON</n-button
                     >
                 </n-badge>
+                 <n-button @click="generateTestCase" type="info"
+                        >Tạo testcase</n-button
+                    >
                 <LogImporter :data="translateData" />
                 <n-button @click="importShare"> Import share </n-button>
             </div>
