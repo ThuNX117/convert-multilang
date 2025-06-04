@@ -1,14 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { generateTestcase } from "../plugins/generateTestcase";
-import { HotTable } from '@handsontable/vue3';
-import { registerAllModules } from 'handsontable/registry';
-import 'handsontable/styles/handsontable.min.css';
-import 'handsontable/styles/ht-theme-main.min.css';
-
-// register Handsontable's modules
-registerAllModules();
-
+import { useMessage } from "naive-ui";
+const message = useMessage()
 type LanguageKeyType = "vie" | "thai" | "eng" | "jap" | "cn";
 const showModal = ref(false);
 const scope = ref("");
@@ -35,6 +29,7 @@ const handleGenerate = () => {
         data: data,
     });
     previewText.value = previewData
+    message.success("Đã copy vào clipboard",{})
 };
 const clearup = () => {
     previewText.value = []

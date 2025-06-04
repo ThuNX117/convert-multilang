@@ -26,14 +26,14 @@
                                         data: 'available',
                                         type: 'checkbox',
                                     },
-                                    {
-                                        data: 'export',
-                                        renderer: buttonRenderer,
-                                    },
+                                    // {
+                                    //     data: 'export',
+                                    //     renderer: buttonRenderer,
+                                    // },
                                 ]" :renderer="renderderFunc" :afterChange="syncData" :setting="settings" v-bind="{
                                     width: '100%',
                                     height: 'auto',
-                                    colWidths: [180, 180, 180, 180, 180, 180, 50],
+                                    colWidths: [190, 190, 190, 190, 190, 190, 50],
                                     licenseKey: 'non-commercial-and-evaluation',
                                     manualColumnFreeze: true,
 
@@ -134,7 +134,7 @@ const options = ref([{ label: 'Sample Option', value: 'sample' }]);
 const settings = computed(() => ({
     width: '100%',
     height: 'auto',
-    colWidths: 180,
+    colWidths: 190,
     licenseKey: 'non-commercial-and-evaluation',
     manualColumnFreeze: true,
 
@@ -208,39 +208,39 @@ const generateTestCase = () => {
     })
     console.log(result)
 }
-function buttonRenderer(instance: any, td: HTMLElement, row: any, _col: any, _prop: any, _value: any, _cellProperties: any) {
-    // Clear the cell
-    Handsontable.dom.empty(td);
-    const rowData = instance.getSourceDataAtRow(row);
+// function buttonRenderer(instance: any, td: HTMLElement, row: any, _col: any, _prop: any, _value: any, _cellProperties: any) {
+//     // Clear the cell
+//     Handsontable.dom.empty(td);
+//     const rowData = instance.getSourceDataAtRow(row);
 
-    const hasData = rowData.some(Boolean)
-    // Create a button element
+//     const hasData = rowData.some(Boolean)
+//     // Create a button element
 
-    if (hasData) {
-        const button = document.createElement('button');
-        button.textContent = 'generate test case';
-        button.className = 'ht-button';
+//     if (hasData) {
+//         const button = document.createElement('button');
+//         button.textContent = 'generate test case';
+//         button.className = 'ht-button';
 
-        // Add an event listener to the button
-        button.addEventListener('click', () => {
-            if (testcaseRef.value) {
-                testcaseRef.value.show()
+//         // Add an event listener to the button
+//         button.addEventListener('click', () => {
+//             if (testcaseRef.value) {
+//                 testcaseRef.value.show()
 
-            }
-        });
-        // Display content if any previous column has data
-        td.appendChild(button);
-        Handsontable.dom.addClass(td, 'htCenter htMiddle');
-    } else {
-        // Leave the cell empty
-        td.textContent = '';
-    }
-    // Append the button to the cell
+//             }
+//         });
+//         // Display content if any previous column has data
+//         td.appendChild(button);
+//         Handsontable.dom.addClass(td, 'htCenter htMiddle');
+//     } else {
+//         // Leave the cell empty
+//         td.textContent = '';
+//     }
+//     // Append the button to the cell
 
 
-    // Apply Handsontable's default cell properties
-    Handsontable.dom.addClass(td, 'htCenter htMiddle');
-}
+//     // Apply Handsontable's default cell properties
+//     Handsontable.dom.addClass(td, 'htCenter htMiddle');
+// }
 const nextIssue = () => {
     const index = modal.index + 1;
     logError(UILog.value[index], index);
@@ -485,7 +485,7 @@ onMounted(async () => {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 180px;
+    max-width: 190px;
 }
 
 .menu {
