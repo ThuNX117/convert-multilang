@@ -70,7 +70,6 @@
   const configHeader: Array<LanguageKeyType> = ['jap', 'vie', 'eng', 'cn', 'thai',];
   const currentOpen = ref<LanguageKeyType>("vie");
   const focusOn = (value: any, index: number) => {
-    console.log(value, index);
     emits("focusOn", value, index);
   };
   const props = defineProps({

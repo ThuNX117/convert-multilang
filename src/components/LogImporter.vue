@@ -68,7 +68,7 @@ import TooltipWrapper from "./TooltipWrapper.vue";
 <template>
 
     <TooltipWrapper :content="verifiedLogTooltip" >
-    <n-button size="small" tertiary @click="showModal = true">
+    <n-button  @click="showModal = true">
         <template #icon>
             <n-icon>
                 <Warning />

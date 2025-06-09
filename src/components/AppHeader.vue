@@ -6,61 +6,12 @@ import useMainStore from "../stores/index";
 import { storeToRefs } from "pinia";
 import LogImporter from "./LogImporter.vue";
 import TooltipWrapper from "./TooltipWrapper.vue";
+import { DataBase, } from "@vicons/carbon";
+import { tooltipTextHelper } from '../constants/index'
+import SearchPlugin from "./SearchPlugin.vue";
+import type { LanguageKeyType } from "../types";
 
-const tooltipTextHelper = {
-    search: `    FOR FRONTEND DEVELOPERS:
-    Search for specific text in the database.
-    1. Click on the "Search" button.
-    2. Enter the text you want to search for in the input field.
-    3. The app will filter the database and display the results in a table.
-    4. You can click on a row to view the details of the selected item.`,
 
-    testcatse: `    FOR TESTERS:
-    Generate test case from data. 
-    This will create a test case based on the current data in the database.
-    1. Select the text you want to generate the test case for.
-    2. Enter the language, context and scope of the test case.
-    3. Click on the "Generate" button to create the test case.
-    4. The generated test case will be displayed in the preview area.
-    5. You can copy the generated test case to the clipboard by clicking on the "Copy" button.`,
-    importShare: `    FOR FRONTEND DEVELOPERS:
-    Import share data from JSON files.
-    1. Click on the "Import share" button.
-    2. Select one or more JSON files to import.
-    3. The data from the selected files will be parsed and displayed in a table.
-    4. You can download the imported data as a CSV file by clicking on the "Download CSV" button.`,
-    convertJson: `    FOR FRONTEND DEVELOPERS:
-    Convert the current data to JSON format.
-    1. Click on the "Convert JSON" button.
-    2. The current data will be converted to JSON format and displayed in a modal.
-    3. You can copy the JSON data to the clipboard by clicking on the "Copy" button.`,
-    checkingUi: `    FOR FRONTEND DEVELOPERS:
-    Check the UI layout for any issues.
-    1. Click on the "Checking layout" button.
-    2. The UI will be checked for any issues and a report will be generated.        `,
-    open: `Open an existing database.
-    1. Select the database you want to open from the dropdown list.
-    2. Click on the "Open" button to load the selected database.
-    3. The data from the selected database will be loaded and displayed in the app.`,
-    clear: `Clear the current database.
-    1. Click on the "Clear" button to clear the current database.
-    2. This will remove all data from the current database.
-    3. You can then save a new database with the same name or a different name.`,
-    save: `Save the current database.
-    1. Enter a name for the database in the input field.
-    2. Click on the "Save DB" button to save the current database.
-    3. The current data will be saved to the database with the specified name.`,
-    verifyLog: `    FOR FRONTEND DEVELOPERS:
-    Verify the log data.
-    1. Click on the "Verify log" button to check the log data for any issues.
-    2. Imported log data will be checked for any issues and a report will be generated.
-    3. You can view the report in the log viewer.`,
-    ignoreSmallerText: `Ignore shorter text.
-    1. Toggle the switch to ignore shorter text in the database.
-    2. When enabled, the app will not consider shorter text when comparing translations.
-    3. This can help in focusing on more relevant translations.`,
-
-}
 const emit = defineEmits([
     "logError",
     "loadOldData",
@@ -69,18 +20,19 @@ const emit = defineEmits([
     "checkingUi",
     "convertToJson",
     "generateTestCase",
-    "onShowSearch"
+    "onShowSearch",
 ]);
 const mainStore = useMainStore();
 const {
-    ignoreSmallerText,
     selectedOption,
     backupname,
     options,
     UILog,
     needUpdate,
     translateData,
+    ignoreSmallerText
 } = storeToRefs(mainStore);
+const showModal = ref(false)
 const handleUpdateValue = (value: string) => {
     selectedOption.value = value;
 };
@@ -147,18 +99,26 @@ const importShare = () => {
                 });
                 return [key, ...data];
             });
-        console.log(final);
         translateData.value = final;
         const csvRows = [];
         const header = ["Key", ...result.map((item) => item.fileName)];
         csvRows.push(header.join(","));
         final.forEach((row) => {
-            csvRows.push(row.map((cell) => {
-                if (typeof cell === "string" && (cell.includes(",") || cell.includes('"') || cell.includes("\n"))) {
-                    return `"${cell.replace(/"/g, '""')}"`;
-                }
-                return cell ?? "";
-            }).join(","));
+            csvRows.push(
+                row
+                    .map((cell) => {
+                        if (
+                            typeof cell === "string" &&
+                            (cell.includes(",") ||
+                                cell.includes('"') ||
+                                cell.includes("\n"))
+                        ) {
+                            return `"${cell.replace(/"/g, '""')}"`;
+                        }
+                        return cell ?? "";
+                    })
+                    .join(",")
+            );
         });
         const csvContent = csvRows.join("\n");
         const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
@@ -179,13 +139,7 @@ const checkingUi = () => {
 const convertToJson = () => {
     emit("convertToJson");
 };
-const generateTestCase = () => {
-    emit("generateTestCase");
 
-};
-const onShowSearch = () => {
-    emit("onShowSearch");
-};
 
 const logError = (value: any, index: number) => {
     emit("logError", value, index);
@@ -204,69 +158,146 @@ onMounted(() => {
         loadingBar.finish();
     }, 1000);
 });
+const props = defineProps<{ tableRef: any }>();
+const searchResult = ref<any[]>([]);
+const searchIndex = ref(0);
+const nextSearch = () => {
+    const nextIndex = searchIndex.value + 1;
+    if (nextIndex >= searchResult.value.length) {
+        searchIndex.value = 0; // wrap around to the first item
+    } else {
+        searchIndex.value = nextIndex;
+    }
+    const nextItem = searchResult.value[searchIndex.value]
+    props.tableRef?.selectCell(nextItem.row, nextItem.col);
+}
+const prevSearch = () => {
+    const prevIndex = searchIndex.value - 1;
+    if (prevIndex < 0) {
+        searchIndex.value = searchResult.value.length - 1; // wrap around to the last item
+    } else {
+        searchIndex.value = prevIndex;
+    }
+    const nextItem = searchResult.value[searchIndex.value]
+    props.tableRef?.selectCell(nextItem.row, nextItem.col);
+}
+const clearSearch = () => {
+    searchResult.value = [];
+    searchIndex.value = 0;
+    props.tableRef?.getPlugin('search').clear();
+}
+const onShowSearch = ({ language, keyword }: { language: LanguageKeyType, keyword: string }) => {
+    // get the `Search` plugin's instance
+    console.log("onShowSearch", language, keyword);
+    if (!props.tableRef) {
+        console.error("Table reference is not provided.");
+        return;
+    }
+    const search = props.tableRef?.getPlugin('search');
+
+    // use the `Search` plugin's `query()` method
+    const queryResult = search.query(keyword);
+
+    props.tableRef?.render();
+    searchResult.value = queryResult;
+}
+const searchPluginRef = ref<InstanceType<typeof SearchPlugin> | null>(null);
 </script>
 
 <template>
     <n-loading-bar-provider :to="loadingBarTargetRef" container-style="position: absolute;">
         <div class="app-header" style="position: relative" ref="loadingBarTargetRef">
-            <div class="actions db-controls">
-                <n-space vertical>
-                    <n-select v-model:value="selectedOption" :options="options" :on-update:value="handleUpdateValue" />
-                </n-space>
-                <TooltipWrapper :content="tooltipTextHelper.open">
-                    <n-button @click="loadOldData" type="info">Open</n-button>
-                </TooltipWrapper>
-                <TooltipWrapper :content="tooltipTextHelper.clear">
-                    <n-button @click="clearData" type="error">Clear </n-button>
-                </TooltipWrapper>
-                <TooltipWrapper :content="tooltipTextHelper.save">
-                    <n-button @click="handleSaveData" type="info" :disabled="backupname.length == 0">
-                        Save DB
-                    </n-button>
-                </TooltipWrapper>
+            <n-flex vertical>
+                <div class="actions ">
+                    <n-button-group>
+                        <n-image src="/logo.png" style="height: 32px; width: 32px; margin:0 12px;"></n-image>
 
-                <n-input v-model:value="backupname" type="text" placeholder="Nhập tên database" />
+                        <n-select v-model:value="selectedOption" :options="options"
+                            :on-update:value="handleUpdateValue">
 
-            </div>
-            <div class="actions data-controls">
+                            <template #prefix>
+                                <n-icon>
+                                    <DataBase />
+                                </n-icon>
+                            </template>
+                        </n-select>
+                        <TooltipWrapper :content="tooltipTextHelper.open">
+                            <n-button @click="loadOldData" default>Open</n-button>
+                        </TooltipWrapper>
+                        <TooltipWrapper :content="tooltipTextHelper.clear">
+                            <n-button @click="clearData" type="warning">Clear table </n-button>
+                        </TooltipWrapper>
+                    </n-button-group>
+                    <n-button-group>
+                        <n-divider vertical />
+                        <n-input v-model:value="backupname" type="text" placeholder="Nhập tên database" />
+                        <TooltipWrapper :content="tooltipTextHelper.save">
+                            <n-button @click="handleSaveData" default :disabled="backupname.length == 0">
+                                Save DB
+                            </n-button>
+                        </TooltipWrapper>
+                    </n-button-group>
+                    <n-flex>
+
+
+                    </n-flex>
+
+                </div>
+                <div class="actions ">
+                    <SearchPlugin @onSearch="onShowSearch" :tableRef="props.tableRef" ref="searchPluginRef"
+                        :ignoreSmallerText="ignoreSmallerText" @next="nextSearch" @prev="prevSearch"
+                        @clear="clearSearch">
+                        <n-label v-if="searchResult.length">
+                            {{ searchIndex }} / {{ searchResult.length }} found</n-label>
+                    </SearchPlugin>
+
+
+
+
+                </div>
+            </n-flex>
+            <n-flex vertical align="flex-end">
+                <n-flex>
                     <n-badge dot :show="needUpdate">
-                        <n-button @click="convertToJson" type="info">Convert JSON</n-button>
+                        <n-button @click="convertToJson" default>Convert JSON</n-button>
                     </n-badge>
-                <TooltipWrapper :content="tooltipTextHelper.testcatse">
-                    <n-button @click="generateTestCase" type="info">Generate testcase</n-button>
-                </TooltipWrapper>
-                <TooltipWrapper :content="tooltipTextHelper.search">
-                    <n-button @click="onShowSearch" type="info">Search</n-button>
-                </TooltipWrapper>
-
-                <LogImporter :data="translateData" />
-                <TooltipWrapper :content="tooltipTextHelper.importShare">
-                    <n-button @click="importShare"> Import share </n-button>
-                </TooltipWrapper>
-            </div>
-            <div class="notifications">
 
 
+                    <LogImporter :data="translateData" v-model:show-modal="showModal" />
+                    <TooltipWrapper :content="tooltipTextHelper.importShare">
+                        <n-button @click="importShare"> Import share </n-button>
+                    </TooltipWrapper>
+                </n-flex>
+                <n-flex>
 
-                    <n-switch v-model:value="ignoreSmallerText" />Ignore shorter text
-                <TooltipWrapper :content="tooltipTextHelper.checkingUi">
-                    <n-badge dot :show="needUpdate">
-                        <n-button @click="checkingUi" type="default">Checking layout</n-button>
-                    </n-badge>
-                </TooltipWrapper>
-                <PopupButton :UILog="UILog" @logError="logError" />
-            </div>
+                    <TooltipWrapper :content="tooltipTextHelper.checkingUi">
+                        <n-badge dot :show="needUpdate">
+                            <n-button @click="checkingUi" type="default">Checking layout</n-button>
+                        </n-badge>
+                    </TooltipWrapper>
+
+
+                    <PopupButton :UILog="UILog" @logError="logError" />
+                </n-flex>
+            </n-flex>
         </div>
     </n-loading-bar-provider>
 </template>
 <style scoped lang="scss">
 .app-header {
     display: flex;
-    align-items: center;
-    padding: 10px 20px;
+    align-items: flex-start;
+    display: grid;
+    padding: 10px;
+    --left-width: 768px;
+    --right-width: calc(100vw - var(--left-width));
+    grid-template-columns: var(--left-width) auto;
+    height: 100%;
+    max-width: calc(100vw - 30px);
 
     .actions {
-        align-items: center;
+        align-items: flex-start;
+        display: flex;
         padding: 0 10px;
 
         .n-select {
@@ -274,25 +305,7 @@ onMounted(() => {
         }
     }
 
-    .db-controls {
-        display: grid;
-        grid-template-columns: 300px 80px 80px 200px 80px;
-    }
 
-    .data-controls {
-        display: flex;
-        gap: 8px;
-    }
 
-    .notifications {
-        justify-self: flex-end;
-        flex: 1;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        display: grid;
-        gap: 10px;
-        grid-template-columns: 40px 150px auto auto;
-    }
 }
 </style>

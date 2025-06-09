@@ -1,97 +1,65 @@
 <template>
-    <n-loading-bar-provider>
-        <n-message-provider>
-            <n-config-provider>
 
-                <n-global-style />
-                <div class="app-container">
-                    <AppHeader @logError="logError" @loadOldData="loadOldData" @clearData="clearData"
-                        @handleSaveData="handleSaveData" @checkingUi="checkingUi" @convertToJson="convertToJson"
-                        @updateValue="handleUpdateValue" @generate-test-case="generateTestCase"
-                        @onShowSearch="onShowSearch" />
-                    <GenerateLogModal ref="testcaseRef" :data="selectedData"></GenerateLogModal>
-                    <SearchModal ref="searchModalRef"  />
-                    <div class="main-container">
-                        <div class="data-table">
-                            <div class="ht-theme-main-dark-auto">
-                                <hot-table ref="hottable" :data="translateData" :colHeaders="[
-                                    'Key',
-                                    ...configHeader, 'Export'
-                                ]" :columns="[
-                                    { type: 'text' },
-                                    { type: 'text' },
-                                    { type: 'text' },
-                                    { type: 'text' },
-                                    { type: 'text' },
-                                    { type: 'text' },
-                                    {
-                                        data: 'available',
-                                        type: 'checkbox',
-                                    },
-                                    // {
-                                    //     data: 'export',
-                                    //     renderer: buttonRenderer,
-                                    // },
-                                ]" :renderer="renderderFunc" :afterChange="syncData" :setting="settings" v-bind="{
-                                    width: '100%',
-                                    height: 'auto',
-                                    colWidths: [190, 190, 190, 190, 190, 190, 50],
-                                    licenseKey: 'non-commercial-and-evaluation',
-                                    manualColumnFreeze: true,
+    <div class="app-container">
+        <AppHeader :tableRef="hottable?.hotInstance" @logError="logError" @loadOldData="loadOldData"
+            @clearData="clearData" @handleSaveData="handleSaveData" @checkingUi="checkingUi"
+            @convertToJson="convertToJson" @updateValue="handleUpdateValue">
+            <input @change="searchText" type="text" />
+        </AppHeader>
 
-                                    contextMenu: true,
-                                    navigableHeaders: true,
-                                    tabNavigation: true,
-                                    autoWrapRow: true,
-                                    autoWrapCol: true,
-                                    multiColumnSorting: true,
-
-                                    filters: true,
-                                    rowHeaders: true,
-                                    manualRowMove: true,
-                                    headerClassName: 'htLeft',
-                                    autoRowSize: true,
-                                }" />
-                            </div>
-                        </div>
-                        <div class="preview-json">
-                            <PreviewJson @focus-on="handleFocusOn" :object="jsonObject" :logger="warnLog"
-                                @download="handleDownload" />
-                        </div>
-                    </div>
+        <SearchModal ref="searchModalRef" />
+        <div class="main-container">
+            <div class="data-table">
+                <div class="ht-theme-main-dark-auto">
+                    <hot-table ref="hottable" :data="translateData" :colHeaders="['Key', ...configHeader, 'Export']"
+                        :columns="tableColumns" :renderer="renderderFunc" :afterChange="syncData" :setting="settings"
+                         v-bind="tableProps" />
                 </div>
-                <ModalTest :show-modal="modal.show" :data="modal.data" :onClose="() => (modal.show = false)"
-                    @previous="previousIssue" @next="nextIssue" />
-            </n-config-provider>
+            </div>
 
-        </n-message-provider></n-loading-bar-provider>
+
+        </div>
+    </div>
+    <n-drawer v-model:show="activeDrawer" :width="502" :placement="'right'">
+        <n-drawer-content title="JSON ">
+            <div class="preview-json">
+                <PreviewJson @focus-on="handleFocusOn" :object="jsonObject" :logger="warnLog"
+                    @download="handleDownload" />
+            </div>
+        </n-drawer-content>
+    </n-drawer>
+    <ModalTest :show-modal="modal.show" :data="modal.data" :onClose="() => (modal.show = false)"
+        @previous="previousIssue" @next="nextIssue" />
+
 </template>
 
 <script lang="ts" setup>
-import ModalTest from './ModalTest.vue';
-import { computed, nextTick, onMounted, reactive, ref, watch } from 'vue';
-import PreviewJson from './PreviewJson.vue';
+import { computed, onMounted, reactive, ref, watch } from 'vue';
+import { storeToRefs } from 'pinia';
+import Handsontable from 'handsontable';
 import { HotTable } from '@handsontable/vue3';
 import { registerAllModules } from 'handsontable/registry';
-import Handsontable from 'handsontable';
-import 'handsontable/styles/handsontable.min.css';
-import 'handsontable/styles/ht-theme-main.min.css';
-import { translateObjectName } from './plugins/convert';
+import useMainStore from './stores/index';
 import { useDb } from './plugins/useDB';
 import { layoutChecking } from './plugins/layoutChecking';
+import { translateObjectName } from './plugins/convert';
+import { configHeader, type LanguageKeyType } from './types';
+
 import AppHeader from './components/AppHeader.vue';
-import { storeToRefs } from 'pinia';
-import useMainStore from './stores/index';
-import GenerateLogModal from './components/GenerateLogModal.vue';
+import PreviewJson from './PreviewJson.vue';
+import ModalTest from './ModalTest.vue';
 import SearchModal from './components/SearchModal.vue';
 
-registerAllModules();
-const modal = reactive({ show: false, data: undefined, message: '', index: 0 });
-const testcaseRef = ref<InstanceType<typeof GenerateLogModal> | null>(null);
-const searchModalRef = ref<InstanceType<typeof SearchModal> | null>(null);
+import 'handsontable/styles/handsontable.min.css';
+import 'handsontable/styles/ht-theme-main.min.css';
 
+registerAllModules();
+
+const modal = reactive({ show: false, data: undefined, message: '', index: 0 });
+const searchModalRef = ref<InstanceType<typeof SearchModal> | null>(null);
 const renderKey = ref(0);
-const hottable = ref<Handsontable | null>(null);
+const hottable = ref<Handsontable & { hotInstance: any } | null>(null);
+
 const mainStore = useMainStore();
 const {
     ignoreSmallerText,
@@ -101,38 +69,26 @@ const {
     UILog,
     translateData,
 } = storeToRefs(mainStore);
-watch(
-    selectedOption,
-    (newValue) => {
-        if (newValue) {
-            backupname.value = newValue;
-        }
-    },
-    { immediate: true }
-);
-watch(
-    translateData,
-    () => {
-        needUpdate.value = true;
-    },
-    { immediate: true }
-);
+
+watch(selectedOption, (newValue) => {
+    if (newValue) backupname.value = newValue;
+}, { immediate: true });
+
+watch(translateData, () => {
+    needUpdate.value = true;
+}, { immediate: true });
+
 const jsonObject = ref<Partial<Record<LanguageKeyType, any>>>({});
 const errorLog = ref<string[]>([]);
-
 const progressValue = ref(0);
 
-const warnLog = ref<
-    Record<LanguageKeyType, { msg: string; line: number; column: number }[]>
->({
+const warnLog = ref<Record<LanguageKeyType, { msg: string; line: number; column: number }[]>>({
     vie: [],
     thai: [],
     eng: [],
     jap: [],
     cn: [],
 });
-
-const configHeader: Array<LanguageKeyType> = ['jap', 'vie', 'eng', 'cn', 'thai',];
 
 const options = ref([{ label: 'Sample Option', value: 'sample' }]);
 
@@ -142,7 +98,7 @@ const settings = computed(() => ({
     colWidths: 190,
     licenseKey: 'non-commercial-and-evaluation',
     manualColumnFreeze: true,
-
+    search: { searchResultClass: 'customClass' },
     contextMenu: true,
     navigableHeaders: true,
     tabNavigation: true,
@@ -155,8 +111,41 @@ const settings = computed(() => ({
     headerClassName: 'htLeft',
     autoRowSize: true,
 }));
-
-type LanguageKeyType = 'vie' | 'thai' | 'eng' | 'jap' | 'cn';
+const activeDrawer = ref(false)
+const tableColumns = [
+    { type: 'text' },
+    { type: 'text' },
+    { type: 'text' },
+    { type: 'text' },
+    { type: 'text' },
+    { type: 'text' },
+    { data: 'available', type: 'checkbox' },
+];
+const columnWidth = ref((window.innerWidth - 120) / 6)
+onMounted(() => {
+    window.addEventListener('resize', () => {
+        columnWidth.value = (window.innerWidth - 120) / 6;
+    });
+})
+const tableProps = computed(() => ({
+    width: '100%',
+    height: 'auto',
+    colWidths: [columnWidth.value, columnWidth.value, columnWidth.value, columnWidth.value, columnWidth.value, columnWidth.value, 50],
+    licenseKey: 'non-commercial-and-evaluation',
+    manualColumnFreeze: true,
+    contextMenu: true,
+    navigableHeaders: true,
+    tabNavigation: true,
+    autoWrapRow: true,
+    autoWrapCol: true,
+    multiColumnSorting: true,
+    filters: true,
+    rowHeaders: true,
+    manualRowMove: true,
+    headerClassName: 'htLeft',
+    autoRowSize: true,
+    search: true,
+}));
 
 const { getDataList, saveTranslateDb, getDetail } = useDb();
 //@ts-ignore
@@ -166,11 +155,14 @@ function renderderFunc(instance, td, row, col, prop, value) {
     td.innerHTML = `<div class="truncated">${value}</div>`;
 }
 //@ts-ignore
-const syncData = (changes, source) => {
-    if (source !== 'loadData')
+
+const syncData = (_changes: any, source: string) => {
+    if (source !== 'loadData') {
         // @ts-ignore
         translateData.value = hottable.value?.hotInstance.getData();
+    }
 };
+
 const logError = (value: any, index: number) => {
     if (value) {
         modal.data = value;
@@ -181,98 +173,31 @@ const logError = (value: any, index: number) => {
     }
 };
 
-const getCheckedRows = () => {
-    // Find rows where the 'available' checkbox is checked (true)
-    return translateData.value
-        .map((row, idx) => ({ row, idx }))
-        .filter(({ row }) => row[6] === true)
-        .map(({ row, idx }) => ({ row, idx }));
-};
-
-const selectedData = ref()
-const generateTestCase = () => {
-    const data = getCheckedRows()
-    const result = data.map(({ row, idx }) => {
-        const re: Partial<Record<LanguageKeyType | 'key' | 'checked', string | null | boolean>> = {
-            key: row[0],
-
-            checked: row[6] || false,
-        };
-        ['key', ...configHeader, 'checked'].forEach((key, index) => {
-            re[key as LanguageKeyType | 'key' | 'checked'] = row[index]; // +1 to skip the key column
-        });
-
-        return {
-            data: re, idx
-        }
-    })
-    selectedData.value = result
-    nextTick(() => {
-        if (testcaseRef.value) {
-            testcaseRef.value.show()
-        }
-    })
-    console.log(result)
-}
-const onShowSearch = () => {
-    searchModalRef.value?.show();
-};
-// function buttonRenderer(instance: any, td: HTMLElement, row: any, _col: any, _prop: any, _value: any, _cellProperties: any) {
-//     // Clear the cell
-//     Handsontable.dom.empty(td);
-//     const rowData = instance.getSourceDataAtRow(row);
-
-//     const hasData = rowData.some(Boolean)
-//     // Create a button element
-
-//     if (hasData) {
-//         const button = document.createElement('button');
-//         button.textContent = 'generate test case';
-//         button.className = 'ht-button';
-
-//         // Add an event listener to the button
-//         button.addEventListener('click', () => {
-//             if (testcaseRef.value) {
-//                 testcaseRef.value.show()
-
-//             }
-//         });
-//         // Display content if any previous column has data
-//         td.appendChild(button);
-//         Handsontable.dom.addClass(td, 'htCenter htMiddle');
-//     } else {
-//         // Leave the cell empty
-//         td.textContent = '';
-//     }
-//     // Append the button to the cell
 
 
-//     // Apply Handsontable's default cell properties
-//     Handsontable.dom.addClass(td, 'htCenter htMiddle');
-// }
+
 const nextIssue = () => {
     const index = modal.index + 1;
     logError(UILog.value[index], index);
 };
+
 const previousIssue = () => {
     const index = modal.index - 1;
     logError(UILog.value[index], index);
 };
+
 const handleFocusOn = (value: any) => {
     if (value) {
         const row = value.line - 1;
         const col = value.column + 1;
-        // @ts-ignore
         hottable.value?.hotInstance.selectCell(row, col);
-        // @ts-ignore
         hottable.value?.hotInstance.getActiveEditor().beginEditing();
     }
 };
+
 const handleDownload = (type: LanguageKeyType) => {
     const Json = jsonObject.value[type];
-    const blob = new Blob([JSON.stringify(Json, null, 2)], {
-        type: 'application/json',
-    });
+    const blob = new Blob([JSON.stringify(Json, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
@@ -287,12 +212,7 @@ const handleUpdateValue = async (v: string) => {
     if (v) {
         selectedOption.value = v;
         const data = await getDetail(v);
-        updateTable(
-            JSON.parse(
-                data?.data ||
-                '[["","","","","","",""],["","","","","","",""],["","","","","","",""],["","","","","","",""],]'
-            )
-        );
+        updateTable(JSON.parse(data?.data || '[["","","","","","",""],["","","","","","",""],["","","","","","",""],["","","","","","",""],]'));
         translateData.value = JSON.parse(data?.data || '[]');
     }
     renderKey.value++;
@@ -301,21 +221,16 @@ const handleUpdateValue = async (v: string) => {
 const handleSaveData = async () => {
     const dataString = JSON.stringify(translateData.value);
     const id = await saveTranslateDb(dataString, backupname.value);
-    console.log('handleSaveData', id, dataString);
     options.value = await getDataList();
-    if (id) {
-        selectedOption.value = id;
-    }
+    if (id) selectedOption.value = id;
 };
 
 const loadOldData = async () => {
     const res = await getDetail(selectedOption.value);
-    console.log(res);
     updateTable(JSON.parse(res?.data || '[]'));
 };
 
 const updateTable = (...data: any) => {
-    //@ts-ignore
     hottable.value?.hotInstance.updateData(...data);
 };
 
@@ -330,10 +245,10 @@ const clearData = () => {
 };
 
 const convertToJson = () => {
+
     const _errorHandler = errorHandler();
     _errorHandler.clear();
     const dataRaw = translateData.value;
-
     needUpdate.value = false;
     const result: Record<LanguageKeyType, any> = {
         vie: {},
@@ -342,25 +257,21 @@ const convertToJson = () => {
         eng: {},
         cn: {},
     };
-
     dataRaw.forEach((row, index) => {
-        const [name, jap, vie, eng,  cn,thai,] = row;
+        const [name, jap, vie, eng, cn, thai] = row;
         const config = { vie, thai, eng, jap, cn };
         configHeader.forEach((key) => {
             if (!name) return;
             if (config[key]) {
-                result[key] = combineNestedObjects(
-                    result[key],
-                    translateObjectName(name, config[key])
-                );
+                result[key] = combineNestedObjects(result[key], translateObjectName(name, config[key]));
             } else {
                 _errorHandler.log(`${key} is missing value`);
                 _errorHandler.warn(key, String(name), index + 1, 'missing value');
             }
         });
     });
-
     jsonObject.value = result;
+    activeDrawer.value = true
     return result;
 };
 
@@ -369,22 +280,15 @@ const checkingUi = () => {
     progressValue.value = 0;
     UILog.value = [];
     testData.forEach((row, index) => {
-        const [key, vie, jap, eng, thai, cn] = row;
-        if (!key) {
-            return;
-        }
+        const [key, jap, vie, eng, cn, thai] = row;
+        if (!key) return;
         const res = layoutChecking({ vie, thai, eng, jap, cn });
         const { thai: isBreakingThai, cn: isBreakingCN } = res.result;
-        console.log(res);
-        const createLog = (res: any, lang: 'thai' | 'cn', type: string) => {
-            return {
-                type: lang,
-                msg: `${lang.toLocaleUpperCase()}: Line ${index + 1
-                    }:  UI issue detected. text is ${type.toLocaleUpperCase()} \n Measured/min/max=${res.measure[lang]
-                    }/${res.min} /${res.max} `,
-                data: { ...res, lang },
-            };
-        };
+        const createLog = (res: any, lang: 'thai' | 'cn', type: string) => ({
+            type: lang,
+            msg: `${lang.toUpperCase()}: Line ${index + 1}:  UI issue detected. text is ${type.toUpperCase()} \n Measured/min/max=${res.measure[lang]}/${res.min} /${res.max} `,
+            data: { ...res, lang },
+        });
         if (isBreakingThai == 2) {
             UILog.value.push(createLog(res, 'thai', 'bigger'));
         } else if (isBreakingThai == 0 && !ignoreSmallerText.value) {
@@ -395,9 +299,7 @@ const checkingUi = () => {
         } else if (isBreakingCN == 0 && !ignoreSmallerText.value) {
             UILog.value.push(createLog(res, 'cn', 'smaller'));
         }
-        progressValue.value = Number(
-            (((index + 1) / translateData.value.length) * 100).toFixed(2)
-        );
+        progressValue.value = Number((((index + 1) / translateData.value.length) * 100).toFixed(2));
     });
     setTimeout(() => {
         progressValue.value = 0;
@@ -443,19 +345,31 @@ const combineNestedObjects = (obj1: any, obj2: any) => {
 onMounted(async () => {
     options.value = await getDataList();
     selectedOption.value = options.value[0]?.value || '';
-    // await loadNewestBackUp();
 });
+
+const searchText = (event: Event) => {
+    const hot = (hottable.value as any)?.hotInstance as Handsontable;
+    const search = hot.getPlugin('search');
+    const inputValue = (event.target as HTMLInputElement)?.value;
+    search.query(inputValue);
+    hot.render();
+};
 </script>
+
 <style lang="scss" scoped>
 .app-container {
     display: grid;
-    grid-template-rows: 70px calc(100vh - 70px);
+    --menu-height: 50px;
+    --header-height: 100px;
+    --available-height: calc(100vh - var(--menu-height));
+    grid-template-rows: var(--header-height) calc(var(--available-height) - var(--header-height));
+    width: 100vw;
 
     .main-container {
         display: grid;
-        --left-width: 1250px;
-        --right-width: calc(100vw - var(--left-width));
-        grid-template-columns: var(--left-width) var(--right-width);
+        // --left-width: 1250px;
+        // --right-width: calc(100vw - var(--left-width));
+        // grid-template-columns: var(--left-width) var(--right-width);
         height: 100%;
 
         .data-table {
@@ -464,11 +378,6 @@ onMounted(async () => {
             position: relative;
         }
 
-        .preview-json {
-            max-height: 100%;
-            overflow: auto;
-            padding: 0 10px;
-        }
     }
 }
 </style>
@@ -538,13 +447,6 @@ onMounted(async () => {
     overflow-x: auto;
     overflow: auto;
     border-left: 1px solid #ccc;
-}
-
-.actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
 }
 
 .error-log {

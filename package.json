@@ -1,30 +1,48 @@
 {
-  "name": "convert-lang",
-  "private": true,
-  "version": "0.0.2",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "@andypf/json-viewer": "^2.1.10",
-    "@handsontable/vue3": "^15.3.0",
-    "dexie": "^4.0.11",
-    "handsontable": "^15.3.0",
-    "pinia": "^3.0.2",
-    "vue": "^3.5.13"
-  },
-  "devDependencies": {
-    "@vicons/carbon": "^0.13.0",
-    "@vitejs/plugin-vue": "^5.2.2",
-    "@vue/tsconfig": "^0.7.0",
-    "naive-ui": "^2.41.0",
-    "sass": "^1.88.0",
-    "typescript": "~5.7.2",
-    "vfonts": "^0.0.3",
-    "vite": "^6.3.1",
-    "vue-tsc": "^2.2.8"
-  }
+    "name": "convert-lang",
+    "private": true,
+    "version": "0.0.2",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "electron:dev": "vite & electron ./src/electron/electron-main.js",
+        "build": "vite build",
+        "electron:build": "electron-builder"
+    },
+    "dependencies": {
+        "@andypf/json-viewer": "^2.1.10",
+        "@handsontable/vue3": "^15.3.0",
+        "dexie": "^4.0.11",
+        "handsontable": "^15.3.0",
+        "pinia": "^3.0.2",
+        "vue": "^3.5.13",
+        "vue-router": "^4.5.1"
+    },
+    "devDependencies": {
+        "@types/node": "^22.15.30",
+        "@vicons/carbon": "^0.13.0",
+        "@vitejs/plugin-vue": "^5.2.2",
+        "@vue/tsconfig": "^0.7.0",
+        "electron-builder": "^26.0.12",
+        "naive-ui": "^2.41.0",
+        "sass": "^1.88.0",
+        "typescript": "~5.7.2",
+        "vfonts": "^0.0.3",
+        "vite": "^6.3.1",
+        "vue-tsc": "^2.2.8"
+    },
+    "build": {
+        "appId": "com.example.app",
+        "productName": "VueElectronApp",
+        "directories": {
+            "output": "dist_electron"
+        },
+        "files": [
+            "dist/**/*",
+            "src/electron/electron-main.js"
+        ],
+        "extraMetadata": {
+            "main": "src/electron/electron-main.js"
+        }
+    }
 }

@@ -13,7 +13,7 @@
     <template #trigger>
       <n-badge :value="UILog.length">
           <slot>
-          <n-button :disabled="UILog.length === 0" size="small" tertiary>
+          <n-button :disabled="UILog.length === 0" >
             <template #icon>
               <n-icon>
                 <Warning />
