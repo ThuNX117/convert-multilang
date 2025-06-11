@@ -155,11 +155,12 @@ const handleCheck = (key: string | boolean | null) => {
     } else {
         checkedKeys.value[key] = true
     }
+    console.log('Checked keys:', checkedKeys.value);
 }
 const getCheckedRows = () =>
     translateData.value
         .map((row, idx) => ({ row, idx }))
-        .filter(({ row }) => row[6] === true)
+        .filter(({ row }) => checkedKeys.value[String(row[0])] == true)
         .map(({ row, idx }) => ({ row, idx }));
 
 const selectedData = ref();
