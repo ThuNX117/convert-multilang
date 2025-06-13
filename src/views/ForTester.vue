@@ -7,12 +7,7 @@
             <n-gi :span="4"><n-input v-model:value="filterByJapanese" type="text" placeholder="Basic Input" /></n-gi>
 
             <n-gi :span="2">
-                <n-button-group>
-                    <n-button>
-                        Clear
-                    </n-button> <n-button>
-                        Search
-                    </n-button></n-button-group>
+              
             </n-gi>
             <n-gi span="2"> <n-button type="primary" @click="generateTestCase">
                     Generate test case
@@ -145,7 +140,10 @@ const headerConfig = computed(() => {
     ]
 })
 const checkedKeys = ref<Record<string, boolean>>({})
-
+const handleSearch = () => {
+    console.log('Searching for:', filterByJapanese.value);
+    // You can implement the search logic here if needed
+}
 const handleCheck = (key: string | boolean | null) => {
     if (!key || typeof key !== 'string') {
         return
