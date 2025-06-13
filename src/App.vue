@@ -263,7 +263,7 @@ const convertToJson = () => {
         configHeader.forEach((key) => {
             if (!name) return;
             if (config[key]) {
-                result[key] = combineNestedObjects(result[key], translateObjectName(name, config[key]));
+                result[key] = combineNestedObjects(result[key], translateObjectName(name, config[key]||config['jap']));
             } else {
                 _errorHandler.log(`${key} is missing value`);
                 _errorHandler.warn(key, String(name), index + 1, 'missing value');
@@ -331,10 +331,16 @@ const combineNestedObjects = (obj1: any, obj2: any) => {
                 source[key] !== null &&
                 !Array.isArray(source[key])
             ) {
-                if (!target[key]) target[key] = {};
+                if (!target[key] || typeof target[key] !== 'object') {
+                    target[key] = {}; // Initialize as an empty object if it's not an object
+                }
                 mergeObjects(target[key], source[key]);
             } else {
-                target[key] = source[key];
+                try {
+                    target[key] = source[key];
+                } catch (error) {
+                    console.error("Cannot map", error, key, target[key], source[key]);
+                }
             }
         }
     };

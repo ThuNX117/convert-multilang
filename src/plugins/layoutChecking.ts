@@ -16,7 +16,6 @@ function measureTextWidthUsingDOM(text: string, font: string = FONT_CONFIG): num
 export const layoutChecking = (config: Record<LanguageKeyType, string>) => {
   const measuredTextWidths = Object.entries(config).reduce((acc, [key, value]) => {
     acc[key as LanguageKeyType] = measureTextWidthUsingDOM(value);
-    console.log(key, value,  acc[key as LanguageKeyType]);
     return acc;
   }, {} as Record<LanguageKeyType, number>);
 

@@ -140,10 +140,7 @@ const headerConfig = computed(() => {
     ]
 })
 const checkedKeys = ref<Record<string, boolean>>({})
-const handleSearch = () => {
-    console.log('Searching for:', filterByJapanese.value);
-    // You can implement the search logic here if needed
-}
+
 const handleCheck = (key: string | boolean | null) => {
     if (!key || typeof key !== 'string') {
         return
@@ -153,7 +150,6 @@ const handleCheck = (key: string | boolean | null) => {
     } else {
         checkedKeys.value[key] = true
     }
-    console.log('Checked keys:', checkedKeys.value);
 }
 const getCheckedRows = () =>
     translateData.value
@@ -185,7 +181,6 @@ const message = useMessage()
 
 const copyText = (text: string | boolean | null) => {
     navigator.clipboard.writeText(String(text)).then(() => {
-        console.log('Text copied to clipboard:', text);
         message.success('Text copied to clipboard: ' + text);
     }).catch(err => {
         console.error('Failed to copy text:', err);

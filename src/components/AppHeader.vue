@@ -85,7 +85,6 @@ const importShare = () => {
                 const { map, keys } = loadJsonData(json); // emit as object
                 keyTotal.push(...keys);
                 result.push({ fileName: file.name, map });
-                // console.log("Parsed JSON:", map,keys);
             } catch (e) {
                 emit("logError", e, i);
             }
@@ -188,7 +187,6 @@ const clearSearch = () => {
 }
 const onShowSearch = ({ language, keyword }: { language: LanguageKeyType, keyword: string }) => {
     // get the `Search` plugin's instance
-    console.log("onShowSearch", language, keyword);
     if (!props.tableRef) {
         console.error("Table reference is not provided.");
         return;

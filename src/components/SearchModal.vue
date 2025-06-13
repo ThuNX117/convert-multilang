@@ -20,7 +20,6 @@ const handleSearch = (() => {
 })
 watch(keyword, () => {
     filteredData.value = handleSearch();
-    console.log("Search result:", filteredData.value);
 
 }, { immediate: true });
 defineExpose({

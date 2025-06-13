@@ -23,7 +23,6 @@ import TooltipWrapper from "./TooltipWrapper.vue";
     const result = ref<(string | null)[]>([]);
     const dataLog = ref("");
     const compareData = (keysExtracted: (string | null)[]) => {
-        console.log("compareData", props.data);
         const keys: [string|null|boolean, true][] = props.data.map((item) => [item[0], true]);
         const mapChec = new Map(keys);
 
@@ -45,14 +44,12 @@ import TooltipWrapper from "./TooltipWrapper.vue";
             dataLog.value = text;
             const regex = new RegExp(keyword.value, "g");
             const matches = text.match(regex) || [];
-            console.log("Matches found:", matches);
             const extracted = matches
                 .map((match) => {
                     const innerMatch = /\$t\('([^'\s]+)'\)/.exec(match);
                     return innerMatch ? innerMatch[1] : null;
                 })
                 .filter(Boolean);
-            console.log("Extracted keywords:", extracted);
             const data = (compareData(extracted));
             emit("verifiedLog", extracted);
             result.value = Array.from(new Set(data)).sort((a, b) => a&&b? a.localeCompare(b):0);
