@@ -13,7 +13,7 @@
                 <div class="ht-theme-main-dark-auto">
                     <hot-table ref="hottable" :data="translateData" :colHeaders="['Key', ...configHeader, 'Export']"
                         :columns="tableColumns" :renderer="renderderFunc" :afterChange="syncData" :setting="settings"
-                         v-bind="tableProps" />
+                        v-bind="tableProps" />
                 </div>
             </div>
 
@@ -257,19 +257,42 @@ const convertToJson = () => {
         eng: {},
         cn: {},
     };
+
+    function normalizeText(text: string | undefined | null | boolean) {
+        // Replace double backslash n (\\n) with single \n
+        console.log(`normalizeTextp[${text}]`)
+        return typeof text === 'string' ? text.replace(/\\n/g, '\n') : text;
+    }
+
+    // Validate and normalize all text fields before processing
     dataRaw.forEach((row, index) => {
-        const [name, jap, vie, eng, cn, thai] = row;
+        // Normalize each field that may contain \\n
+        const [name, jap, vie, eng, cn, thai] = row.map(normalizeText);
         const config = { vie, thai, eng, jap, cn };
+        console.log(config)
         configHeader.forEach((key) => {
             if (!name) return;
             if (config[key]) {
-                result[key] = combineNestedObjects(result[key], translateObjectName(name, config[key]||config['jap']));
+                result[key] = combineNestedObjects(result[key], translateObjectName(name, config[key] || config['jap']));
             } else {
                 _errorHandler.log(`${key} is missing value`);
                 _errorHandler.warn(key, String(name), index + 1, 'missing value');
             }
         });
     });
+    // dataRaw.forEach((row, index) => {
+    //     const [name, jap, vie, eng, cn, thai] = row;
+    //     const config = { vie, thai, eng, jap, cn };
+    //     configHeader.forEach((key) => {
+    //         if (!name) return;
+    //         if (config[key]) {
+    //             result[key] = combineNestedObjects(result[key], translateObjectName(name, config[key] || config['jap']));
+    //         } else {
+    //             _errorHandler.log(`${key} is missing value`);
+    //             _errorHandler.warn(key, String(name), index + 1, 'missing value');
+    //         }
+    //     });
+    // });
     jsonObject.value = result;
     activeDrawer.value = true
     return result;
