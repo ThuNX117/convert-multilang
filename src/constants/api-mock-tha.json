@@ -1,0 +1,1126 @@
+[
+    {
+        "key": "personnel-change",
+        "label": "ข้อมูลปัญหา",
+        "items": [
+            {
+                "key": "joining",
+                "label": "การเข้าทำงานในบริษัท"
+            },
+            {
+                "key": "assignment",
+                "label": "การสังกัด"
+            },
+            {
+                "key": "transfer",
+                "label": "การโยกย้าย"
+            },
+            {
+                "key": "leave-absence",
+                "label": "การลาพักงาน"
+            },
+            {
+                "key": "secondment",
+                "label": "การส่งตัวไปทำงานนอกบริษัท"
+            },
+            {
+                "key": "retirement",
+                "label": "การลาออก"
+            },
+            {
+                "key": "rejoining",
+                "label": "การเข้าทำงานในบริษัทใหม่"
+            },
+            {
+                "key": "transfer-diff-update",
+                "label": "โยกย้าย (ลงทะเบียนรายการต่อรายการ)"
+            }
+        ]
+    },
+    {
+        "key": "organization",
+        "label": "องค์กร",
+        "items": [
+            {
+                "key": "department",
+                "label": "แผนก"
+            },
+            {
+                "key": "manager",
+                "label": "หัวหน้าหน่วยงาน"
+            },
+            {
+                "key": "reorganization",
+                "label": "การปรับโครงสร้างองค์กร"
+            }
+        ]
+    },
+    {
+        "key": "personal-information",
+        "label": "ข้อมูลส่วนบุคคล",
+        "items": [
+            {
+                "key": "basic",
+                "label": "ข้อมูลพื้นฐาน"
+            },
+            {
+                "key": "family-register",
+                "label": "ข้อมูลทะเบียนครัวเรือน"
+            },
+            {
+                "key": "disability",
+                "label": "ข้อมูลทุพลภาพ"
+            },
+            {
+                "key": "personal",
+                "label": "ข้อมูลส่่วนบุคคล"
+            },
+            {
+                "key": "address",
+                "label": "ที่อยู่"
+            },
+            {
+                "key": "family",
+                "label": "ข้อมูลครอบครัว"
+            },
+            {
+                "key": "emergency-contact",
+                "label": "เบอร์ติดต่อฉุกเฉิน"
+            },
+            {
+                "key": "passport",
+                "label": "ข้อมูลพาสปอร์ต"
+            },
+            {
+                "key": "residence-card",
+                "label": "เอกสารอนุญาติการพำนักในประเทศ"
+            },
+            {
+                "key": "special-permanent-resident-certification",
+                "label": "เอกสารอนุญาติการพำนักในประเทศแบบถาวร"
+            },
+            {
+                "key": "health-insurance",
+                "label": "ประกันสุขภาพ"
+            },
+            {
+                "key": "pension-insurance",
+                "label": "ประกันบำนาญ"
+            },
+            {
+                "key": "employment-insurance",
+                "label": "ประกันการจ้างงาน"
+            },
+            {
+                "key": "personal-relationship",
+                "label": "ข้อมูลผู้เกี่ยวข้อง"
+            },
+            {
+                "key": "visa",
+                "label": "ข้อมูลวีซ่า"
+            },
+            {
+                "key": "import-option",
+                "label": "ข้อมูลการตั้งค่าการเชื่อมต่อ"
+            },
+            {
+                "key": "personal-reference",
+                "label": "ผู้ค้ำประกัน"
+            },
+            {
+                "key": "life-plan-support",
+                "label": "เงินออมแผนชีวิต"
+            },
+            {
+                "key": "industrial-accident",
+                "label": "ข้อมูลอุบัติเหตุจากการทำงาน"
+            },
+            {
+                "key": "public-pension",
+                "label": "เงินบำนาญภาครัฐ"
+            },
+            {
+                "key": "personnel-note",
+                "label": "ข้อมูลฝ่ายบุคคล"
+            },
+            {
+                "key": "other-personal-relationship",
+                "label": "ข้อมูลผู้เกี่ยวข้อง (อื่น ๆ)"
+            },
+            {
+                "key": "business-continuity-plan",
+                "label": "ข้อมูลสำหรับ BCP"
+            },
+            {
+                "key": "previous-name-usage-range",
+                "label": "ขอบเขตการใช้ชื่อสกุลเดิม"
+            }
+        ]
+    },
+    {
+        "key": "employment",
+        "label": "ข้อมูลการจ้างงาน",
+        "items": [
+            {
+                "key": "employment",
+                "label": "สัญญาจ้างงาน"
+            },
+            {
+                "key": "working",
+                "label": "ข้อมูลติดต่อทางธุรกิจ"
+            },
+            {
+                "key": "commutation",
+                "label": "ข้อมูลการเดินทางไปทำงาน"
+            },
+            {
+                "key": "transportation-expense",
+                "label": "ข้อมูลค่าเดินทางไปทำงาน"
+            },
+            {
+                "key": "working-consideration",
+                "label": "ข้อมูลการทำงาน"
+            },
+            {
+                "key": "annual-income",
+                "label": "ข้อมูลรายได้ต่อปี"
+            },
+            {
+                "key": "salary",
+                "label": "ข้อมูลเงินเดือน"
+            },
+            {
+                "key": "hourly-wage-revision",
+                "label": "ข้อมูลการปรับอัตราค่าจ้างรายชั่วโมง"
+            },
+            {
+                "key": "bonus",
+                "label": "ข้อมูลโบนัส"
+            },
+            {
+                "key": "bank-account",
+                "label": "ข้อมูลบัญชีธนาคาร"
+            },
+            {
+                "key": "employment-extension-duty",
+                "label": "ขอบเขตงานสำหรับการต่อสัญญาจ้าง"
+            },
+            {
+                "key": "expatriate-experience",
+                "label": "ประวัติการฝึกอบรมต่างประเทศ"
+            },
+            {
+                "key": "housing-allowance",
+                "label": "เงินช่วยเหลือค่าเช่าที่พัก"
+            },
+            {
+                "key": "defined-contribution-401k-plan",
+                "label": "เงินสะสมเพื่อเกษียณ (DC / 401k)"
+            },
+            {
+                "key": "stock-ownership-association",
+                "label": "แผนถือหุ้นของพนักงาน"
+            },
+            {
+                "key": "evaluation-interview",
+                "label": "ประวัติการสัมภาษณ์"
+            },
+            {
+                "key": "part-time-job",
+                "label": "พาร์ทไทม์"
+            },
+            {
+                "key": "retirement-interview",
+                "label": "การสัมภาษณ์ก่อนลาออก"
+            },
+            {
+                "key": "labor-regulation",
+                "label": "ข้อบังคับการทำงาน"
+            },
+            {
+                "key": "commuter-vehicle",
+                "label": "ข้อมูลยานพาหนะที่ใช้เดินทางไปทำงาน"
+            },
+            {
+                "key": "external-account",
+                "label": "ข้อมูลบัญชีผู้ใช้งาน"
+            },
+            {
+                "key": "retirement-note",
+                "label": "ข้อมูลการลาออก"
+            },
+            {
+                "key": "assignment-note",
+                "label": "ข้อมูลที่เกี่ยวข้องกับการมอบหมายงาน"
+            },
+            {
+                "key": "condolence-allowance",
+                "label": "ข้อมูลเบี้ยเลี้ยงและเงินช่วยเหลือ"
+            },
+            {
+                "key": "detailed-error-report",
+                "label": "รายงานเหตุการณ์ / หนังสือชี้แจง"
+            },
+            {
+                "key": "salary-revision",
+                "label": "ข้อมูลการปรับเงินเดือน"
+            },
+            {
+                "key": "job-role",
+                "label": "ประวัติการรับผิดชอบงาน"
+            },
+            {
+                "key": "short-time-work",
+                "label": "ประวัติการทำงานระยะสั้น"
+            },
+            {
+                "key": "work-location-restriction",
+                "label": "ข้อจำกัดสถานที่ทำงาน"
+            },
+            {
+                "key": "enrollment-history",
+                "label": "ข้อมูลสถานะพนักงาน"
+            },
+            {
+                "key": "commuter-pass",
+                "label": "ข้อมูลบัตรโดยสารรายเดือน"
+            },
+            {
+                "key": "car-commute",
+                "label": "เดินทางโดยรถส่วนตัว"
+            },
+            {
+                "key": "side-business",
+                "label": "ข้อมูลงานเสริม"
+            },
+            {
+                "key": "registered-seller",
+                "label": "ผู้ขายที่มีใบอนุญาต"
+            },
+            {
+                "key": "maternity-leave",
+                "label": "ข้อมูลการลาคลอด"
+            },
+            {
+                "key": "single-transfer",
+                "label": "เบี้ยเลี้ยงสำหรับการไปทำงานต่างจังหวัดคนเดียว"
+            },
+            {
+                "key": "sick-kids-care",
+                "label": "ค่าดูแลเด็กป่วย"
+            }
+        ]
+    },
+    {
+        "key": "recruitment",
+        "label": "ข้อมูลการรับสมัคร",
+        "items": [
+            {
+                "key": "career-opportunity",
+                "label": "ข้อมูลการรับเข้าทำงาน"
+            },
+            {
+                "key": "academic-background",
+                "label": "ข้อมูลประวัติการศึกษา"
+            },
+            {
+                "key": "work-experience",
+                "label": "ข้อมูลประวัติการทำงาน"
+            },
+            {
+                "key": "final-job-interview",
+                "label": "ผลลัพธ์ (ผลสัมภาษณ์รอบสุดท้าย)"
+            },
+            {
+                "key": "hr-when-recruiting-comment",
+                "label": "ความเห็นจากฝ่ายบุคคลขณะรับเข้าทำงาน"
+            },
+            {
+                "key": "hr-after-joining-comment",
+                "label": "ความเห็นจากฝ่ายบุคคลหลังเข้าทำงาน"
+            },
+            {
+                "key": "recruitment-resume",
+                "label": "ประวัติส่วนตัว / การทำงาน"
+            },
+            {
+                "key": "recruitment-test",
+                "label": "การสอบคัดเลือก"
+            }
+        ]
+    },
+    {
+        "key": "skill",
+        "label": "ทักษะและคุณสมบัติ",
+        "items": [
+            {
+                "key": "in-house-training",
+                "label": "การฝึกอบรมภายในบริษัท"
+            },
+            {
+                "key": "outside-training",
+                "label": "การฝึกอบรมนอกบริษัท"
+            },
+            {
+                "key": "license",
+                "label": "ใบอนุญาตจากหน่วยงานสาธารณะ"
+            },
+            {
+                "key": "official-qualification",
+                "label": "ใบอนุญาตจากหน่วยงานสาธารณะ"
+            },
+            {
+                "key": "in-house-qualification",
+                "label": "คุณวุฒิภายในบริษัท"
+            },
+            {
+                "key": "linguistic-skill",
+                "label": "ภาษา"
+            },
+            {
+                "key": "special-skill",
+                "label": "ความสามารถพิเศษ"
+            },
+            {
+                "key": "hobby",
+                "label": "งานอดิเรกหรือความสนใจ"
+            },
+            {
+                "key": "experience-point",
+                "label": "คะแนนผลงาน/การพัฒนาทักษะ"
+            },
+            {
+                "key": "expertise",
+                "label": "สาขาความเชี่ยวชาญและระดับ"
+            },
+            {
+                "key": "reward",
+                "label": "รางวัล/เกียรติคุณ"
+            },
+            {
+                "key": "lecture-experience",
+                "label": "การบรรยายนอกองค์กร"
+            },
+            {
+                "key": "outside-activity",
+                "label": "กิจกรรมนอกองค์กร"
+            },
+            {
+                "key": "work-in-charge",
+                "label": "งานที่รับผิดชอบ / ความสามารถพิเศษ / ลักษณะเฉพาะ"
+            },
+            {
+                "key": "commendation",
+                "label": "ข้อมูลประกาศณียบัตร"
+            },
+            {
+                "key": "examination",
+                "label": "ข้อมูลการสอบวัดระดับ"
+            },
+            {
+                "key": "assigned-project",
+                "label": "ข้อมูลโครงการ"
+            },
+            {
+                "key": "specialized-field",
+                "label": "สาขาความเชี่ยวชาญ"
+            }
+        ]
+    },
+    {
+        "key": "evaluation",
+        "label": "ข้อมูลการประเมิน",
+        "items": [
+            {
+                "key": "evaluation",
+                "label": "การประเมิน"
+            },
+            {
+                "key": "discipline",
+                "label": "การลงโทษ"
+            },
+            {
+                "key": "evaluation-1-record",
+                "label": "ข้อมูลการประเมิน 1"
+            },
+            {
+                "key": "evaluation-2-record",
+                "label": "ข้อมูลการประเมิน 2"
+            },
+            {
+                "key": "evaluation-3-record",
+                "label": "ข้อมูลการประเมิน 3"
+            },
+            {
+                "key": "evaluation-4-record",
+                "label": "ข้อมูลการประเมิน 4"
+            },
+            {
+                "key": "evaluation-5-record",
+                "label": "ข้อมูลการประเมิน 5"
+            },
+            {
+                "key": "evaluation-6-record",
+                "label": "ข้อมูลการประเมิน 6"
+            },
+            {
+                "key": "evaluation-7-record",
+                "label": "ข้อมูลการประเมิน 7"
+            },
+            {
+                "key": "evaluation-8-record",
+                "label": "ข้อมูลการประเมินผล 8"
+            },
+            {
+                "key": "evaluation-9-record",
+                "label": "ข้อมูลการประเมินผล 9"
+            },
+            {
+                "key": "evaluation-10-record",
+                "label": "ข้อมูลการประเมินผล 10"
+            },
+            {
+                "key": "evaluation-11-record",
+                "label": "ข้อมูลการประเมินผล 11"
+            },
+            {
+                "key": "evaluation-12-record",
+                "label": "ข้อมูลการประเมินผล 12"
+            },
+            {
+                "key": "evaluation-13-record",
+                "label": "ข้อมูลการประเมินผล 13"
+            },
+            {
+                "key": "evaluation-14-record",
+                "label": "ข้อมูลการประเมินผล 14"
+            },
+            {
+                "key": "evaluation-15-record",
+                "label": "ข้อมูลการประเมินผล 15"
+            },
+            {
+                "key": "evaluation-16-record",
+                "label": "ข้อมูลการประเมินผล 16"
+            },
+            {
+                "key": "evaluation-17-record",
+                "label": "ข้อมูลการประเมินผล 17"
+            },
+            {
+                "key": "evaluation-18-record",
+                "label": "ข้อมูลการประเมินผล 18"
+            },
+            {
+                "key": "evaluation-19-record",
+                "label": "ข้อมูลการประเมินผล 19"
+            },
+            {
+                "key": "evaluation-20-record",
+                "label": "ข้อมูลการประเมินผล 20"
+            }
+        ]
+    },
+    {
+        "key": "assessment",
+        "label": "การประเมิน",
+        "items": [
+            {
+                "key": "assessment-data-cubic",
+                "label": "CUBIC"
+            },
+            {
+                "key": "assessment-01",
+                "label": "แบบประเมินบุคลิกภาพ OPQ"
+            },
+            {
+                "key": "assessment-02",
+                "label": "แพลตฟอร์มวิเคราะห์ \"Kaleidoscope\""
+            },
+            {
+                "key": "assessment-business-skill",
+                "label": "ทักษะทางธุรกิจ"
+            },
+            {
+                "key": "assessment-03",
+                "label": "แบบทดสอบความถนัดทั่วไป (GAB)"
+            },
+            {
+                "key": "assessment-04",
+                "label": "แบบวิเคราะห์บุคลิกภาพ FFS"
+            },
+            {
+                "key": "assessment-05",
+                "label": "SPI (ทัศนคติและแนวโน้มเกี่ยวกับการทำงาน)"
+            },
+            {
+                "key": "assessment-06",
+                "label": "SPI (มาตรฐานลักษณะนิสัย)"
+            },
+            {
+                "key": "assessment-07",
+                "label": "SPI (บุคลิกภาพ + ความสามารถ)"
+            },
+            {
+                "key": "assessment-08",
+                "label": "การประเมินผล 01"
+            },
+            {
+                "key": "assessment-09",
+                "label": "การประเมินผล 02"
+            },
+            {
+                "key": "assessment-10",
+                "label": "การประเมินผล 03"
+            },
+            {
+                "key": "assessment-11",
+                "label": "การประเมินผล 04"
+            },
+            {
+                "key": "assessment-12",
+                "label": "การประเมินผล 05"
+            },
+            {
+                "key": "assessment-13",
+                "label": "การประเมินผล 06"
+            },
+            {
+                "key": "assessment-14",
+                "label": "การประเมินผล 07"
+            },
+            {
+                "key": "assessment-15",
+                "label": "การประเมินผล 08"
+            },
+            {
+                "key": "assessment-16",
+                "label": "การประเมินผล 09"
+            },
+            {
+                "key": "assessment-17",
+                "label": "การประเมินผล 10"
+            },
+            {
+                "key": "assessment-item-group",
+                "label": "กลุ่มรายการ"
+            },
+            {
+                "key": "assessment-relation",
+                "label": "การเชื่อมโยงรายการและกลุ่มรายการ"
+            }
+        ]
+    },
+    {
+        "key": "attendance",
+        "label": "ข้อมูลการทำงาน",
+        "items": [
+            {
+                "key": "attendance",
+                "label": "ข้อมูลการเข้างาน"
+            },
+            {
+                "key": "telework",
+                "label": "การทำงานจากบ้าน"
+            },
+            {
+                "key": "previous-paid-leave",
+                "label": "วันลาค้างจากปีก่อน"
+            }
+        ]
+    },
+    {
+        "key": "healthcare",
+        "label": "ข้อมูลสุขภาพ",
+        "items": [
+            {
+                "key": "food-allergies",
+                "label": "ภูมิแพ้อาหาร"
+            },
+            {
+                "key": "health-checkup",
+                "label": "การตรวจสุขภาพประจำปี"
+            },
+            {
+                "key": "health",
+                "label": "ข้อมูลด้านสุขภาพ"
+            },
+            {
+                "key": "medical-history",
+                "label": "โรคประจำตัว / โรคเดิม"
+            },
+            {
+                "key": "health-interview",
+                "label": "การสอบถามอาการ"
+            },
+            {
+                "key": "secondary-health-checkup",
+                "label": "สถานะการเข้ารับการตรวจสุขภาพครั้งที่สอง"
+            }
+        ]
+    },
+    {
+        "key": "self-report",
+        "label": "การรายงานตนเอง",
+        "items": [
+            {
+                "key": "transfer-timing-feedback",
+                "label": "(หัวหน้า) สถานะงานปัจจุบันและช่วงเวลาการโยกย้าย"
+            },
+            {
+                "key": "transfer-timing-report",
+                "label": "(พนักงาน) ตำแหน่งปัจจุบันและช่วงเวลาที่ต้องการโยกย้าย"
+            },
+            {
+                "key": "language-test",
+                "label": "คะแนน TOEIC/HSK"
+            },
+            {
+                "key": "career-plan",
+                "label": "แผนอาชีพ"
+            },
+            {
+                "key": "next-transfer-report",
+                "label": "หน่วยงานที่ต้องการไป"
+            },
+            {
+                "key": "next-affiliated-company-report",
+                "label": "บริษัทในเครือที่ต้องการไป"
+            },
+            {
+                "key": "abroad-experience",
+                "label": "ประสบการณ์ต่างประเทศ"
+            },
+            {
+                "key": "practical-skill",
+                "label": "ตัวชี้วัดความสามารถในการทำงานจริง"
+            },
+            {
+                "key": "duty-experience",
+                "label": "ประวัติการทำงาน"
+            },
+            {
+                "key": "personal-matter",
+                "label": "ข้อมูลส่วนตัว"
+            },
+            {
+                "key": "personality-trait",
+                "label": "ลักษณะนิสัย"
+            },
+            {
+                "key": "ability-trait",
+                "label": "ลักษณะความสามารถ"
+            },
+            {
+                "key": "relationship-trait",
+                "label": "ลักษณะในการเข้าสังคม"
+            },
+            {
+                "key": "abroad-practical-training-report",
+                "label": "การเปิดรับอบรมภาคปฏิบัติต่างประเทศ"
+            },
+            {
+                "key": "global-staff-report",
+                "label": "การเปิดรับตำแหน่งพนักงานระดับสากลในองค์กร"
+            },
+            {
+                "key": "manager-challenge",
+                "label": "การท้าทายสู่ตำแหน่งบริหาร"
+            },
+            {
+                "key": "performance-goal-evaluation-for-regular-staff",
+                "label": "แนวทางการทำงานสำหรับพนักงานทั่วไป"
+            },
+            {
+                "key": "performance-goal-for-regular-staff",
+                "label": "เป้าหมายการปฏิบัติตามแนวทางพนักงานทั่วไป"
+            },
+            {
+                "key": "interview",
+                "label": "ความคิดเห็นของหัวหน้า"
+            },
+            {
+                "key": "performance-goal-evaluation-for-manager",
+                "label": "ความเห็นการประเมินผลงานของผู้บริหาร"
+            },
+            {
+                "key": "performance-goal-for-manager",
+                "label": "เป้าหมายผลงานของผู้บริหาร"
+            },
+            {
+                "key": "transfer-request",
+                "label": "ความต้องการโยกย้าย"
+            },
+            {
+                "key": "requested-work-area",
+                "label": "ขอบเขตงานที่ต้องการ"
+            },
+            {
+                "key": "self-report",
+                "label": "ประวัติการรายงานตนเอง"
+            }
+        ]
+    },
+    {
+        "key": "project",
+        "label": "ข้อมูลโครงการ",
+        "items": [
+            {
+                "key": "project-stage",
+                "label": "ขั้นตอน"
+            },
+            {
+                "key": "project-manager",
+                "label": "ผู้จัดการ"
+            },
+            {
+                "key": "project-reviewer",
+                "label": "ผู้ประเมิน"
+            },
+            {
+                "key": "project-assignment",
+                "label": "การมอบหมายงาน"
+            },
+            {
+                "key": "project-related-member",
+                "label": "สมาชิกที่เกี่ยวข้อง"
+            }
+        ]
+    },
+    {
+        "key": "additional-information",
+        "label": "ข้อมูลที่ปรับแต่งเอง",
+        "items": [
+            {
+                "key": "additional-information-01",
+                "label": "หมวดหมู่ 01"
+            },
+            {
+                "key": "additional-information-02",
+                "label": "หมวดหมู่ 02"
+            },
+            {
+                "key": "additional-information-03",
+                "label": "หมวดหมู่ 03"
+            },
+            {
+                "key": "additional-information-04",
+                "label": "หมวดหมู่ 04"
+            },
+            {
+                "key": "additional-information-05",
+                "label": "หมวดหมู่ 05"
+            },
+            {
+                "key": "additional-information-06",
+                "label": "หมวดหมู่ 06"
+            },
+            {
+                "key": "additional-information-07",
+                "label": "หมวดหมู่ 07"
+            },
+            {
+                "key": "additional-information-08",
+                "label": "หมวดหมู่ 08"
+            },
+            {
+                "key": "additional-information-free",
+                "label": "รายการอิสระ"
+            },
+            {
+                "key": "additional-effective-date-1-template",
+                "label": "ข้อมูลส่วนบุคคลอื่น ๆ"
+            },
+            {
+                "key": "additional-single-1-template",
+                "label": "ออกพาสเวิร์ดใหม่อีกครั้ง"
+            },
+            {
+                "key": "additional-single-2-template",
+                "label": "ข้อมูลการจ้างงานอื่น ๆ"
+            },
+            {
+                "key": "additional-effective-date-2-template",
+                "label": "ระดับทักษะการใช้งาน Microsoft Office"
+            },
+            {
+                "key": "additional-period-1-template",
+                "label": "การประเมินผล"
+            },
+            {
+                "key": "additional-period-2-template",
+                "label": "เป้าหมายต้นงวด"
+            },
+            {
+                "key": "additional-period-3-template",
+                "label": "เป้าหมายที่เปลี่ยนระหว่างงวด"
+            },
+            {
+                "key": "additional-information-09",
+                "label": "หมวดหมู่ 09"
+            },
+            {
+                "key": "additional-information-10",
+                "label": "หมวดหมู่ 10"
+            },
+            {
+                "key": "additional-information-11",
+                "label": "หมวดหมู่ 11"
+            },
+            {
+                "key": "additional-information-12",
+                "label": "หมวดหมู่ 12"
+            },
+            {
+                "key": "additional-information-13",
+                "label": "หมวดหมู่ 13"
+            },
+            {
+                "key": "additional-information-14",
+                "label": "หมวดหมู่ 14"
+            },
+            {
+                "key": "additional-information-15",
+                "label": "หมวดหมู่ 15"
+            },
+            {
+                "key": "additional-information-16",
+                "label": "หมวดหมู่ 16"
+            },
+            {
+                "key": "additional-information-17",
+                "label": "หมวดหมู่ 17"
+            },
+            {
+                "key": "additional-information-18",
+                "label": "หมวดหมู่ 18"
+            },
+            {
+                "key": "additional-information-19",
+                "label": "หมวดหมู่ 19"
+            },
+            {
+                "key": "additional-information-20",
+                "label": "หมวดหมู่ 20"
+            }
+        ]
+    },
+    {
+        "key": "face-image",
+        "label": "รูปถ่าย",
+        "items": [
+            {
+                "key": "face-image-download",
+                "label": "ดาวน์โหลด"
+            },
+            {
+                "key": "face-image-upload",
+                "label": "อัปโหลด"
+            }
+        ]
+    },
+    {
+        "key": "employee-file",
+        "label": "ไฟล์พนักงาน",
+        "items": [
+            {
+                "key": "employee-file-download",
+                "label": "ดาวน์โหลด"
+            },
+            {
+                "key": "employee-file-upload",
+                "label": "อัปโหลด"
+            },
+            {
+                "key": "employee-file-update",
+                "label": "รายชื่อไฟล์"
+            }
+        ]
+    },
+    {
+        "key": "personal-document",
+        "label": "เอกสารส่วนตัว",
+        "items": [
+            {
+                "key": "personal-document-download",
+                "label": "ดาวน์โหลด"
+            },
+            {
+                "key": "personal-document",
+                "label": "อัปโหลด"
+            },
+            {
+                "key": "personal-document-update",
+                "label": "รายชื่อไฟล์"
+            }
+        ]
+    },
+    {
+        "key": "system-settings",
+        "label": "มาสเตอร์ระบบ",
+        "items": [
+            {
+                "key": "account",
+                "label": "บัญชี"
+            },
+            {
+                "key": "employee-information-category",
+                "label": "หมวดหมู่ข้อมูลพนักงาน"
+            },
+            {
+                "key": "employee-information-item",
+                "label": "รายการข้อมูลพนักงาน"
+            },
+            {
+                "key": "authority-management",
+                "label": "การจัดการสิทธิ์"
+            }
+        ]
+    },
+    {
+        "key": "master-data",
+        "label": "มาสเตอร์ระบบ",
+        "items": [
+            {
+                "key": "master-personnel-change",
+                "label": "ข้อมูลปัญหา"
+            },
+            {
+                "key": "master-data-history-personnel-change",
+                "label": "มาสเตอร์รายการประกาศคำสั่ง (การจัดการประวัติ)"
+            },
+            {
+                "key": "master-department-information",
+                "label": "ข้อมูลองค์กร"
+            },
+            {
+                "key": "master-employee-information",
+                "label": "ข้อมูลพนักงาน"
+            },
+            {
+                "key": "master-data-relation",
+                "label": "ข้อมูลพนักงาน (หมวดหมู่ การเชื่อมโยงชื่อ)"
+            }
+        ]
+    },
+    {
+        "key": "additional-master-data",
+        "label": "มาสเตอร์ (ข้อมูลเพิ่มเติม)",
+        "items": [
+            {
+                "key": "additional-master-data-retirement-reason",
+                "label": "เหตุผลออกจากงาน"
+            },
+            {
+                "key": "additional-master-data-relationship",
+                "label": "ความสัมพันธ์"
+            },
+            {
+                "key": "additional-master-data-employment-fixed-term",
+                "label": "การกำหนดระยะเวลา"
+            },
+            {
+                "key": "additional-master-data-employment-type",
+                "label": "รูปแบบการจ้างงาน"
+            },
+            {
+                "key": "additional-master-data-job-title",
+                "label": "ตำแหน่งงาน"
+            },
+            {
+                "key": "additional-master-data-job-category",
+                "label": "ประเภทงาน"
+            },
+            {
+                "key": "additional-master-data-job-duty",
+                "label": "หน้าที่การงาน"
+            },
+            {
+                "key": "additional-master-data-job-role",
+                "label": "หน้าที่"
+            },
+            {
+                "key": "additional-master-data-grade-a",
+                "label": "เกรด A"
+            },
+            {
+                "key": "additional-master-data-grade-b",
+                "label": "เกรด B"
+            },
+            {
+                "key": "additional-master-data-grade-c",
+                "label": "เกรด C"
+            },
+            {
+                "key": "additional-master-data-charge-area",
+                "label": "พื้นที่รับผิดชอบ"
+            }
+        ]
+    },
+    {
+        "key": "360-evaluation",
+        "label": "การประเมินแบบ 360 องศา",
+        "items": [
+            {
+                "key": "360-evaluation-evaluatee",
+                "label": "ผู้ถูกประเมิน"
+            },
+            {
+                "key": "360-evaluation-evaluator",
+                "label": "ผู้ประเมิน"
+            },
+            {
+                "key": "360-evaluation-result",
+                "label": "ผลการประเมิน (สรุป)"
+            },
+            {
+                "key": "360-evaluation-all-result",
+                "label": "ผลการประเมิน (การประเมินตนเองและผู้อื่นทั้งหมด)"
+            }
+        ]
+    },
+    {
+        "key": "feedback360",
+        "label": "Feedback 360",
+        "items": [
+            {
+                "key": "feedback360-evaluation-member",
+                "label": "ผู้ถูกประเมินและผู้ประเมิน"
+            },
+            {
+                "key": "feedback360-pre-approved-target-member",
+                "label": "ผู้ที่ได้รับเลือกให้สัมภาษณ์หรือทำแบบสอบถาม (ผู้มีสิทธิ์เข้าร่วม)"
+            },
+            {
+                "key": "feedback360-approved-target-member",
+                "label": "ผู้ที่ได้รับเลือกให้สัมภาษณ์หรือทำแบบสอบถาม (อนุมัติแล้ว)"
+            },
+            {
+                "key": "feedback360-evaluation-planning",
+                "label": "แผ่นงานการประชุมประเมินผล (ฉบับร่าง)"
+            },
+            {
+                "key": "feedback360-evaluation-sheet",
+                "label": "การอัพเดทคะแนนและเกรดหลังการประเมิน"
+            }
+        ]
+    },
+    {
+        "key": "my-attendance",
+        "label": "การเข้าทำงานของฉัน",
+        "items": [
+            {
+                "key": "attendance-working-item",
+                "label": "รายการการเข้าร่วมประชุม"
+            },
+            {
+                "key": "attendance-monthly-working",
+                "label": "การเข้าร่วมประชุมรายเดือน"
+            },
+            {
+                "key": "attendance-daily-working",
+                "label": "การเข้าร่วมประชุมรายวัน"
+            }
+        ]
+    }
+]

@@ -1,0 +1,1126 @@
+[
+    {
+        "key": "personnel-change",
+        "label": "问题信息",
+        "items": [
+            {
+                "key": "joining",
+                "label": "入职"
+            },
+            {
+                "key": "assignment",
+                "label": "分配"
+            },
+            {
+                "key": "transfer",
+                "label": "调动"
+            },
+            {
+                "key": "leave-absence",
+                "label": "离职"
+            },
+            {
+                "key": "secondment",
+                "label": "外派"
+            },
+            {
+                "key": "retirement",
+                "label": "辞职"
+            },
+            {
+                "key": "rejoining",
+                "label": "重新入职"
+            },
+            {
+                "key": "transfer-diff-update",
+                "label": "调动（逐项登记）"
+            }
+        ]
+    },
+    {
+        "key": "organization",
+        "label": "组织",
+        "items": [
+            {
+                "key": "department",
+                "label": "部门"
+            },
+            {
+                "key": "manager",
+                "label": "主管"
+            },
+            {
+                "key": "reorganization",
+                "label": "组织架构调整"
+            }
+        ]
+    },
+    {
+        "key": "personal-information",
+        "label": "个人信息",
+        "items": [
+            {
+                "key": "basic",
+                "label": "基本信息"
+            },
+            {
+                "key": "family-register",
+                "label": "户籍信息"
+            },
+            {
+                "key": "disability",
+                "label": "残疾信息"
+            },
+            {
+                "key": "personal",
+                "label": "本人信息"
+            },
+            {
+                "key": "address",
+                "label": "家庭住址"
+            },
+            {
+                "key": "family",
+                "label": "家庭信息"
+            },
+            {
+                "key": "emergency-contact",
+                "label": "紧急联络人"
+            },
+            {
+                "key": "passport",
+                "label": "护照信息"
+            },
+            {
+                "key": "residence-card",
+                "label": "在留卡"
+            },
+            {
+                "key": "special-permanent-resident-certification",
+                "label": "特别永住者证明书"
+            },
+            {
+                "key": "health-insurance",
+                "label": "健康保险"
+            },
+            {
+                "key": "pension-insurance",
+                "label": "厚生年金保险"
+            },
+            {
+                "key": "employment-insurance",
+                "label": "雇佣保险"
+            },
+            {
+                "key": "personal-relationship",
+                "label": "相关人员信息"
+            },
+            {
+                "key": "visa",
+                "label": "签证信息"
+            },
+            {
+                "key": "import-option",
+                "label": "联动设置信息"
+            },
+            {
+                "key": "personal-reference",
+                "label": "担保人"
+            },
+            {
+                "key": "life-plan-support",
+                "label": "生活规划储蓄金"
+            },
+            {
+                "key": "industrial-accident",
+                "label": "劳动灾害信息"
+            },
+            {
+                "key": "public-pension",
+                "label": "公共养老金"
+            },
+            {
+                "key": "personnel-note",
+                "label": "人事相关信息"
+            },
+            {
+                "key": "other-personal-relationship",
+                "label": "其他相关人员信息"
+            },
+            {
+                "key": "business-continuity-plan",
+                "label": "BCP 应对信息"
+            },
+            {
+                "key": "previous-name-usage-range",
+                "label": "原姓使用范围"
+            }
+        ]
+    },
+    {
+        "key": "employment",
+        "label": "雇佣信息",
+        "items": [
+            {
+                "key": "employment",
+                "label": "雇佣合同"
+            },
+            {
+                "key": "working",
+                "label": "工作联系方式"
+            },
+            {
+                "key": "commutation",
+                "label": "通勤信息"
+            },
+            {
+                "key": "transportation-expense",
+                "label": "通勤费用信息"
+            },
+            {
+                "key": "working-consideration",
+                "label": "劳动信息"
+            },
+            {
+                "key": "annual-income",
+                "label": "年收入信息"
+            },
+            {
+                "key": "salary",
+                "label": "薪资信息"
+            },
+            {
+                "key": "hourly-wage-revision",
+                "label": "时薪调整信息"
+            },
+            {
+                "key": "bonus",
+                "label": "奖金信息"
+            },
+            {
+                "key": "bank-account",
+                "label": "银行账户信息"
+            },
+            {
+                "key": "employment-extension-duty",
+                "label": "延长雇佣所涉及的业务领域"
+            },
+            {
+                "key": "expatriate-experience",
+                "label": "派驻研修经历"
+            },
+            {
+                "key": "housing-allowance",
+                "label": "房租补贴"
+            },
+            {
+                "key": "defined-contribution-401k-plan",
+                "label": "企业年金计划（DC/401k）"
+            },
+            {
+                "key": "stock-ownership-association",
+                "label": "员工持股会"
+            },
+            {
+                "key": "evaluation-interview",
+                "label": "面谈记录"
+            },
+            {
+                "key": "part-time-job",
+                "label": "兼职"
+            },
+            {
+                "key": "retirement-interview",
+                "label": "离职面谈"
+            },
+            {
+                "key": "labor-regulation",
+                "label": "就业规定"
+            },
+            {
+                "key": "commuter-vehicle",
+                "label": "通勤车辆信息"
+            },
+            {
+                "key": "external-account",
+                "label": "账户信息"
+            },
+            {
+                "key": "retirement-note",
+                "label": "离职信息"
+            },
+            {
+                "key": "assignment-note",
+                "label": "派遣/任务相关信息"
+            },
+            {
+                "key": "condolence-allowance",
+                "label": "各类津贴及慰问金信息"
+            },
+            {
+                "key": "detailed-error-report",
+                "label": "事件报告 / 检讨书"
+            },
+            {
+                "key": "salary-revision",
+                "label": "薪资调整信息"
+            },
+            {
+                "key": "job-role",
+                "label": "负责业务记录"
+            },
+            {
+                "key": "short-time-work",
+                "label": "短时间工作经历"
+            },
+            {
+                "key": "work-location-restriction",
+                "label": "工作地点限制"
+            },
+            {
+                "key": "enrollment-history",
+                "label": "在籍信息"
+            },
+            {
+                "key": "commuter-pass",
+                "label": "月票信息"
+            },
+            {
+                "key": "car-commute",
+                "label": "自驾通勤"
+            },
+            {
+                "key": "side-business",
+                "label": "兼职信息"
+            },
+            {
+                "key": "registered-seller",
+                "label": "注册销售员"
+            },
+            {
+                "key": "maternity-leave",
+                "label": "产假信息"
+            },
+            {
+                "key": "single-transfer",
+                "label": "单身外派津贴"
+            },
+            {
+                "key": "sick-kids-care",
+                "label": "病童托育费用"
+            }
+        ]
+    },
+    {
+        "key": "recruitment",
+        "label": "招聘信息",
+        "items": [
+            {
+                "key": "career-opportunity",
+                "label": "录用信息"
+            },
+            {
+                "key": "academic-background",
+                "label": "学术信息"
+            },
+            {
+                "key": "work-experience",
+                "label": "工作履历信息"
+            },
+            {
+                "key": "final-job-interview",
+                "label": "结果（最终面试结果）"
+            },
+            {
+                "key": "hr-when-recruiting-comment",
+                "label": "录用时人事评语"
+            },
+            {
+                "key": "hr-after-joining-comment",
+                "label": "入职后人事评语"
+            },
+            {
+                "key": "recruitment-resume",
+                "label": "经历/履历"
+            },
+            {
+                "key": "recruitment-test",
+                "label": "录用考试"
+            }
+        ]
+    },
+    {
+        "key": "skill",
+        "label": "技能与资格",
+        "items": [
+            {
+                "key": "in-house-training",
+                "label": "社内培训"
+            },
+            {
+                "key": "outside-training",
+                "label": "社外培训"
+            },
+            {
+                "key": "license",
+                "label": "国家资格证"
+            },
+            {
+                "key": "official-qualification",
+                "label": "公认资格"
+            },
+            {
+                "key": "in-house-qualification",
+                "label": "公司内部资格"
+            },
+            {
+                "key": "linguistic-skill",
+                "label": "语言能力"
+            },
+            {
+                "key": "special-skill",
+                "label": "特长"
+            },
+            {
+                "key": "hobby",
+                "label": "爱好或兴趣"
+            },
+            {
+                "key": "experience-point",
+                "label": "业绩/能力开发积分"
+            },
+            {
+                "key": "expertise",
+                "label": "专业领域与水平"
+            },
+            {
+                "key": "reward",
+                "label": "表彰/奖赏"
+            },
+            {
+                "key": "lecture-experience",
+                "label": "对外讲座"
+            },
+            {
+                "key": "outside-activity",
+                "label": "对外活动"
+            },
+            {
+                "key": "work-in-charge",
+                "label": "负责业务 / 特长 / 特性"
+            },
+            {
+                "key": "commendation",
+                "label": "受表彰信息"
+            },
+            {
+                "key": "examination",
+                "label": "考试认证信息"
+            },
+            {
+                "key": "assigned-project",
+                "label": "项目信息"
+            },
+            {
+                "key": "specialized-field",
+                "label": "专业领域"
+            }
+        ]
+    },
+    {
+        "key": "evaluation",
+        "label": "评价信息",
+        "items": [
+            {
+                "key": "evaluation",
+                "label": "评估"
+            },
+            {
+                "key": "discipline",
+                "label": "惩罚"
+            },
+            {
+                "key": "evaluation-1-record",
+                "label": "评价信息 1"
+            },
+            {
+                "key": "evaluation-2-record",
+                "label": "评价信息 2"
+            },
+            {
+                "key": "evaluation-3-record",
+                "label": "评价信息 3"
+            },
+            {
+                "key": "evaluation-4-record",
+                "label": "评价信息 4"
+            },
+            {
+                "key": "evaluation-5-record",
+                "label": "评价信息 5"
+            },
+            {
+                "key": "evaluation-6-record",
+                "label": "评价信息 6"
+            },
+            {
+                "key": "evaluation-7-record",
+                "label": "评价信息 7"
+            },
+            {
+                "key": "evaluation-8-record",
+                "label": "评价信息 8"
+            },
+            {
+                "key": "evaluation-9-record",
+                "label": "评价信息 9"
+            },
+            {
+                "key": "evaluation-10-record",
+                "label": "评价信息 10"
+            },
+            {
+                "key": "evaluation-11-record",
+                "label": "评价信息 11"
+            },
+            {
+                "key": "evaluation-12-record",
+                "label": "评价信息 12"
+            },
+            {
+                "key": "evaluation-13-record",
+                "label": "评价信息 13"
+            },
+            {
+                "key": "evaluation-14-record",
+                "label": "评价信息 14"
+            },
+            {
+                "key": "evaluation-15-record",
+                "label": "评价信息 15"
+            },
+            {
+                "key": "evaluation-16-record",
+                "label": "评价信息 16"
+            },
+            {
+                "key": "evaluation-17-record",
+                "label": "评价信息 17"
+            },
+            {
+                "key": "evaluation-18-record",
+                "label": "评价信息 18"
+            },
+            {
+                "key": "evaluation-19-record",
+                "label": "评价信息 19"
+            },
+            {
+                "key": "evaluation-20-record",
+                "label": "评价信息 20"
+            }
+        ]
+    },
+    {
+        "key": "assessment",
+        "label": "评估",
+        "items": [
+            {
+                "key": "assessment-data-cubic",
+                "label": "CUBIC"
+            },
+            {
+                "key": "assessment-01",
+                "label": "OPQ 性格评估"
+            },
+            {
+                "key": "assessment-02",
+                "label": "万花筒分析平台"
+            },
+            {
+                "key": "assessment-business-skill",
+                "label": "业务技能"
+            },
+            {
+                "key": "assessment-03",
+                "label": "GAB 一般能力倾向测验"
+            },
+            {
+                "key": "assessment-04",
+                "label": "FFS 性格分析"
+            },
+            {
+                "key": "assessment-05",
+                "label": "SPI（志向与职业观）"
+            },
+            {
+                "key": "assessment-06",
+                "label": "SPI（性格标准）"
+            },
+            {
+                "key": "assessment-07",
+                "label": "SPI（性格＋能力）"
+            },
+            {
+                "key": "assessment-08",
+                "label": "评估 01"
+            },
+            {
+                "key": "assessment-09",
+                "label": "评估 02"
+            },
+            {
+                "key": "assessment-10",
+                "label": "评估 03"
+            },
+            {
+                "key": "assessment-11",
+                "label": "评估 04"
+            },
+            {
+                "key": "assessment-12",
+                "label": "评估 05"
+            },
+            {
+                "key": "assessment-13",
+                "label": "评估 06"
+            },
+            {
+                "key": "assessment-14",
+                "label": "评估 07"
+            },
+            {
+                "key": "assessment-15",
+                "label": "评估 08"
+            },
+            {
+                "key": "assessment-16",
+                "label": "评估 09"
+            },
+            {
+                "key": "assessment-17",
+                "label": "评估 10"
+            },
+            {
+                "key": "assessment-item-group",
+                "label": "项目组"
+            },
+            {
+                "key": "assessment-relation",
+                "label": "关联项目及项目组"
+            }
+        ]
+    },
+    {
+        "key": "attendance",
+        "label": "出勤信息",
+        "items": [
+            {
+                "key": "attendance",
+                "label": "出勤信息"
+            },
+            {
+                "key": "telework",
+                "label": "居家办公"
+            },
+            {
+                "key": "previous-paid-leave",
+                "label": "过去年度带薪假"
+            }
+        ]
+    },
+    {
+        "key": "healthcare",
+        "label": "健康信息",
+        "items": [
+            {
+                "key": "food-allergies",
+                "label": "食物过敏"
+            },
+            {
+                "key": "health-checkup",
+                "label": "定期健康检查"
+            },
+            {
+                "key": "health",
+                "label": "健康相关信息"
+            },
+            {
+                "key": "medical-history",
+                "label": "慢性病 / 既往病史"
+            },
+            {
+                "key": "health-interview",
+                "label": "问诊"
+            },
+            {
+                "key": "secondary-health-checkup",
+                "label": "第二次健康检查状况"
+            }
+        ]
+    },
+    {
+        "key": "self-report",
+        "label": "自我申报",
+        "items": [
+            {
+                "key": "transfer-timing-feedback",
+                "label": "（上司）当前职位情况与调动时机"
+            },
+            {
+                "key": "transfer-timing-report",
+                "label": "（本人）目前职务与希望调动时间"
+            },
+            {
+                "key": "language-test",
+                "label": "TOEIC/HSK 分数"
+            },
+            {
+                "key": "career-plan",
+                "label": "职业规划"
+            },
+            {
+                "key": "next-transfer-report",
+                "label": "希望调入的部门"
+            },
+            {
+                "key": "next-affiliated-company-report",
+                "label": "希望调入的关联公司"
+            },
+            {
+                "key": "abroad-experience",
+                "label": "海外经历"
+            },
+            {
+                "key": "practical-skill",
+                "label": "实际工作能力指标"
+            },
+            {
+                "key": "duty-experience",
+                "label": "工作经历"
+            },
+            {
+                "key": "personal-matter",
+                "label": "个人信息"
+            },
+            {
+                "key": "personality-trait",
+                "label": "性格特征"
+            },
+            {
+                "key": "ability-trait",
+                "label": "能力特征"
+            },
+            {
+                "key": "relationship-trait",
+                "label": "人际特征"
+            },
+            {
+                "key": "abroad-practical-training-report",
+                "label": "海外实务研修公开招募"
+            },
+            {
+                "key": "global-staff-report",
+                "label": "全球员工/事务职位公司内部招募"
+            },
+            {
+                "key": "manager-challenge",
+                "label": "挑战管理职位"
+            },
+            {
+                "key": "performance-goal-evaluation-for-regular-staff",
+                "label": "一般职员工工作方式"
+            },
+            {
+                "key": "performance-goal-for-regular-staff",
+                "label": "一般职员工执行目标"
+            },
+            {
+                "key": "interview",
+                "label": "上司评语"
+            },
+            {
+                "key": "performance-goal-evaluation-for-manager",
+                "label": "管理层绩效评价意见"
+            },
+            {
+                "key": "performance-goal-for-manager",
+                "label": "管理层绩效目标"
+            },
+            {
+                "key": "transfer-request",
+                "label": "调动意愿"
+            },
+            {
+                "key": "requested-work-area",
+                "label": "希望的业务领域"
+            },
+            {
+                "key": "self-report",
+                "label": "自我申报记录"
+            }
+        ]
+    },
+    {
+        "key": "project",
+        "label": "项目信息",
+        "items": [
+            {
+                "key": "project-stage",
+                "label": "阶段"
+            },
+            {
+                "key": "project-manager",
+                "label": "经理"
+            },
+            {
+                "key": "project-reviewer",
+                "label": "评估员"
+            },
+            {
+                "key": "project-assignment",
+                "label": "分配"
+            },
+            {
+                "key": "project-related-member",
+                "label": "参与成员"
+            }
+        ]
+    },
+    {
+        "key": "additional-information",
+        "label": "自定义数据",
+        "items": [
+            {
+                "key": "additional-information-01",
+                "label": "分类 01"
+            },
+            {
+                "key": "additional-information-02",
+                "label": "分类 02"
+            },
+            {
+                "key": "additional-information-03",
+                "label": "分类 03"
+            },
+            {
+                "key": "additional-information-04",
+                "label": "分类 04"
+            },
+            {
+                "key": "additional-information-05",
+                "label": "分类 05"
+            },
+            {
+                "key": "additional-information-06",
+                "label": "分类 06"
+            },
+            {
+                "key": "additional-information-07",
+                "label": "分类 07"
+            },
+            {
+                "key": "additional-information-08",
+                "label": "分类 08"
+            },
+            {
+                "key": "additional-information-free",
+                "label": "自由项目"
+            },
+            {
+                "key": "additional-effective-date-1-template",
+                "label": "其他个人信息"
+            },
+            {
+                "key": "additional-single-1-template",
+                "label": "密码重置"
+            },
+            {
+                "key": "additional-single-2-template",
+                "label": "其他雇佣信息"
+            },
+            {
+                "key": "additional-effective-date-2-template",
+                "label": "Office 技能等级"
+            },
+            {
+                "key": "additional-period-1-template",
+                "label": "评价"
+            },
+            {
+                "key": "additional-period-2-template",
+                "label": "期初目标"
+            },
+            {
+                "key": "additional-period-3-template",
+                "label": "期中变更目标"
+            },
+            {
+                "key": "additional-information-09",
+                "label": "分类 09"
+            },
+            {
+                "key": "additional-information-10",
+                "label": "分类 10"
+            },
+            {
+                "key": "additional-information-11",
+                "label": "分类 11"
+            },
+            {
+                "key": "additional-information-12",
+                "label": "分类 12"
+            },
+            {
+                "key": "additional-information-13",
+                "label": "分类 13"
+            },
+            {
+                "key": "additional-information-14",
+                "label": "分类 14"
+            },
+            {
+                "key": "additional-information-15",
+                "label": "分类 15"
+            },
+            {
+                "key": "additional-information-16",
+                "label": "分类 16"
+            },
+            {
+                "key": "additional-information-17",
+                "label": "分类 17"
+            },
+            {
+                "key": "additional-information-18",
+                "label": "分类 18"
+            },
+            {
+                "key": "additional-information-19",
+                "label": "分类 19"
+            },
+            {
+                "key": "additional-information-20",
+                "label": "分类 20"
+            }
+        ]
+    },
+    {
+        "key": "face-image",
+        "label": "人脸照片",
+        "items": [
+            {
+                "key": "face-image-download",
+                "label": "下载"
+            },
+            {
+                "key": "face-image-upload",
+                "label": "上传"
+            }
+        ]
+    },
+    {
+        "key": "employee-file",
+        "label": "员工文件",
+        "items": [
+            {
+                "key": "employee-file-download",
+                "label": "下载"
+            },
+            {
+                "key": "employee-file-upload",
+                "label": "上传"
+            },
+            {
+                "key": "employee-file-update",
+                "label": "文件列表"
+            }
+        ]
+    },
+    {
+        "key": "personal-document",
+        "label": "个人文件",
+        "items": [
+            {
+                "key": "personal-document-download",
+                "label": "下载"
+            },
+            {
+                "key": "personal-document",
+                "label": "上传"
+            },
+            {
+                "key": "personal-document-update",
+                "label": "文件列表"
+            }
+        ]
+    },
+    {
+        "key": "system-settings",
+        "label": "系统主数据",
+        "items": [
+            {
+                "key": "account",
+                "label": "账户"
+            },
+            {
+                "key": "employee-information-category",
+                "label": "员工信息类别"
+            },
+            {
+                "key": "employee-information-item",
+                "label": "员工信息项目"
+            },
+            {
+                "key": "authority-management",
+                "label": "权限管理"
+            }
+        ]
+    },
+    {
+        "key": "master-data",
+        "label": "主数据",
+        "items": [
+            {
+                "key": "master-personnel-change",
+                "label": "问题信息"
+            },
+            {
+                "key": "master-data-history-personnel-change",
+                "label": "订单项目主表（历史记录管理）"
+            },
+            {
+                "key": "master-department-information",
+                "label": "组织信息"
+            },
+            {
+                "key": "master-employee-information",
+                "label": "员工信息"
+            },
+            {
+                "key": "master-data-relation",
+                "label": "员工信息（类别、姓名关联）"
+            }
+        ]
+    },
+    {
+        "key": "additional-master-data",
+        "label": "主数据（附加信息）",
+        "items": [
+            {
+                "key": "additional-master-data-retirement-reason",
+                "label": "离职原因"
+            },
+            {
+                "key": "additional-master-data-relationship",
+                "label": "关系"
+            },
+            {
+                "key": "additional-master-data-employment-fixed-term",
+                "label": "有无固定期限"
+            },
+            {
+                "key": "additional-master-data-employment-type",
+                "label": "雇佣类型"
+            },
+            {
+                "key": "additional-master-data-job-title",
+                "label": "职位"
+            },
+            {
+                "key": "additional-master-data-job-category",
+                "label": "工作类别"
+            },
+            {
+                "key": "additional-master-data-job-duty",
+                "label": "工作职责"
+            },
+            {
+                "key": "additional-master-data-job-role",
+                "label": "工作部门"
+            },
+            {
+                "key": "additional-master-data-grade-a",
+                "label": "A级"
+            },
+            {
+                "key": "additional-master-data-grade-b",
+                "label": "B级"
+            },
+            {
+                "key": "additional-master-data-grade-c",
+                "label": "C级"
+            },
+            {
+                "key": "additional-master-data-charge-area",
+                "label": "负责区域"
+            }
+        ]
+    },
+    {
+        "key": "360-evaluation",
+        "label": "360度评估",
+        "items": [
+            {
+                "key": "360-evaluation-evaluatee",
+                "label": "被评估人"
+            },
+            {
+                "key": "360-evaluation-evaluator",
+                "label": "评估员"
+            },
+            {
+                "key": "360-evaluation-result",
+                "label": "评估结果（摘要）"
+            },
+            {
+                "key": "360-evaluation-all-result",
+                "label": "评估结果（所有自我及他人评估）"
+            }
+        ]
+    },
+    {
+        "key": "feedback360",
+        "label": "360度反馈",
+        "items": [
+            {
+                "key": "feedback360-evaluation-member",
+                "label": "被评估人及评估员"
+            },
+            {
+                "key": "feedback360-pre-approved-target-member",
+                "label": "面试、调查对象（候选人）"
+            },
+            {
+                "key": "feedback360-approved-target-member",
+                "label": "面试、调查对象（已批准）"
+            },
+            {
+                "key": "feedback360-evaluation-planning",
+                "label": "评估会议记录（草稿）"
+            },
+            {
+                "key": "feedback360-evaluation-sheet",
+                "label": "评估后评分及等级更新"
+            }
+        ]
+    },
+    {
+        "key": "my-attendance",
+        "label": "My出勤",
+        "items": [
+            {
+                "key": "attendance-working-item",
+                "label": "考勤项目"
+            },
+            {
+                "key": "attendance-monthly-working",
+                "label": "月考勤"
+            },
+            {
+                "key": "attendance-daily-working",
+                "label": "日考勤"
+            }
+        ]
+    }
+]
