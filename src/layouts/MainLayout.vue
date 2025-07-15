@@ -9,7 +9,7 @@
                     <router-link to="/frontend-dev">for frontend developer</router-link>
                     <router-link to="/backend-dev">for backend developer</router-link>
                 </header>
-                <main style="width: 100vw;">
+                <main style="min-width: 100vw;">
                     <router-view />
                 </main>
             </n-config-provider>

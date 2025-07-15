@@ -392,7 +392,7 @@ const searchText = (event: Event) => {
     --header-height: 100px;
     --available-height: calc(100vh - var(--menu-height));
     grid-template-rows: var(--header-height) calc(var(--available-height) - var(--header-height));
-    width: 100vw;
+    min-width: 100vw;
 
     .main-container {
         display: grid;
