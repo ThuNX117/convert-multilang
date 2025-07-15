@@ -75,7 +75,7 @@ const importShare = () => {
     input.onchange = async (event: Event) => {
         const files = (event.target as HTMLInputElement).files;
         if (!files) return;
-        let result: any[] = [];
+        const result: any[] = [];
         const keyTotal: string[] = [];
         for (let i = 0; i < files.length; i++) {
             const file = files[i];

@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist_electron/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Config files (optional - you can remove this if you want to lint config files)
+*.config.js
+*.config.ts
+
+# Generated files
+coverage/
+*.log

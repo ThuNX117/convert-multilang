@@ -23,7 +23,7 @@ const config=({lang, context, scope, url,data,}:ParameterType)=>{
         title: `Bổ sung ${langTitle} cho tiêu đề tại ${scope}`,
         jaTitle: '',
         jaDescription: '',
-        context: `"- Ngôn ngữ: ${langTitle} - ${context} \m`+context+'"',
+        context: `"- Ngôn ngữ: ${langTitle} - ${context} ` + context + '"',
         expected: '"'+data.map(([originalLang, translatedLang]) => `-「${originalLang}」→ 「${translatedLang}」`).join(excelLineBreak) +'"'
     }}
 export const generateTestcase =({lang, context, scope, url,data,}:ParameterType&{data:Array<Array<string>>})=>{

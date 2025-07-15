@@ -53,7 +53,7 @@ export const useDb = () => {
   const clearDB=()=>{
     db.translate.clear().then(() => {
 
-      window.location.href = window.location.href;
+      window.location.reload();
     }).catch((error) => {
       console.error("Error clearing the database", error);
     });

@@ -2,12 +2,10 @@
 import { ref } from "vue";
 import { generateTestcase } from "../plugins/generateTestcase";
 import { useMessage } from "naive-ui";
-import { ConditionPoint } from "@vicons/carbon";
 const message = useMessage()
 type LanguageKeyType = "vie" | "thai" | "eng" | "jap" | "cn";
 const showModal = ref(false);
 const scope = ref("");
-const condition = ref("");
 const context = ref("");
 const lang = ref<LanguageKeyType>("thai");
 const url = ref("");

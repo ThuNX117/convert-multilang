@@ -6,8 +6,11 @@
     "scripts": {
         "dev": "vite",
         "electron:dev": "vite & electron ./src/electron/electron-main.js",
-        "build": "vite build",
-        "electron:build": "electron-builder"
+        "build": "npm run lint && vite build",
+        "electron:build": "electron-builder",
+        "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx",
+        "lint:fix": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
+        "type-check": "vue-tsc --noEmit"
     },
     "dependencies": {
         "@andypf/json-viewer": "^2.1.10",
@@ -19,16 +22,22 @@
         "vue-router": "^4.5.1"
     },
     "devDependencies": {
+        "@eslint/js": "^9.31.0",
         "@types/node": "^22.15.30",
+        "@typescript-eslint/eslint-plugin": "^8.37.0",
+        "@typescript-eslint/parser": "^8.37.0",
         "@vicons/carbon": "^0.13.0",
         "@vitejs/plugin-vue": "^5.2.2",
         "@vue/tsconfig": "^0.7.0",
         "electron-builder": "^26.0.12",
+        "eslint": "^9.31.0",
+        "eslint-plugin-vue": "^10.3.0",
         "naive-ui": "^2.41.0",
         "sass": "^1.88.0",
         "typescript": "~5.7.2",
         "vfonts": "^0.0.3",
         "vite": "^6.3.1",
+        "vue-eslint-parser": "^10.2.0",
         "vue-tsc": "^2.2.8"
     },
     "build": {
