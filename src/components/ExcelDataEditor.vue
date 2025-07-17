@@ -3,6 +3,14 @@
         <div class="editor-header">
             <h3>Excel-like Data Editor</h3>
             <div class="editor-actions">
+                <n-button @click="logData" type="info" size="small">
+                    <template #icon>
+                        <n-icon>
+                            <Upload />
+                        </n-icon>
+                    </template>
+                    lOG DATA
+                </n-button>
                 <n-button @click="importFiles" type="info" size="small">
                     <template #icon>
                         <n-icon>
@@ -72,54 +80,73 @@
                     Comparing current table data with last imported JSON data
                 </n-alert>
 
-                <div class="comparison-stats">
-                    <n-space>
-                        <n-tag type="success">Unchanged: {{ comparisonStats.unchanged }}</n-tag>
-                        <n-tag type="warning">Modified: {{ comparisonStats.modified }}</n-tag>
-                        <n-tag type="info">New in Table: {{ comparisonStats.newInTable }}</n-tag>
-                        <n-tag type="error">Missing from Table: {{ comparisonStats.missingFromTable }}</n-tag>
-                        <n-button size="tiny" type="primary" @click="recompare" style="margin-left: 12px;">
-                            <template #icon>
-                                <n-icon><svg width="16" height="16" viewBox="0 0 24 24">
-                                        <path
-                                            d="M12 6V3L7 8l5 5V9c3.31 0 6 2.69 6 6 0 1.3-.42 2.5-1.13 3.47l1.46 1.46C19.07 18.07 20 16.13 20 14c0-4.42-3.58-8-8-8zm-6.87 2.53L3.67 7.07C2.93 8.93 2 10.87 2 13c0 4.42 3.58 8 8 8v3l5-5-5-5v3c-3.31 0-6-2.69-6-6 0-1.3.42-2.5 1.13-3.47z" />
-                                    </svg></n-icon>
-                            </template>
-                            Re-Compare
-                        </n-button>
-                    </n-space>
-                </div>
+                <n-button size="tiny" type="primary" @click="recompare" style="margin-left: 12px;">
+                    <template #icon>
+                        <n-icon><svg width="16" height="16" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 6V3L7 8l5 5V9c3.31 0 6 2.69 6 6 0 1.3-.42 2.5-1.13 3.47l1.46 1.46C19.07 18.07 20 16.13 20 14c0-4.42-3.58-8-8-8zm-6.87 2.53L3.67 7.07C2.93 8.93 2 10.87 2 13c0 4.42 3.58 8 8 8v3l5-5-5-5v3c-3.31 0-6-2.69-6-6 0-1.3.42-2.5 1.13-3.47z" />
+                            </svg></n-icon>
+                    </template>
+                    Re-Compare
+                </n-button>
 
 
                 <div class="comparison-details" v-if="comparisonDetails.length > 0">
-                    <n-table :bordered="true" size="small" max-height="200px">
-                        <thead>
-                            <tr>
-                                <th>Key</th>
-                                <th>Status</th>
-                                <th>Table Value</th>
-                                <th>JSON Value</th>
-                                <th>Language</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="detail in comparisonDetails.slice(0, 20)"
-                                :key="`${detail.key}-${detail.language}`">
-                                <td>{{ detail.key }}</td>
-                                <td>
-                                    <n-tag :type="getStatusTagType(detail.status)" size="small">
-                                        {{ detail.status }}
-                                    </n-tag>
-                                </td>
-                                <td>{{ detail.tableValue || '(empty)' }}</td>
-                                <td>{{ detail.jsonValue || '(empty)' }}</td>
-                                <td>{{ detail.language }}</td>
-                            </tr>
-                        </tbody>
-                    </n-table>
-                    <p v-if="comparisonDetails.length > 20" style="margin-top: 8px; color: #666;">
-                        ... and {{ comparisonDetails.length - 20 }} more differences
-                    </p>
+                    <n-tabs v-model:value="comparisonStatusTab" type="line" size="small" style="margin-bottom: 12px;">
+                        <n-tab name="all">All</n-tab>
+                        <n-tab name="modified">Modified</n-tab>
+                        <n-tab name="new">New</n-tab>
+                        <n-tab name="missing">Missing</n-tab>
+                        <n-tab name="unchanged">Unchanged</n-tab>
+                    </n-tabs>
+                    <template v-if="comparisonDetails.length > 0">
+                        <n-table :bordered="true" size="small" max-height="200px">
+                            <thead>
+                                <tr>
+                                    <th>Key</th>
+                                    <th>Status</th>
+                                    <th>Japanese</th>
+                                    <th>Chinese</th>
+                                    <th>Thai</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="detail in paginatedComparisonDetails" :key="`${detail.key}-${detail.key}`"
+    :class="{'row-diff': Object.values(detail.isDifference).some(val => val && val.isDifference)}">
+                                    <td>{{ detail.key }}</td>
+                                    <td>
+                                        {{ Object.entries(detail.isDifference || {}).some(item => item[1].isDifference) ? 'Different' : 'Unchanged'
+                                        }}
+                                    </td>
+                                    <td v-for="lang in ['Japanese', 'Chinese', 'Thai']" :key="lang">
+                                        <div :class="{ 'compare':true,'text-red-500': detail.isDifference?.[lang as 'Japanese' | 'Chinese' | 'Thai']?.isDifference }">
+                                            <p>table: {{ detail.isDifference?.[lang as 'Japanese' | 'Chinese' | 'Thai']?.tableValue || '-' }}</p>
+                                            <p>json: {{ detail.isDifference?.[lang as 'Japanese' | 'Chinese' | 'Thai']?.jsonValue || '-' }}</p>
+
+                                        </div>
+
+                                    </td>
+                                     
+                                </tr>
+                            </tbody>
+                        </n-table>
+                        <div v-if="comparisonTotalPages > 1" class="comparison-pagination"
+                            style="margin-top: 12px; display: flex; align-items: center; gap: 8px;">
+                            <n-button size="tiny" :disabled="comparisonPage === 1"
+                                @click="comparisonPage = 1">First</n-button>
+                            <n-button size="tiny" :disabled="comparisonPage === 1"
+                                @click="comparisonPage = comparisonPage - 1">Prev</n-button>
+                            <span>Page {{ comparisonPage }} / {{ comparisonTotalPages }}</span>
+                            <n-button size="tiny" :disabled="comparisonPage === comparisonTotalPages"
+                                @click="comparisonPage = comparisonPage + 1">Next</n-button>
+                            <n-button size="tiny" :disabled="comparisonPage === comparisonTotalPages"
+                                @click="comparisonPage = comparisonTotalPages">Last</n-button>
+                        </div>
+                    </template>
+                    <template v-else>
+                        <div style="color: #888; font-size: 14px; margin: 16px 0; text-align: center;">No results found.
+                        </div>
+                    </template>
                 </div>
             </div>
 
@@ -342,18 +369,13 @@ const columnSettings = [
 // Types for comparison
 interface ComparisonDetail {
     key: string
-    status: 'unchanged' | 'modified' | 'new' | 'missing'
+
     tableValue: string | null
-    jsonValue: string | null
-    language: string
+
+    isDifference: Partial<Record<'Japanese' | 'Chinese' | 'Thai', { language: string; tableValue: string | null; jsonValue: string | null, isDifference: boolean }>>
 }
 
-interface ComparisonStats {
-    unchanged: number
-    modified: number
-    newInTable: number
-    missingFromTable: number
-}
+
 // Re-Compare button handler
 function recompare() {
     lastImportedData.value = [...lastImportedData.value]
@@ -374,21 +396,8 @@ const previewData = computed(() => {
     return getValidData()
 })
 
-const comparisonStats = computed((): ComparisonStats => {
-    if (lastImportedData.value.length === 0) {
-        return { unchanged: 0, modified: 0, newInTable: 0, missingFromTable: 0 }
-    }
 
-    const details = comparisonDetails.value
-    return {
-        unchanged: details.filter(d => d.status === 'unchanged').length,
-        modified: details.filter(d => d.status === 'modified').length,
-        newInTable: details.filter(d => d.status === 'new').length,
-        missingFromTable: details.filter(d => d.status === 'missing').length
-    }
-})
-
-const comparisonDetails = computed((): ComparisonDetail[] => {
+const compareData = () => {
     if (lastImportedData.value.length === 0) return []
 
     const currentData = getValidData()
@@ -407,45 +416,78 @@ const comparisonDetails = computed((): ComparisonDetail[] => {
         if (row[0]) importedMap.set(row[0].toString(), row)
     })
 
-    // Get all unique keys
+    // Only show differences (not unchanged)
     const allKeys = new Set([...currentMap.keys(), ...importedMap.keys()])
-
     allKeys.forEach(key => {
         const currentRow = currentMap.get(key)
         const importedRow = importedMap.get(key)
-
-        // Check each language column (1: Japanese, 2: Chinese, 3: Thai)
-        const languages = ['Japanese', 'Chinese', 'Thai']
+        const languages: any[] = ['Japanese', 'Chinese', 'Thai'] as any[]
+        const rs: ComparisonDetail = {
+            key,
+            tableValue: currentRow ? currentRow[0] : null,
+            isDifference: {
+                Japanese: undefined,
+                Chinese: undefined,
+                Thai: undefined
+            }
+        }
 
         languages.forEach((lang, index) => {
             const langIndex = index + 1
             const currentValue = currentRow?.[langIndex] || null
             const importedValue = importedRow?.[langIndex] || null
-
-            let status: ComparisonDetail['status'] = 'unchanged'
-
-            if (!currentRow && importedRow) {
-                status = 'missing'
-            } else if (currentRow && !importedRow) {
-                status = 'new'
-            } else if (currentValue !== importedValue) {
-                status = 'modified'
-            }
-
-            // Only add to details if there's a difference or if both have values
-            if (status !== 'unchanged' || (currentValue && importedValue)) {
-                details.push({
-                    key,
-                    status,
+            if (currentValue != importedValue) {
+                rs.isDifference[lang as keyof typeof rs.isDifference] = {
+                    language: lang,
                     tableValue: currentValue,
                     jsonValue: importedValue,
-                    language: lang
-                })
+                    isDifference: true
+                }
+            } else {
+                rs.isDifference[lang as keyof typeof rs.isDifference] = {
+                    language: lang,
+                    tableValue: currentValue,
+                    jsonValue: importedValue,
+                    isDifference: false
+                }
             }
-        })
-    })
 
-    return details.sort((a, b) => a.key.localeCompare(b.key))
+        })
+        details.push(rs)
+    })
+    return details
+
+}
+const comparisonDetails = computed((): ComparisonDetail[] => {
+    const all = compareData()
+    if (comparisonStatusTab.value === 'all') return all
+    if (comparisonStatusTab.value === 'unchanged') {
+        return all.filter(detail => Object.values(detail.isDifference).every(val => val && !val.isDifference))
+    }
+    if (comparisonStatusTab.value === 'modified') {
+        return all.filter(detail => Object.values(detail.isDifference).some(val => val && val.isDifference))
+    }
+    // For 'new' and 'missing', you can add more logic if needed
+    return all
+})
+
+// Tab filter for comparison table
+
+// Only add to details if there is a difference
+
+
+
+// Tab filter for comparison table
+import { NTabs, NTab } from 'naive-ui'
+const comparisonStatusTab = ref('all')
+
+// Pagination for comparison details
+const comparisonPage = ref(1)
+const comparisonPageSize = 20
+const comparisonTotalPages = computed(() => Math.ceil(comparisonDetails.value.length / comparisonPageSize))
+const paginatedComparisonDetails = computed(() => {
+    const start = (comparisonPage.value - 1) * comparisonPageSize
+    return comparisonDetails.value.slice(start, start + comparisonPageSize)
 })
 
 // Methods
@@ -477,15 +519,7 @@ const onSelectionChange = (row: number, _column: number, row2: number) => {
 }
 
 // Helper function for comparison status tag colors
-const getStatusTagType = (status: ComparisonDetail['status']) => {
-    switch (status) {
-        case 'unchanged': return 'success'
-        case 'modified': return 'warning'
-        case 'new': return 'info'
-        case 'missing': return 'error'
-        default: return 'default'
-    }
-}
+
 
 const addRow = () => {
     tableData.value.push([null, null, null, null])
@@ -517,7 +551,6 @@ const deleteSelectedRows = () => {
 
 const clearAll = () => {
     tableData.value = [[null, null, null, null]]
-    console.log('Clearing all data')
     // selectedRows.value = []
     // lastImportedData.value = []
     message.info('All data cleared')
@@ -531,9 +564,11 @@ const clearAll = () => {
 }
 
 const getValidData = (): (string | null)[][] => {
-    return tableData.value.filter(row =>
-        row && row.length >= 4 && row[0] && row[0].toString().trim() !== ''
-    )
+    const data = (hotTableRef.value?.hotInstance.getData() || []) as typeof tableData.value
+    // Return a deep copy to avoid reactivity issues and ensure correct data for comparison
+    return data
+        .filter(row => row && row.length >= 4 && row[0] && row[0].toString().trim() !== '')
+        .map(row => [...row])
 }
 
 const exportData = () => {
@@ -605,7 +640,9 @@ const exportData = () => {
 
     message.success(`Exported ${languages.length} i18n files + 1 combined file`)
 }
-
+const logData = () => {
+    message.info('Data logged to console')
+}
 // File import functionality
 const importFiles = () => {
     showImportModal.value = true
@@ -749,16 +786,11 @@ const confirmImport = () => {
     importing.value = true
 
     setTimeout(() => {
-        // Store the imported data for comparison
+        // Store the imported data for comparison only
         lastImportedData.value = [...importPreview.value]
 
-        // Replace current data with imported data
-        tableData.value = [...importPreview.value]
-
-        // Add empty row for new entries
-        if (tableData.value.length === 0 || tableData.value[tableData.value.length - 1].some(cell => cell && cell.toString().trim() !== '')) {
-            tableData.value.push([null, null, null, null])
-        }
+        // Do NOT override tableData (Excel data) on import
+        // Only update the comparison reference
 
         importing.value = false
         showImportModal.value = false
@@ -770,8 +802,7 @@ const confirmImport = () => {
             }
         })
 
-        message.success(`Imported ${importPreview.value.length} rows from ${selectedFiles.value.length} file(s)`)
-        emit('dataChanged', getValidData())
+        message.success(`Imported ${importPreview.value.length} rows from ${selectedFiles.value.length} file(s) for comparison`)
 
         // Clear import state
         selectedFiles.value = []
@@ -1060,5 +1091,13 @@ defineExpose({
             overflow-x: auto;
         }
     }
+}
+.text-red-500 {
+  p {
+    color: red;
+  }
+}
+.row-diff {
+  background: #ffeaea !important;
 }
 </style>
